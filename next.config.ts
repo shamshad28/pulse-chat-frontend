@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
           source: "/api/:path*",
           destination: `${backendUrl}/api/:path*`,
         },
+        {
+          source: "/uploads/:path*",
+          destination: `${backendUrl}/uploads/:path*`,
+        },
       ];
     }
 
@@ -20,6 +24,10 @@ const nextConfig: NextConfig = {
         {
           source: "/api/:path*",
           destination: "http://localhost:5000/api/:path*",
+        },
+        {
+          source: "/uploads/:path*",
+          destination: "http://localhost:5000/uploads/:path*",
         },
       ];
     }
