@@ -120,27 +120,15 @@ export default function ContactInfoSidebar({
   };
 
   const handleClearMessages = async () => {
-    if (
-      confirm(
-        `Are you sure you want to clear all messages in this chat with "${title}"? This cannot be undone.`
-      )
-    ) {
-      if (onClearChat) {
-        await onClearChat(conversation._id);
-      }
+    if (onClearChat) {
+      await onClearChat(conversation._id);
     }
   };
 
   const handleDeleteChat = async () => {
-    if (
-      confirm(
-        `Are you sure you want to delete this entire chat with "${title}"? All messages and history will be permanently deleted.`
-      )
-    ) {
-      if (onDeleteChat) {
-        await onDeleteChat(conversation._id);
-        onClose();
-      }
+    if (onDeleteChat) {
+      await onDeleteChat(conversation._id);
+      onClose();
     }
   };
 

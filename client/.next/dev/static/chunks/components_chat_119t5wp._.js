@@ -601,18 +601,14 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
         }
     };
     const handleClearMessages = async ()=>{
-        if (confirm(`Are you sure you want to clear all messages in this chat with "${title}"? This cannot be undone.`)) {
-            if (onClearChat) {
-                await onClearChat(conversation._id);
-            }
+        if (onClearChat) {
+            await onClearChat(conversation._id);
         }
     };
     const handleDeleteChat = async ()=>{
-        if (confirm(`Are you sure you want to delete this entire chat with "${title}"? All messages and history will be permanently deleted.`)) {
-            if (onDeleteChat) {
-                await onDeleteChat(conversation._id);
-                onClose();
-            }
+        if (onDeleteChat) {
+            await onDeleteChat(conversation._id);
+            onClose();
         }
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("aside", {
@@ -626,7 +622,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                         children: isGroup ? "Group info" : "Contact info"
                     }, void 0, false, {
                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                        lineNumber: 151,
+                        lineNumber: 139,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -637,18 +633,18 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                             className: "w-5 h-5"
                         }, void 0, false, {
                             fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                            lineNumber: 159,
+                            lineNumber: 147,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                        lineNumber: 154,
+                        lineNumber: 142,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                lineNumber: 150,
+                lineNumber: 138,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -666,7 +662,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                         className: "w-32 h-32 rounded-full object-cover ring-4 ring-[#202c33] shadow-lg"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 169,
+                                        lineNumber: 157,
                                         columnNumber: 15
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "w-32 h-32 rounded-full bg-[#534b3e] flex items-center justify-center text-white font-bold text-4xl shadow-lg ring-4 ring-[#202c33]",
@@ -674,25 +670,25 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                             className: "w-16 h-16 text-[#d1d7db]"
                                         }, void 0, false, {
                                             fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                            lineNumber: 176,
+                                            lineNumber: 164,
                                             columnNumber: 28
                                         }, this) : (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getInitials"])(title)
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 175,
+                                        lineNumber: 163,
                                         columnNumber: 15
                                     }, this),
                                     !isGroup && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         className: `absolute bottom-1 right-2 w-5 h-5 rounded-full border-3 border-[#111b21] ${isOtherUserOnline ? "bg-[#25d366]" : "bg-[#8696a0]"}`
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 181,
+                                        lineNumber: 169,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 167,
+                                lineNumber: 155,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -702,7 +698,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                         children: title
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 190,
+                                        lineNumber: 178,
                                         columnNumber: 13
                                     }, this),
                                     isGroup && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -710,13 +706,13 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                         children: "Group"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 192,
+                                        lineNumber: 180,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 189,
+                                lineNumber: 177,
                                 columnNumber: 11
                             }, this),
                             !isGroup && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -728,7 +724,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 199,
+                                lineNumber: 187,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -736,7 +732,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                 children: isGroup ? `${conversation.members?.length || 0} participants` : isOtherUserOnline ? "● Online" : (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["formatLiveLastSeen"])(otherUser?.lastSeen)
                             }, void 0, false, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 204,
+                                lineNumber: 192,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -753,12 +749,12 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                     className: "w-4 h-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                    lineNumber: 220,
+                                                    lineNumber: 208,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 219,
+                                                lineNumber: 207,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -766,13 +762,13 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                 children: "Audio"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 222,
+                                                lineNumber: 210,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 214,
+                                        lineNumber: 202,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -786,12 +782,12 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                     className: "w-4 h-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                    lineNumber: 231,
+                                                    lineNumber: 219,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 230,
+                                                lineNumber: 218,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -799,13 +795,13 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                 children: "Video"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 233,
+                                                lineNumber: 221,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 225,
+                                        lineNumber: 213,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -819,12 +815,12 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                     className: "w-4 h-4 text-[#aebac1]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                    lineNumber: 242,
+                                                    lineNumber: 230,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 241,
+                                                lineNumber: 229,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -832,25 +828,25 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                 children: "Search"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 244,
+                                                lineNumber: 232,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 236,
+                                        lineNumber: 224,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 213,
+                                lineNumber: 201,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                        lineNumber: 166,
+                        lineNumber: 154,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -863,7 +859,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                         children: isGroup ? "Group Description" : "About"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 252,
+                                        lineNumber: 240,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -871,13 +867,13 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                         children: about
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 255,
+                                        lineNumber: 243,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 251,
+                                lineNumber: 239,
                                 columnNumber: 11
                             }, this),
                             !isGroup && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -887,7 +883,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                         children: "Phone Number"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 262,
+                                        lineNumber: 250,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -895,19 +891,19 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                         children: phone
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 265,
+                                        lineNumber: 253,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 261,
+                                lineNumber: 249,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                        lineNumber: 250,
+                        lineNumber: 238,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -921,7 +917,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                         children: "Media, links and docs"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 273,
+                                        lineNumber: 261,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -931,26 +927,26 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                 children: sharedMedia.length + sharedDocs.length + sharedLinks.length
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 277,
+                                                lineNumber: 265,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
                                                 className: "w-3.5 h-3.5"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 278,
+                                                lineNumber: 266,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 276,
+                                        lineNumber: 264,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 272,
+                                lineNumber: 260,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -982,26 +978,26 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                 className: "w-3 h-3"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 301,
+                                                lineNumber: 289,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: tab.label
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 302,
+                                                lineNumber: 290,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, tab.id, true, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 291,
+                                        lineNumber: 279,
                                         columnNumber: 17
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 283,
+                                lineNumber: 271,
                                 columnNumber: 11
                             }, this),
                             activeMediaTab === "media" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1010,7 +1006,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                     children: "No photos or videos shared yet"
                                 }, void 0, false, {
                                     fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                    lineNumber: 312,
+                                    lineNumber: 300,
                                     columnNumber: 17
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "grid grid-cols-3 gap-2",
@@ -1025,22 +1021,22 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                 className: "w-full h-full object-cover"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 325,
+                                                lineNumber: 313,
                                                 columnNumber: 23
                                             }, this)
                                         }, idx, false, {
                                             fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                            lineNumber: 318,
+                                            lineNumber: 306,
                                             columnNumber: 21
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                    lineNumber: 316,
+                                    lineNumber: 304,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 310,
+                                lineNumber: 298,
                                 columnNumber: 13
                             }, this),
                             activeMediaTab === "docs" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1050,7 +1046,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                     children: "No documents shared yet"
                                 }, void 0, false, {
                                     fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                    lineNumber: 337,
+                                    lineNumber: 325,
                                     columnNumber: 17
                                 }, this) : sharedDocs.slice(0, 4).map((doc, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "flex items-center gap-2 p-2 rounded-lg bg-[#202c33] border border-[#2a3942] text-xs",
@@ -1059,7 +1055,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                 className: "w-4 h-4 text-[#00a884] flex-shrink-0"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 346,
+                                                lineNumber: 334,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1067,18 +1063,18 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                 children: doc.attachments?.[0]?.fileName || doc.content || "Document"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 347,
+                                                lineNumber: 335,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, idx, true, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 342,
+                                        lineNumber: 330,
                                         columnNumber: 19
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 335,
+                                lineNumber: 323,
                                 columnNumber: 13
                             }, this),
                             activeMediaTab === "links" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1088,7 +1084,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                     children: "No links shared in this conversation"
                                 }, void 0, false, {
                                     fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                    lineNumber: 360,
+                                    lineNumber: 348,
                                     columnNumber: 17
                                 }, this) : sharedLinks.slice(0, 4).map((link, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "flex items-center gap-2 p-2 rounded-lg bg-[#202c33] border border-[#2a3942] text-xs",
@@ -1097,7 +1093,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                 className: "w-4 h-4 text-cyan-400 flex-shrink-0"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 369,
+                                                lineNumber: 357,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1105,24 +1101,24 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                 children: link.content
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 370,
+                                                lineNumber: 358,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, idx, true, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 365,
+                                        lineNumber: 353,
                                         columnNumber: 19
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 358,
+                                lineNumber: 346,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                        lineNumber: 271,
+                        lineNumber: 259,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1135,7 +1131,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                         className: "w-4 h-4 text-[#8696a0]"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 383,
+                                        lineNumber: 371,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1143,13 +1139,13 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                         children: "Starred messages"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 384,
+                                        lineNumber: 372,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 382,
+                                lineNumber: 370,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1159,26 +1155,26 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                         children: starredCount
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 387,
+                                        lineNumber: 375,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
                                         className: "w-3.5 h-3.5"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 388,
+                                        lineNumber: 376,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 386,
+                                lineNumber: 374,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                        lineNumber: 381,
+                        lineNumber: 369,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1194,13 +1190,13 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                 className: "w-4 h-4 text-[#8696a0]"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 397,
+                                                lineNumber: 385,
                                                 columnNumber: 17
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bell$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Bell$3e$__["Bell"], {
                                                 className: "w-4 h-4 text-[#8696a0]"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 399,
+                                                lineNumber: 387,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1210,7 +1206,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                         children: "Mute notifications"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                        lineNumber: 402,
+                                                        lineNumber: 390,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1218,19 +1214,19 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                         children: isMuted ? "Muted" : "Alerts will play normally"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                        lineNumber: 403,
+                                                        lineNumber: 391,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 401,
+                                                lineNumber: 389,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 395,
+                                        lineNumber: 383,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1240,13 +1236,13 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                         className: "w-4 h-4 accent-[#00a884] rounded cursor-pointer"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 408,
+                                        lineNumber: 396,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 394,
+                                lineNumber: 382,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1259,7 +1255,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                 className: "w-4 h-4 text-[#8696a0]"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 419,
+                                                lineNumber: 407,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1269,7 +1265,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                         children: "Disappearing messages"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                        lineNumber: 421,
+                                                        lineNumber: 409,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1277,19 +1273,19 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                         children: disappearingTimer
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                        lineNumber: 422,
+                                                        lineNumber: 410,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 420,
+                                                lineNumber: 408,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 418,
+                                        lineNumber: 406,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -1302,7 +1298,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                 children: "Off"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 430,
+                                                lineNumber: 418,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1310,7 +1306,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                 children: "24 hours"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 431,
+                                                lineNumber: 419,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1318,7 +1314,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                 children: "7 days"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 432,
+                                                lineNumber: 420,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1326,25 +1322,25 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                 children: "90 days"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 433,
+                                                lineNumber: 421,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 425,
+                                        lineNumber: 413,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 417,
+                                lineNumber: 405,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                        lineNumber: 393,
+                        lineNumber: 381,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1357,7 +1353,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                     className: "w-4 h-4 text-[#00a884] flex-shrink-0 mt-0.5"
                                 }, void 0, false, {
                                     fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                    lineNumber: 444,
+                                    lineNumber: 432,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1370,20 +1366,20 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                     children: "Encryption"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                    lineNumber: 447,
+                                                    lineNumber: 435,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$qr$2d$code$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__QrCode$3e$__["QrCode"], {
                                                     className: "w-3.5 h-3.5 text-[#8696a0]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                    lineNumber: 448,
+                                                    lineNumber: 436,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                            lineNumber: 446,
+                                            lineNumber: 434,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1391,24 +1387,24 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                             children: "Messages and calls are end-to-end encrypted. Click to verify security code."
                                         }, void 0, false, {
                                             fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                            lineNumber: 450,
+                                            lineNumber: 438,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                    lineNumber: 445,
+                                    lineNumber: 433,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                            lineNumber: 443,
+                            lineNumber: 431,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                        lineNumber: 439,
+                        lineNumber: 427,
                         columnNumber: 9
                     }, this),
                     isGroup && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1425,7 +1421,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 461,
+                                        lineNumber: 449,
                                         columnNumber: 15
                                     }, this),
                                     onOpenGroupSettings && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1437,26 +1433,26 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                 className: "w-3 h-3"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 470,
+                                                lineNumber: 458,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "Manage"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 471,
+                                                lineNumber: 459,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 465,
+                                        lineNumber: 453,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 460,
+                                lineNumber: 448,
                                 columnNumber: 13
                             }, this),
                             isGroupAdmin && onOpenGroupSettings && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1470,25 +1466,25 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                             className: "w-4 h-4"
                                         }, void 0, false, {
                                             fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                            lineNumber: 484,
+                                            lineNumber: 472,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 483,
+                                        lineNumber: 471,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "Add participant"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 486,
+                                        lineNumber: 474,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 478,
+                                lineNumber: 466,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1511,12 +1507,12 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                             className: "w-full h-full rounded-full object-cover"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                            lineNumber: 506,
+                                                            lineNumber: 494,
                                                             columnNumber: 27
                                                         }, this) : (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getInitials"])(member.name || "Member")
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                        lineNumber: 504,
+                                                        lineNumber: 492,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1527,7 +1523,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                                 children: isMe ? "You" : member.name || member.username
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                                lineNumber: 516,
+                                                                lineNumber: 504,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1535,19 +1531,19 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                                 children: member.about || "Hey there!"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                                lineNumber: 519,
+                                                                lineNumber: 507,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                        lineNumber: 515,
+                                                        lineNumber: 503,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 503,
+                                                lineNumber: 491,
                                                 columnNumber: 21
                                             }, this),
                                             isMAdmin && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1555,25 +1551,25 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                                 children: "Group Admin"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                                lineNumber: 526,
+                                                lineNumber: 514,
                                                 columnNumber: 23
                                             }, this)
                                         ]
                                     }, mId, true, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 499,
+                                        lineNumber: 487,
                                         columnNumber: 19
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 490,
+                                lineNumber: 478,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                        lineNumber: 459,
+                        lineNumber: 447,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1588,20 +1584,20 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                         className: "w-4 h-4"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 549,
+                                        lineNumber: 537,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: blocked ? `Unblock ${title}` : `Block ${title}`
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 550,
+                                        lineNumber: 538,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 540,
+                                lineNumber: 528,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1613,20 +1609,20 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                         className: "w-4 h-4 text-amber-400"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 560,
+                                        lineNumber: 548,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "Clear chat"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 561,
+                                        lineNumber: 549,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 555,
+                                lineNumber: 543,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1638,20 +1634,20 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                         className: "w-4 h-4 text-rose-400"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 570,
+                                        lineNumber: 558,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: isGroup ? "Exit & delete group" : "Delete chat"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 571,
+                                        lineNumber: 559,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 565,
+                                lineNumber: 553,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1663,32 +1659,32 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                         className: "w-4 h-4"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 579,
+                                        lineNumber: 567,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: isGroup ? "Report group" : `Report ${title}`
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 580,
+                                        lineNumber: 568,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 574,
+                                lineNumber: 562,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                        lineNumber: 538,
+                        lineNumber: 526,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                lineNumber: 164,
+                lineNumber: 152,
                 columnNumber: 7
             }, this),
             showQrModal && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1701,7 +1697,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                             children: "Verify Security Code"
                         }, void 0, false, {
                             fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                            lineNumber: 589,
+                            lineNumber: 577,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1713,7 +1709,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                            lineNumber: 590,
+                            lineNumber: 578,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1725,25 +1721,25 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                                         className: "w-24 h-24 text-gray-900 mb-2"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 596,
+                                        lineNumber: 584,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "60-DIGIT SECURITY NUM"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                        lineNumber: 597,
+                                        lineNumber: 585,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                                lineNumber: 595,
+                                lineNumber: 583,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                            lineNumber: 594,
+                            lineNumber: 582,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1751,7 +1747,7 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                             children: "12849 59302 91823 48192 48194"
                         }, void 0, false, {
                             fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                            lineNumber: 601,
+                            lineNumber: 589,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1761,24 +1757,24 @@ function ContactInfoSidebar({ isOpen, onClose, conversation, currentUser, isOthe
                             children: "Done"
                         }, void 0, false, {
                             fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                            lineNumber: 605,
+                            lineNumber: 593,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                    lineNumber: 588,
+                    lineNumber: 576,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-                lineNumber: 587,
+                lineNumber: 575,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/chat/ContactInfoSidebar.jsx",
-        lineNumber: 148,
+        lineNumber: 136,
         columnNumber: 5
     }, this);
 }
@@ -4509,17 +4505,13 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                             onDeleteMessage && isMe && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 type: "button",
                                 title: "Delete message",
-                                onClick: ()=>{
-                                    if (confirm("Delete this message?")) {
-                                        onDeleteMessage(message._id);
-                                    }
-                                },
+                                onClick: ()=>onDeleteMessage(message._id),
                                 className: "p-1 rounded-full text-[#8696a0] hover:text-rose-400 hover:bg-rose-500/10 transition-colors",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__["Trash2"], {
                                     className: "w-3.5 h-3.5"
                                 }, void 0, false, {
                                     fileName: "[project]/components/chat/MessageBubble.jsx",
-                                    lineNumber: 151,
+                                    lineNumber: 147,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
@@ -4539,7 +4531,7 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                         position: "top"
                     }, void 0, false, {
                         fileName: "[project]/components/chat/MessageBubble.jsx",
-                        lineNumber: 158,
+                        lineNumber: 154,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4556,20 +4548,20 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                                 className: "w-3 h-3 opacity-80"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                lineNumber: 184,
+                                                lineNumber: 180,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: message.replyTo.sender?.name || (message.replyTo.sender === currentUserId ? "You" : "User")
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                lineNumber: 185,
+                                                lineNumber: 181,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/chat/MessageBubble.jsx",
-                                        lineNumber: 183,
+                                        lineNumber: 179,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4577,13 +4569,13 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                         children: message.replyTo.content || (message.replyTo.type === "image" ? "📷 Photo" : "📎 Attachment")
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/MessageBubble.jsx",
-                                        lineNumber: 190,
+                                        lineNumber: 186,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/MessageBubble.jsx",
-                                lineNumber: 175,
+                                lineNumber: 171,
                                 columnNumber: 13
                             }, this),
                             message.attachments && message.attachments.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4604,7 +4596,7 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                                     loading: "lazy"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                    lineNumber: 214,
+                                                    lineNumber: 210,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4613,18 +4605,18 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                                         className: "w-5 h-5 text-white drop-shadow"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                        lineNumber: 221,
+                                                        lineNumber: 217,
                                                         columnNumber: 25
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                    lineNumber: 220,
+                                                    lineNumber: 216,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, idx, true, {
                                             fileName: "[project]/components/chat/MessageBubble.jsx",
-                                            lineNumber: 209,
+                                            lineNumber: 205,
                                             columnNumber: 21
                                         }, this);
                                     }
@@ -4637,12 +4629,12 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                                 className: "max-h-72 w-full rounded-xl"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                lineNumber: 230,
+                                                lineNumber: 226,
                                                 columnNumber: 23
                                             }, this)
                                         }, idx, false, {
                                             fileName: "[project]/components/chat/MessageBubble.jsx",
-                                            lineNumber: 229,
+                                            lineNumber: 225,
                                             columnNumber: 21
                                         }, this);
                                     }
@@ -4655,12 +4647,12 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                                 className: "w-full h-9"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                lineNumber: 238,
+                                                lineNumber: 234,
                                                 columnNumber: 23
                                             }, this)
                                         }, idx, false, {
                                             fileName: "[project]/components/chat/MessageBubble.jsx",
-                                            lineNumber: 237,
+                                            lineNumber: 233,
                                             columnNumber: 21
                                         }, this);
                                     }
@@ -4678,12 +4670,12 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                                     className: "w-4 h-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                    lineNumber: 258,
+                                                    lineNumber: 254,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                lineNumber: 257,
+                                                lineNumber: 253,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4694,7 +4686,7 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                                         children: att.fileName || "File"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                        lineNumber: 261,
+                                                        lineNumber: 257,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4702,13 +4694,13 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                                         children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["formatFileSize"])(att.size)
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                        lineNumber: 262,
+                                                        lineNumber: 258,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                lineNumber: 260,
+                                                lineNumber: 256,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4717,24 +4709,24 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                                     className: "w-3.5 h-3.5 text-[#54656f]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                    lineNumber: 265,
+                                                    lineNumber: 261,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                lineNumber: 264,
+                                                lineNumber: 260,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, idx, true, {
                                         fileName: "[project]/components/chat/MessageBubble.jsx",
-                                        lineNumber: 245,
+                                        lineNumber: 241,
                                         columnNumber: 19
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/components/chat/MessageBubble.jsx",
-                                lineNumber: 199,
+                                lineNumber: 195,
                                 columnNumber: 13
                             }, this),
                             message.content && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4742,7 +4734,7 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                 children: message.content
                             }, void 0, false, {
                                 fileName: "[project]/components/chat/MessageBubble.jsx",
-                                lineNumber: 275,
+                                lineNumber: 271,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4753,7 +4745,7 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                         children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["formatMessageTime"])(message.createdAt)
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/MessageBubble.jsx",
-                                        lineNumber: 286,
+                                        lineNumber: 282,
                                         columnNumber: 13
                                     }, this),
                                     isMe && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4762,45 +4754,45 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                             className: "w-3 h-3 text-[#8696a0] animate-spin"
                                         }, void 0, false, {
                                             fileName: "[project]/components/chat/MessageBubble.jsx",
-                                            lineNumber: 292,
+                                            lineNumber: 288,
                                             columnNumber: 19
                                         }, this) : isRead ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2d$check$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCheck$3e$__["CheckCheck"], {
                                             className: "w-4 h-4 text-[#53bdeb] stroke-[2.2]",
                                             title: "Read"
                                         }, void 0, false, {
                                             fileName: "[project]/components/chat/MessageBubble.jsx",
-                                            lineNumber: 294,
+                                            lineNumber: 290,
                                             columnNumber: 19
                                         }, this) : isDelivered ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2d$check$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCheck$3e$__["CheckCheck"], {
                                             className: "w-4 h-4 text-[#8696a0]",
                                             title: "Delivered"
                                         }, void 0, false, {
                                             fileName: "[project]/components/chat/MessageBubble.jsx",
-                                            lineNumber: 296,
+                                            lineNumber: 292,
                                             columnNumber: 19
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                             className: "w-3.5 h-3.5 text-[#8696a0]",
                                             title: "Sent"
                                         }, void 0, false, {
                                             fileName: "[project]/components/chat/MessageBubble.jsx",
-                                            lineNumber: 298,
+                                            lineNumber: 294,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/MessageBubble.jsx",
-                                        lineNumber: 290,
+                                        lineNumber: 286,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/MessageBubble.jsx",
-                                lineNumber: 281,
+                                lineNumber: 277,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/chat/MessageBubble.jsx",
-                        lineNumber: 166,
+                        lineNumber: 162,
                         columnNumber: 9
                     }, this),
                     Object.keys(reactionGroups).length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4814,7 +4806,7 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                         children: emoji
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/MessageBubble.jsx",
-                                        lineNumber: 319,
+                                        lineNumber: 315,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4822,18 +4814,18 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                         children: group.count
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/MessageBubble.jsx",
-                                        lineNumber: 320,
+                                        lineNumber: 316,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, emoji, true, {
                                 fileName: "[project]/components/chat/MessageBubble.jsx",
-                                lineNumber: 309,
+                                lineNumber: 305,
                                 columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/components/chat/MessageBubble.jsx",
-                        lineNumber: 307,
+                        lineNumber: 303,
                         columnNumber: 11
                     }, this)
                 ]
@@ -4874,6 +4866,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$face$2d$slightly$2d$smiling$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Smile$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/face-slightly-smiling.mjs [app-client] (ecmascript) <export default as Smile>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$send$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Send$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/send.mjs [app-client] (ecmascript) <export default as Send>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/x.mjs [app-client] (ecmascript) <export default as X>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$image$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Image$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/image.mjs [app-client] (ecmascript) <export default as Image>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2d$text$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FileText$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/file-text.mjs [app-client] (ecmascript) <export default as FileText>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$video$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Video$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/video.mjs [app-client] (ecmascript) <export default as Video>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$corner$2d$up$2d$left$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CornerUpLeft$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/corner-up-left.mjs [app-client] (ecmascript) <export default as CornerUpLeft>");
@@ -4921,10 +4914,12 @@ function MessageInput({ conversationId, onSendMessage, droppedFiles = null }) {
     const [selectedFiles, setSelectedFiles] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [filePreviews, setFilePreviews] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [showEmojiPicker, setShowEmojiPicker] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [showAttachMenu, setShowAttachMenu] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [uploading, setUploading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isRecordingVoice, setIsRecordingVoice] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [recordingSeconds, setRecordingSeconds] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
     const fileInputRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const imageInputRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const textareaRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const typingTimerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const isTypingRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(false);
@@ -5156,7 +5151,7 @@ function MessageInput({ conversationId, onSendMessage, droppedFiles = null }) {
                                 className: "w-3.5 h-3.5 text-[#00a884] flex-shrink-0"
                             }, void 0, false, {
                                 fileName: "[project]/components/chat/MessageInput.jsx",
-                                lineNumber: 274,
+                                lineNumber: 276,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5168,7 +5163,7 @@ function MessageInput({ conversationId, onSendMessage, droppedFiles = null }) {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/MessageInput.jsx",
-                                lineNumber: 275,
+                                lineNumber: 277,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5176,13 +5171,13 @@ function MessageInput({ conversationId, onSendMessage, droppedFiles = null }) {
                                 children: replyingTo.content || (replyingTo.type === "image" ? "📷 Photo" : "📎 Attachment")
                             }, void 0, false, {
                                 fileName: "[project]/components/chat/MessageInput.jsx",
-                                lineNumber: 278,
+                                lineNumber: 280,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/chat/MessageInput.jsx",
-                        lineNumber: 273,
+                        lineNumber: 275,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -5193,18 +5188,18 @@ function MessageInput({ conversationId, onSendMessage, droppedFiles = null }) {
                             className: "w-3.5 h-3.5"
                         }, void 0, false, {
                             fileName: "[project]/components/chat/MessageInput.jsx",
-                            lineNumber: 287,
+                            lineNumber: 289,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/chat/MessageInput.jsx",
-                        lineNumber: 282,
+                        lineNumber: 284,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/chat/MessageInput.jsx",
-                lineNumber: 272,
+                lineNumber: 274,
                 columnNumber: 9
             }, this),
             filePreviews.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5219,7 +5214,7 @@ function MessageInput({ conversationId, onSendMessage, droppedFiles = null }) {
                                     className: "w-full h-full object-cover"
                                 }, void 0, false, {
                                     fileName: "[project]/components/chat/MessageInput.jsx",
-                                    lineNumber: 301,
+                                    lineNumber: 303,
                                     columnNumber: 17
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "w-full h-full flex flex-col items-center justify-center p-2 text-center text-[#8696a0]",
@@ -5228,13 +5223,13 @@ function MessageInput({ conversationId, onSendMessage, droppedFiles = null }) {
                                             className: "w-6 h-6 text-[#00a884]"
                                         }, void 0, false, {
                                             fileName: "[project]/components/chat/MessageInput.jsx",
-                                            lineNumber: 305,
+                                            lineNumber: 307,
                                             columnNumber: 21
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2d$text$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FileText$3e$__["FileText"], {
                                             className: "w-6 h-6 text-[#00a884]"
                                         }, void 0, false, {
                                             fileName: "[project]/components/chat/MessageInput.jsx",
-                                            lineNumber: 307,
+                                            lineNumber: 309,
                                             columnNumber: 21
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5242,13 +5237,13 @@ function MessageInput({ conversationId, onSendMessage, droppedFiles = null }) {
                                             children: preview.name
                                         }, void 0, false, {
                                             fileName: "[project]/components/chat/MessageInput.jsx",
-                                            lineNumber: 309,
+                                            lineNumber: 311,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/chat/MessageInput.jsx",
-                                    lineNumber: 303,
+                                    lineNumber: 305,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -5259,18 +5254,18 @@ function MessageInput({ conversationId, onSendMessage, droppedFiles = null }) {
                                         className: "w-3 h-3"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/MessageInput.jsx",
-                                        lineNumber: 317,
+                                        lineNumber: 319,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/chat/MessageInput.jsx",
-                                    lineNumber: 312,
+                                    lineNumber: 314,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, index, true, {
                             fileName: "[project]/components/chat/MessageInput.jsx",
-                            lineNumber: 296,
+                            lineNumber: 298,
                             columnNumber: 13
                         }, this)),
                     filePreviews.length > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -5280,13 +5275,13 @@ function MessageInput({ conversationId, onSendMessage, droppedFiles = null }) {
                         children: "Clear all"
                     }, void 0, false, {
                         fileName: "[project]/components/chat/MessageInput.jsx",
-                        lineNumber: 323,
+                        lineNumber: 325,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/chat/MessageInput.jsx",
-                lineNumber: 294,
+                lineNumber: 296,
                 columnNumber: 9
             }, this),
             showEmojiPicker && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5300,17 +5295,17 @@ function MessageInput({ conversationId, onSendMessage, droppedFiles = null }) {
                             children: emoji
                         }, emoji, false, {
                             fileName: "[project]/components/chat/MessageInput.jsx",
-                            lineNumber: 339,
+                            lineNumber: 341,
                             columnNumber: 15
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/components/chat/MessageInput.jsx",
-                    lineNumber: 337,
+                    lineNumber: 339,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/chat/MessageInput.jsx",
-                lineNumber: 336,
+                lineNumber: 338,
                 columnNumber: 9
             }, this),
             isRecordingVoice ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5325,12 +5320,12 @@ function MessageInput({ conversationId, onSendMessage, droppedFiles = null }) {
                             className: "w-5 h-5"
                         }, void 0, false, {
                             fileName: "[project]/components/chat/MessageInput.jsx",
-                            lineNumber: 361,
+                            lineNumber: 363,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/chat/MessageInput.jsx",
-                        lineNumber: 355,
+                        lineNumber: 357,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5340,7 +5335,7 @@ function MessageInput({ conversationId, onSendMessage, droppedFiles = null }) {
                                 className: "w-3 h-3 rounded-full bg-rose-500 animate-ping"
                             }, void 0, false, {
                                 fileName: "[project]/components/chat/MessageInput.jsx",
-                                lineNumber: 365,
+                                lineNumber: 367,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5348,7 +5343,7 @@ function MessageInput({ conversationId, onSendMessage, droppedFiles = null }) {
                                 children: "Recording"
                             }, void 0, false, {
                                 fileName: "[project]/components/chat/MessageInput.jsx",
-                                lineNumber: 366,
+                                lineNumber: 368,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5361,13 +5356,13 @@ function MessageInput({ conversationId, onSendMessage, droppedFiles = null }) {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/MessageInput.jsx",
-                                lineNumber: 367,
+                                lineNumber: 369,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/chat/MessageInput.jsx",
-                        lineNumber: 364,
+                        lineNumber: 366,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -5379,18 +5374,18 @@ function MessageInput({ conversationId, onSendMessage, droppedFiles = null }) {
                             className: "w-4 h-4"
                         }, void 0, false, {
                             fileName: "[project]/components/chat/MessageInput.jsx",
-                            lineNumber: 380,
+                            lineNumber: 382,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/chat/MessageInput.jsx",
-                        lineNumber: 374,
+                        lineNumber: 376,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/chat/MessageInput.jsx",
-                lineNumber: 354,
+                lineNumber: 356,
                 columnNumber: 9
             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
                 onSubmit: handleSubmit,
@@ -5398,49 +5393,179 @@ function MessageInput({ conversationId, onSendMessage, droppedFiles = null }) {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                         type: "file",
+                        ref: imageInputRef,
+                        onChange: (e)=>{
+                            handleFileChange(e);
+                            setShowAttachMenu(false);
+                        },
+                        multiple: true,
+                        className: "hidden",
+                        accept: "image/*,video/*"
+                    }, void 0, false, {
+                        fileName: "[project]/components/chat/MessageInput.jsx",
+                        lineNumber: 388,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                        type: "file",
                         ref: fileInputRef,
-                        onChange: handleFileChange,
+                        onChange: (e)=>{
+                            handleFileChange(e);
+                            setShowAttachMenu(false);
+                        },
                         multiple: true,
                         className: "hidden",
                         accept: "image/*,video/*,audio/*,.pdf,.doc,.docx,.txt,.zip"
                     }, void 0, false, {
                         fileName: "[project]/components/chat/MessageInput.jsx",
-                        lineNumber: 386,
+                        lineNumber: 400,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         type: "button",
                         title: "Emojis",
-                        onClick: ()=>setShowEmojiPicker(!showEmojiPicker),
+                        onClick: ()=>{
+                            setShowEmojiPicker(!showEmojiPicker);
+                            setShowAttachMenu(false);
+                        },
                         className: `p-1.5 sm:p-2 rounded-full transition-colors ${showEmojiPicker ? "text-[#00a884] bg-[#103629]" : "text-[#8696a0] hover:text-[#e9edef] hover:bg-[#2a3942]"}`,
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$face$2d$slightly$2d$smiling$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Smile$3e$__["Smile"], {
                             className: "w-5 h-5"
                         }, void 0, false, {
                             fileName: "[project]/components/chat/MessageInput.jsx",
-                            lineNumber: 406,
+                            lineNumber: 426,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/chat/MessageInput.jsx",
-                        lineNumber: 396,
+                        lineNumber: 413,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         type: "button",
-                        title: "Attach files (or drag & drop)",
-                        onClick: ()=>fileInputRef.current?.click(),
+                        title: "Select Photos & Videos",
+                        onClick: ()=>imageInputRef.current?.click(),
                         disabled: uploading || sendingMessage,
-                        className: "p-1.5 sm:p-2 rounded-full text-[#8696a0] hover:text-[#e9edef] hover:bg-[#2a3942] transition-colors disabled:opacity-50",
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$paperclip$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Paperclip$3e$__["Paperclip"], {
+                        className: "p-1.5 sm:p-2 rounded-full text-[#8696a0] hover:text-[#00a884] hover:bg-[#2a3942] transition-colors disabled:opacity-50",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$image$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Image$3e$__["Image"], {
                             className: "w-5 h-5"
                         }, void 0, false, {
                             fileName: "[project]/components/chat/MessageInput.jsx",
-                            lineNumber: 417,
+                            lineNumber: 437,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/chat/MessageInput.jsx",
-                        lineNumber: 410,
+                        lineNumber: 430,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "relative",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                type: "button",
+                                title: "Attach document or media",
+                                onClick: ()=>{
+                                    setShowAttachMenu(!showAttachMenu);
+                                    setShowEmojiPicker(false);
+                                },
+                                disabled: uploading || sendingMessage,
+                                className: `p-1.5 sm:p-2 rounded-full transition-colors disabled:opacity-50 ${showAttachMenu ? "text-[#00a884] bg-[#103629]" : "text-[#8696a0] hover:text-[#e9edef] hover:bg-[#2a3942]"}`,
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$paperclip$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Paperclip$3e$__["Paperclip"], {
+                                    className: "w-5 h-5"
+                                }, void 0, false, {
+                                    fileName: "[project]/components/chat/MessageInput.jsx",
+                                    lineNumber: 456,
+                                    columnNumber: 15
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/components/chat/MessageInput.jsx",
+                                lineNumber: 442,
+                                columnNumber: 13
+                            }, this),
+                            showAttachMenu && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "absolute bottom-12 left-0 z-40 w-52 py-2 rounded-2xl bg-[#233138] border border-[#2a3942] shadow-2xl animate-in zoom-in-95 duration-150",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        type: "button",
+                                        onClick: ()=>{
+                                            setShowAttachMenu(false);
+                                            imageInputRef.current?.click();
+                                        },
+                                        className: "w-full px-4 py-2.5 text-left text-xs font-medium text-[#e9edef] hover:bg-[#182229] flex items-center gap-3 transition-colors",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "w-8 h-8 rounded-full bg-[#00a884]/20 text-[#00a884] flex items-center justify-center",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$image$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Image$3e$__["Image"], {
+                                                    className: "w-4 h-4"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/chat/MessageInput.jsx",
+                                                    lineNumber: 471,
+                                                    columnNumber: 21
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/chat/MessageInput.jsx",
+                                                lineNumber: 470,
+                                                columnNumber: 19
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                children: "Photos & Videos"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/chat/MessageInput.jsx",
+                                                lineNumber: 473,
+                                                columnNumber: 19
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/components/chat/MessageInput.jsx",
+                                        lineNumber: 462,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        type: "button",
+                                        onClick: ()=>{
+                                            setShowAttachMenu(false);
+                                            fileInputRef.current?.click();
+                                        },
+                                        className: "w-full px-4 py-2.5 text-left text-xs font-medium text-[#e9edef] hover:bg-[#182229] flex items-center gap-3 transition-colors",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "w-8 h-8 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2d$text$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FileText$3e$__["FileText"], {
+                                                    className: "w-4 h-4"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/chat/MessageInput.jsx",
+                                                    lineNumber: 485,
+                                                    columnNumber: 21
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/chat/MessageInput.jsx",
+                                                lineNumber: 484,
+                                                columnNumber: 19
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                children: "Document"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/chat/MessageInput.jsx",
+                                                lineNumber: 487,
+                                                columnNumber: 19
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/components/chat/MessageInput.jsx",
+                                        lineNumber: 476,
+                                        columnNumber: 17
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/chat/MessageInput.jsx",
+                                lineNumber: 461,
+                                columnNumber: 15
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/components/chat/MessageInput.jsx",
+                        lineNumber: 441,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5457,12 +5582,12 @@ function MessageInput({ conversationId, onSendMessage, droppedFiles = null }) {
                             className: "w-full resize-none max-h-32 py-2 px-3 sm:px-4 rounded-lg bg-[#2a3942] border border-transparent text-[#e9edef] placeholder-[#8696a0] focus:outline-none focus:border-[#00a884]/60 text-sm leading-relaxed"
                         }, void 0, false, {
                             fileName: "[project]/components/chat/MessageInput.jsx",
-                            lineNumber: 422,
+                            lineNumber: 495,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/chat/MessageInput.jsx",
-                        lineNumber: 421,
+                        lineNumber: 494,
                         columnNumber: 11
                     }, this),
                     content.trim() || selectedFiles.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -5473,18 +5598,18 @@ function MessageInput({ conversationId, onSendMessage, droppedFiles = null }) {
                             className: "w-5 h-5 animate-spin"
                         }, void 0, false, {
                             fileName: "[project]/components/chat/MessageInput.jsx",
-                            lineNumber: 443,
+                            lineNumber: 516,
                             columnNumber: 17
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$send$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Send$3e$__["Send"], {
                             className: "w-5 h-5"
                         }, void 0, false, {
                             fileName: "[project]/components/chat/MessageInput.jsx",
-                            lineNumber: 445,
+                            lineNumber: 518,
                             columnNumber: 17
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/chat/MessageInput.jsx",
-                        lineNumber: 437,
+                        lineNumber: 510,
                         columnNumber: 13
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         type: "button",
@@ -5495,28 +5620,28 @@ function MessageInput({ conversationId, onSendMessage, droppedFiles = null }) {
                             className: "w-5 h-5"
                         }, void 0, false, {
                             fileName: "[project]/components/chat/MessageInput.jsx",
-                            lineNumber: 455,
+                            lineNumber: 528,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/chat/MessageInput.jsx",
-                        lineNumber: 449,
+                        lineNumber: 522,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/chat/MessageInput.jsx",
-                lineNumber: 384,
+                lineNumber: 386,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/chat/MessageInput.jsx",
-        lineNumber: 265,
+        lineNumber: 267,
         columnNumber: 5
     }, this);
 }
-_s(MessageInput, "cdcGtwW7HVTn4vaDKgpD+rTDdAU=", false, function() {
+_s(MessageInput, "3uoLXFCuPj7P9JEX8rq9Uc9pt58=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$authStore$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"],
         __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$chatStore$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"],
@@ -6640,20 +6765,57 @@ function WhatsAppEmptyState({ onSendDocument, onAddContact, onAskMetaAI }) {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute bottom-6 flex items-center gap-1.5 text-xs text-[#8696a0]/80",
+                className: "absolute bottom-6 flex flex-col items-center gap-1.5 text-xs text-[#8696a0]/80 text-center",
                 children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$lock$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Lock$3e$__["Lock"], {
-                        className: "w-3.5 h-3.5"
-                    }, void 0, false, {
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex items-center gap-1.5",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$lock$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Lock$3e$__["Lock"], {
+                                className: "w-3.5 h-3.5"
+                            }, void 0, false, {
+                                fileName: "[project]/components/chat/WhatsAppEmptyState.jsx",
+                                lineNumber: 64,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                children: "End-to-end encrypted"
+                            }, void 0, false, {
+                                fileName: "[project]/components/chat/WhatsAppEmptyState.jsx",
+                                lineNumber: 65,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/components/chat/WhatsAppEmptyState.jsx",
                         lineNumber: 63,
                         columnNumber: 9
                     }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        children: "End-to-end encrypted"
-                    }, void 0, false, {
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "text-[11px] text-[#8696a0] font-medium tracking-wide",
+                        children: [
+                            "Made with ",
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "text-rose-500",
+                                children: "❤️"
+                            }, void 0, false, {
+                                fileName: "[project]/components/chat/WhatsAppEmptyState.jsx",
+                                lineNumber: 68,
+                                columnNumber: 21
+                            }, this),
+                            " by",
+                            " ",
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "text-[#00a884] font-semibold",
+                                children: "Shamshad Khan"
+                            }, void 0, false, {
+                                fileName: "[project]/components/chat/WhatsAppEmptyState.jsx",
+                                lineNumber: 69,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/components/chat/WhatsAppEmptyState.jsx",
-                        lineNumber: 64,
+                        lineNumber: 67,
                         columnNumber: 9
                     }, this)
                 ]
@@ -8427,22 +8589,72 @@ function WhatsAppSettingsModal({ isOpen, onClose, onLogout }) {
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "p-4 rounded-xl bg-[#202c33] border border-[#2a3942] space-y-3 text-xs",
+                                    className: "p-4 rounded-xl bg-[#202c33] border border-[#2a3942] space-y-3.5 text-xs",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "text-sm font-semibold text-[#00a884]",
-                                            children: "WhatsApp Desktop"
-                                        }, void 0, false, {
+                                            className: "flex items-center justify-between",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "text-sm font-semibold text-[#00a884]",
+                                                    children: "WhatsApp Desktop"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/chat/WhatsAppSettingsModal.jsx",
+                                                    lineNumber: 636,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "text-[10px] text-[#8696a0] bg-[#111b21] px-2 py-0.5 rounded-full border border-[#2a3942]",
+                                                    children: "v2.24.18"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/chat/WhatsAppSettingsModal.jsx",
+                                                    lineNumber: 639,
+                                                    columnNumber: 19
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
                                             fileName: "[project]/components/chat/WhatsAppSettingsModal.jsx",
                                             lineNumber: 635,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "text-[#8696a0]",
-                                            children: "Version 2.24.18.7 Desktop Edition"
-                                        }, void 0, false, {
+                                            className: "p-3 rounded-lg bg-[#111b21] border border-[#2a3942] flex items-center gap-3",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "w-9 h-9 rounded-full bg-[#00a884]/20 text-[#00a884] flex items-center justify-center font-bold text-sm",
+                                                    children: "SK"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/chat/WhatsAppSettingsModal.jsx",
+                                                    lineNumber: 645,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "font-semibold text-white",
+                                                            children: "Made by Shamshad Khan"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/components/chat/WhatsAppSettingsModal.jsx",
+                                                            lineNumber: 649,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "text-[11px] text-[#8696a0]",
+                                                            children: "Crafted with ❤️ for real-time messaging, audio & video calling"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/components/chat/WhatsAppSettingsModal.jsx",
+                                                            lineNumber: 650,
+                                                            columnNumber: 21
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/components/chat/WhatsAppSettingsModal.jsx",
+                                                    lineNumber: 648,
+                                                    columnNumber: 19
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
                                             fileName: "[project]/components/chat/WhatsAppSettingsModal.jsx",
-                                            lineNumber: 638,
+                                            lineNumber: 644,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -8454,7 +8666,7 @@ function WhatsAppSettingsModal({ isOpen, onClose, onLogout }) {
                                                     children: "Help Center & FAQs"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/chat/WhatsAppSettingsModal.jsx",
-                                                    lineNumber: 640,
+                                                    lineNumber: 657,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -8463,7 +8675,7 @@ function WhatsAppSettingsModal({ isOpen, onClose, onLogout }) {
                                                     children: "Terms & Privacy Policy"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/chat/WhatsAppSettingsModal.jsx",
-                                                    lineNumber: 643,
+                                                    lineNumber: 660,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -8472,13 +8684,13 @@ function WhatsAppSettingsModal({ isOpen, onClose, onLogout }) {
                                                     children: "Licenses & Third-Party Notices"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/chat/WhatsAppSettingsModal.jsx",
-                                                    lineNumber: 646,
+                                                    lineNumber: 663,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/chat/WhatsAppSettingsModal.jsx",
-                                            lineNumber: 639,
+                                            lineNumber: 656,
                                             columnNumber: 17
                                         }, this)
                                     ]
@@ -9103,10 +9315,37 @@ function WhatsAppTitleBar() {
                         lineNumber: 25,
                         columnNumber: 9
                     }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        className: "text-xs font-normal text-[#d1d7db] tracking-wide",
-                        children: "WhatsApp"
-                    }, void 0, false, {
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex items-center gap-2",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "text-xs font-normal text-[#d1d7db] tracking-wide",
+                                children: "WhatsApp"
+                            }, void 0, false, {
+                                fileName: "[project]/components/chat/WhatsAppTitleBar.jsx",
+                                lineNumber: 35,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "text-[10px] text-[#8696a0] font-normal hidden sm:inline-flex items-center gap-1 bg-[#111b21] px-2 py-0.5 rounded-full border border-[#2a3942]",
+                                children: [
+                                    "Made by ",
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-[#00a884] font-medium",
+                                        children: "Shamshad Khan"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/chat/WhatsAppTitleBar.jsx",
+                                        lineNumber: 39,
+                                        columnNumber: 21
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/chat/WhatsAppTitleBar.jsx",
+                                lineNumber: 38,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/components/chat/WhatsAppTitleBar.jsx",
                         lineNumber: 34,
                         columnNumber: 9
@@ -9129,12 +9368,12 @@ function WhatsAppTitleBar() {
                             className: "w-3.5 h-3.5"
                         }, void 0, false, {
                             fileName: "[project]/components/chat/WhatsAppTitleBar.jsx",
-                            lineNumber: 47,
+                            lineNumber: 52,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/chat/WhatsAppTitleBar.jsx",
-                        lineNumber: 41,
+                        lineNumber: 46,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -9146,12 +9385,12 @@ function WhatsAppTitleBar() {
                             className: "w-3 h-3"
                         }, void 0, false, {
                             fileName: "[project]/components/chat/WhatsAppTitleBar.jsx",
-                            lineNumber: 55,
+                            lineNumber: 60,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/chat/WhatsAppTitleBar.jsx",
-                        lineNumber: 49,
+                        lineNumber: 54,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -9163,18 +9402,18 @@ function WhatsAppTitleBar() {
                             className: "w-4 h-4"
                         }, void 0, false, {
                             fileName: "[project]/components/chat/WhatsAppTitleBar.jsx",
-                            lineNumber: 63,
+                            lineNumber: 68,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/chat/WhatsAppTitleBar.jsx",
-                        lineNumber: 57,
+                        lineNumber: 62,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/chat/WhatsAppTitleBar.jsx",
-                lineNumber: 40,
+                lineNumber: 45,
                 columnNumber: 7
             }, this)
         ]
@@ -9223,6 +9462,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$call$2f$CallsL
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$chat$2f$ContactInfoSidebar$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/chat/ContactInfoSidebar.jsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$status$2f$StatusList$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/status/StatusList.jsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$chat$2f$ChannelsCommunitiesView$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/chat/ChannelsCommunitiesView.jsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$ConfirmModal$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/ConfirmModal.jsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$callHistory$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/callHistory.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$authStore$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/store/authStore.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$chatStore$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/store/chatStore.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$useSocket$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/hooks/useSocket.js [app-client] (ecmascript)");
@@ -9235,6 +9476,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$socket$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/socket.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/users.mjs [app-client] (ecmascript) <export default as Users>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/search.mjs [app-client] (ecmascript) <export default as Search>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bell$2d$off$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BellOff$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/bell-off.mjs [app-client] (ecmascript) <export default as BellOff>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$left$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronLeft$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/chevron-left.mjs [app-client] (ecmascript) <export default as ChevronLeft>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$info$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Info$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/info.mjs [app-client] (ecmascript) <export default as Info>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wifi$2d$off$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__WifiOff$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/wifi-off.mjs [app-client] (ecmascript) <export default as WifiOff>");
@@ -9243,9 +9485,26 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$video$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Video$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/video.mjs [app-client] (ecmascript) <export default as Video>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/trash.mjs [app-client] (ecmascript) <export default as Trash2>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$cloud$2d$upload$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__UploadCloud$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/cloud-upload.mjs [app-client] (ecmascript) <export default as UploadCloud>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$ellipsis$2d$vertical$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MoreVertical$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/ellipsis-vertical.mjs [app-client] (ecmascript) <export default as MoreVertical>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$square$2d$check$2d$big$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckSquare$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/square-check-big.mjs [app-client] (ecmascript) <export default as CheckSquare>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/chevron-right.mjs [app-client] (ecmascript) <export default as ChevronRight>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$clock$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Clock$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/clock.mjs [app-client] (ecmascript) <export default as Clock>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$heart$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Heart$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/heart.mjs [app-client] (ecmascript) <export default as Heart>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$folder$2d$plus$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FolderPlus$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/folder-plus.mjs [app-client] (ecmascript) <export default as FolderPlus>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/download.mjs [app-client] (ecmascript) <export default as Download>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$x$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__XCircle$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-x.mjs [app-client] (ecmascript) <export default as XCircle>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$link$2d$2$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Link2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/link-2.mjs [app-client] (ecmascript) <export default as Link2>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Calendar$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/calendar.mjs [app-client] (ecmascript) <export default as Calendar>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2d$plus$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__UserPlus$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/user-plus.mjs [app-client] (ecmascript) <export default as UserPlus>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$thumbs$2d$down$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ThumbsDown$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/thumbs-down.mjs [app-client] (ecmascript) <export default as ThumbsDown>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$ban$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Ban$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/ban.mjs [app-client] (ecmascript) <export default as Ban>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$minus$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MinusCircle$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-minus.mjs [app-client] (ecmascript) <export default as MinusCircle>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/check.mjs [app-client] (ecmascript) <export default as Check>");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
+;
+;
 ;
 ;
 ;
@@ -9367,7 +9626,76 @@ function ChatLayout({ initialConversationId = null }) {
     const [activeDockView, setActiveDockView] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("chats");
     const [showMetaAIChat, setShowMetaAIChat] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isContactInfoOpen, setIsContactInfoOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [missedCallsCount, setMissedCallsCount] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(1);
+    const [isHeaderMenuOpen, setIsHeaderMenuOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const headerMenuRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const [headerToast, setHeaderToast] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [confirmModal, setConfirmModal] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
+        isOpen: false,
+        title: "",
+        message: "",
+        confirmText: "Delete",
+        isDanger: true,
+        onConfirm: null
+    });
+    // Real-time missed calls calculation isolated per user
+    const [missedCallsCount, setMissedCallsCount] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "ChatLayout.useEffect": ()=>{
+            const updateMissed = {
+                "ChatLayout.useEffect.updateMissed": ()=>{
+                    const uid = (currentUser?._id || currentUser?.id)?.toString();
+                    if (!uid) {
+                        setMissedCallsCount(0);
+                        return;
+                    }
+                    const history = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$callHistory$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getCallHistory"])(uid);
+                    const count = history.filter({
+                        "ChatLayout.useEffect.updateMissed": (c)=>c.direction === "missed" || c.status === "missed"
+                    }["ChatLayout.useEffect.updateMissed"]).length;
+                    setMissedCallsCount(count);
+                }
+            }["ChatLayout.useEffect.updateMissed"];
+            updateMissed();
+            window.addEventListener("wa_call_history_updated", updateMissed);
+            window.addEventListener("storage", updateMissed);
+            return ({
+                "ChatLayout.useEffect": ()=>{
+                    window.removeEventListener("wa_call_history_updated", updateMissed);
+                    window.removeEventListener("storage", updateMissed);
+                }
+            })["ChatLayout.useEffect"];
+        }
+    }["ChatLayout.useEffect"], [
+        currentUser
+    ]);
+    // Close header 3-dots dropdown menu when clicking outside or pressing Escape
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "ChatLayout.useEffect": ()=>{
+            if (!isHeaderMenuOpen) return;
+            const handleClickOutside = {
+                "ChatLayout.useEffect.handleClickOutside": (e)=>{
+                    if (headerMenuRef.current && !headerMenuRef.current.contains(e.target)) {
+                        setIsHeaderMenuOpen(false);
+                    }
+                }
+            }["ChatLayout.useEffect.handleClickOutside"];
+            const handleKeyDown = {
+                "ChatLayout.useEffect.handleKeyDown": (e)=>{
+                    if (e.key === "Escape") setIsHeaderMenuOpen(false);
+                }
+            }["ChatLayout.useEffect.handleKeyDown"];
+            document.addEventListener("mousedown", handleClickOutside);
+            window.addEventListener("keydown", handleKeyDown);
+            return ({
+                "ChatLayout.useEffect": ()=>{
+                    document.removeEventListener("mousedown", handleClickOutside);
+                    window.removeEventListener("keydown", handleKeyDown);
+                }
+            })["ChatLayout.useEffect"];
+        }
+    }["ChatLayout.useEffect"], [
+        isHeaderMenuOpen
+    ]);
     // Real unread messages calculation (never hardcoded!)
     const totalUnreadCount = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
         "ChatLayout.useMemo[totalUnreadCount]": ()=>{
@@ -9663,73 +9991,155 @@ function ChatLayout({ initialConversationId = null }) {
     const handleReplyToMessage = (message)=>{
         setReplyingTo(message);
     };
-    // Delete entire conversation
-    const handleDeleteConversation = async (conversationId)=>{
-        try {
-            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$conversationService$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["deleteConversation"])(conversationId);
-            removeConversation(conversationId);
-            if (activeConversation?._id === conversationId) {
-                setActiveConversation(null);
+    // Delete entire conversation with confirmation
+    const promptDeleteConversation = (conversationId = activeConversation?._id)=>{
+        setIsHeaderMenuOpen(false);
+        if (!conversationId) return;
+        setConfirmModal({
+            isOpen: true,
+            title: isGroup ? "Exit & delete group?" : "Delete this chat?",
+            message: "Are you sure you want to delete this chat? All messages and attachments will be permanently removed.",
+            confirmText: "Delete",
+            isDanger: true,
+            onConfirm: async ()=>{
+                try {
+                    await (0, __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$conversationService$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["deleteConversation"])(conversationId);
+                    removeConversation(conversationId);
+                    if (activeConversation?._id === conversationId) {
+                        setActiveConversation(null);
+                        setShowMobileSidebar(true);
+                    }
+                } catch (err) {
+                    alert(err.response?.data?.message || "Failed to delete conversation");
+                }
             }
-        } catch (err) {
-            alert(err.response?.data?.message || "Failed to delete conversation");
-        }
-    };
-    // Clear all messages in conversation
-    const handleClearChat = async (conversationId)=>{
-        try {
-            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$conversationService$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["clearChatMessages"])(conversationId);
-            clearMessagesInStore(conversationId);
-        } catch (err) {
-            alert(err.response?.data?.message || "Failed to clear chat");
-        }
-    };
-    // Delete single message
-    const handleDeleteMessage = async (messageId)=>{
-        try {
-            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$messageService$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["deleteMessage"])(messageId);
-            deleteMessageInStore(messageId);
-        } catch (err) {
-            alert(err.response?.data?.message || "Failed to delete message");
-        }
-    };
-    // WhatsApp WebRTC Video & Voice Calls
-    const { startCall, acceptCall, declineCall, endCall, toggleScreenShare, isScreenSharing } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$useWebRTC$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])();
-    const handleStartVoiceCall = ()=>{
-        if (!activeConversation) return;
-        const target = isGroup ? activeConversation.members?.[0] : otherUser;
-        if (!target) return;
-        startCall({
-            recipient: target,
-            conversationId: activeConversation._id,
-            isVideo: false,
-            isGroup
         });
     };
-    const handleStartVideoCall = ()=>{
-        if (!activeConversation) return;
-        const target = isGroup ? activeConversation.members?.[0] : otherUser;
-        if (!target) return;
-        startCall({
-            recipient: target,
-            conversationId: activeConversation._id,
-            isVideo: true,
-            isGroup
+    // Clear all messages in conversation with confirmation
+    const promptClearChat = (conversationId = activeConversation?._id)=>{
+        setIsHeaderMenuOpen(false);
+        if (!conversationId) return;
+        setConfirmModal({
+            isOpen: true,
+            title: "Clear this chat?",
+            message: "Are you sure you want to clear all messages in this chat? Messages cannot be recovered.",
+            confirmText: "Clear chat",
+            isDanger: true,
+            onConfirm: async ()=>{
+                try {
+                    await (0, __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$conversationService$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["clearChatMessages"])(conversationId);
+                    clearMessagesInStore(conversationId);
+                } catch (err) {
+                    alert(err.response?.data?.message || "Failed to clear chat");
+                }
+            }
         });
     };
-    // Logout
-    const handleLogout = async ()=>{
-        if (!confirm("Are you sure you want to log out?")) return;
-        try {
-            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$authService$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["logoutUser"])();
-            clearUser();
-            __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$socket$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].disconnect();
-            router.push("/login");
-        } catch (err) {
-            console.error("Logout failed:", err);
-            clearUser();
-            router.push("/login");
+    // Delete single message with confirmation
+    const promptDeleteMessage = (messageId)=>{
+        setConfirmModal({
+            isOpen: true,
+            title: "Delete message?",
+            message: "Are you sure you want to delete this message? It will be permanently removed for everyone.",
+            confirmText: "Delete",
+            isDanger: true,
+            onConfirm: async ()=>{
+                try {
+                    await (0, __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$messageService$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["deleteMessage"])(messageId);
+                    deleteMessageInStore(messageId);
+                } catch (err) {
+                    alert(err.response?.data?.message || "Failed to delete message");
+                }
+            }
+        });
+    };
+    // Export chat messages to .txt file
+    const handleExportChat = ()=>{
+        setIsHeaderMenuOpen(false);
+        if (!activeConversation || messages.length === 0) {
+            setHeaderToast("No messages to export");
+            setTimeout(()=>setHeaderToast(""), 2500);
+            return;
         }
+        const lines = messages.map((m)=>{
+            const time = new Date(m.createdAt).toLocaleString();
+            const sender = m.sender?.name || m.sender?.username || "Contact";
+            const body = m.content || (m.type === "image" ? "<Photo>" : "<Attachment>");
+            return `[${time}] ${sender}: ${body}`;
+        });
+        const title = conversationTitle || "chat";
+        const blob = new Blob([
+            lines.join("\n")
+        ], {
+            type: "text/plain;charset=utf-8"
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `WhatsApp_Chat_${title.replace(/\s+/g, "_")}.txt`;
+        a.click();
+        URL.revokeObjectURL(url);
+        setHeaderToast("Chat exported successfully");
+        setTimeout(()=>setHeaderToast(""), 2500);
+    };
+    // Copy call link
+    const handleSendCallLink = ()=>{
+        setIsHeaderMenuOpen(false);
+        const link = `${window.location.origin}/chat?call_link=wa-${Date.now()}`;
+        navigator.clipboard.writeText(link);
+        setHeaderToast("Call link copied to clipboard!");
+        setTimeout(()=>setHeaderToast(""), 3000);
+    };
+    // Block contact confirmation
+    const promptBlockUser = ()=>{
+        setIsHeaderMenuOpen(false);
+        setConfirmModal({
+            isOpen: true,
+            title: `Block ${conversationTitle}?`,
+            message: "Blocked contacts will no longer be able to call you or send you messages.",
+            confirmText: "Block",
+            isDanger: true,
+            onConfirm: ()=>{
+                setHeaderToast(`Blocked ${conversationTitle}`);
+                setTimeout(()=>setHeaderToast(""), 3000);
+            }
+        });
+    };
+    // Report contact confirmation
+    const promptReportUser = ()=>{
+        setIsHeaderMenuOpen(false);
+        setConfirmModal({
+            isOpen: true,
+            title: `Report ${conversationTitle}?`,
+            message: "The last 5 messages from this chat will be forwarded to security. This contact will not be notified.",
+            confirmText: "Report",
+            isDanger: true,
+            onConfirm: ()=>{
+                setHeaderToast("Report submitted to security.");
+                setTimeout(()=>setHeaderToast(""), 3000);
+            }
+        });
+    };
+    // Logout with confirmation
+    const handleLogout = ()=>{
+        setConfirmModal({
+            isOpen: true,
+            title: "Log out?",
+            message: "Are you sure you want to log out of PulseChat?",
+            confirmText: "Log out",
+            isDanger: false,
+            onConfirm: async ()=>{
+                try {
+                    await (0, __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$authService$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["logoutUser"])();
+                    clearUser();
+                    __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$socket$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].disconnect();
+                    router.push("/login");
+                } catch (err) {
+                    clearUser();
+                    router.push("/login");
+                }
+            }
+        });
     };
     // In-chat filtered messages
     const displayedMessages = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
@@ -9775,6 +10185,30 @@ function ChatLayout({ initialConversationId = null }) {
     const conversationAvatar = isGroup ? activeConversation.avatar : otherUser?.avatar;
     const conversationAvatarId = isGroup ? activeConversation._id : otherUser?._id;
     const currentTypers = activeConversation ? typingMap[activeConversation._id] || [] : [];
+    // WhatsApp WebRTC Video & Voice Calls
+    const { startCall, acceptCall, declineCall, endCall, toggleScreenShare, isScreenSharing } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$useWebRTC$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])();
+    const handleStartVoiceCall = ()=>{
+        if (!activeConversation) return;
+        const target = isGroup ? activeConversation.members?.[0] : otherUser;
+        if (!target) return;
+        startCall({
+            recipient: target,
+            conversationId: activeConversation._id,
+            isVideo: false,
+            isGroup
+        });
+    };
+    const handleStartVideoCall = ()=>{
+        if (!activeConversation) return;
+        const target = isGroup ? activeConversation.members?.[0] : otherUser;
+        if (!target) return;
+        startCall({
+            recipient: target,
+            conversationId: activeConversation._id,
+            isVideo: true,
+            isGroup
+        });
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "flex flex-col h-screen w-screen overflow-hidden bg-[#111b21] text-[#e9edef] font-sans",
         children: [
@@ -9782,12 +10216,12 @@ function ChatLayout({ initialConversationId = null }) {
                 className: "hidden md:block flex-shrink-0",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$chat$2f$WhatsAppTitleBar$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/components/chat/chatLayout.jsx",
-                    lineNumber: 536,
+                    lineNumber: 717,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/chat/chatLayout.jsx",
-                lineNumber: 535,
+                lineNumber: 716,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -9815,7 +10249,7 @@ function ChatLayout({ initialConversationId = null }) {
                         showMobileBar: showMobileSidebar && !showMetaAIChat
                     }, void 0, false, {
                         fileName: "[project]/components/chat/chatLayout.jsx",
-                        lineNumber: 542,
+                        lineNumber: 723,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("aside", {
@@ -9833,20 +10267,20 @@ function ChatLayout({ initialConversationId = null }) {
                                         className: "w-3.5 h-3.5"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                        lineNumber: 574,
+                                        lineNumber: 755,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "Connecting to real-time chat server..."
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                        lineNumber: 575,
+                                        lineNumber: 756,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                lineNumber: 573,
+                                lineNumber: 754,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -9867,11 +10301,11 @@ function ChatLayout({ initialConversationId = null }) {
                                             setActiveConversation(null);
                                         },
                                         onLogout: handleLogout,
-                                        onDeleteConversation: handleDeleteConversation,
-                                        onClearConversation: handleClearChat
+                                        onDeleteConversation: promptDeleteConversation,
+                                        onClearConversation: promptClearChat
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                        lineNumber: 582,
+                                        lineNumber: 763,
                                         columnNumber: 15
                                     }, this),
                                     activeDockView === "calls" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$call$2f$CallsList$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -9899,7 +10333,7 @@ function ChatLayout({ initialConversationId = null }) {
                                         conversations: conversations
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                        lineNumber: 603,
+                                        lineNumber: 784,
                                         columnNumber: 15
                                     }, this),
                                     activeDockView === "status" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$status$2f$StatusList$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -9917,7 +10351,7 @@ function ChatLayout({ initialConversationId = null }) {
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                        lineNumber: 630,
+                                        lineNumber: 811,
                                         columnNumber: 15
                                     }, this),
                                     (activeDockView === "channels" || activeDockView === "communities" || activeDockView === "archived" || activeDockView === "starred") && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$chat$2f$ChannelsCommunitiesView$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -9929,19 +10363,19 @@ function ChatLayout({ initialConversationId = null }) {
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                        lineNumber: 654,
+                                        lineNumber: 835,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                lineNumber: 580,
+                                lineNumber: 761,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/chat/chatLayout.jsx",
-                        lineNumber: 565,
+                        lineNumber: 746,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -9953,12 +10387,12 @@ function ChatLayout({ initialConversationId = null }) {
                             className: "w-0.5 h-8 rounded-full bg-[#2a3942] group-hover:bg-[#00a884] transition-colors"
                         }, void 0, false, {
                             fileName: "[project]/components/chat/chatLayout.jsx",
-                            lineNumber: 673,
+                            lineNumber: 854,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/chat/chatLayout.jsx",
-                        lineNumber: 667,
+                        lineNumber: 848,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -9977,12 +10411,12 @@ function ChatLayout({ initialConversationId = null }) {
                                             className: "w-10 h-10"
                                         }, void 0, false, {
                                             fileName: "[project]/components/chat/chatLayout.jsx",
-                                            lineNumber: 690,
+                                            lineNumber: 871,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                        lineNumber: 689,
+                                        lineNumber: 870,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -9990,7 +10424,7 @@ function ChatLayout({ initialConversationId = null }) {
                                         children: "Drop files here to send"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                        lineNumber: 692,
+                                        lineNumber: 873,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -9998,7 +10432,7 @@ function ChatLayout({ initialConversationId = null }) {
                                         children: "Photos, videos, audio, and documents will be attached instantly"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                        lineNumber: 695,
+                                        lineNumber: 876,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -10008,26 +10442,26 @@ function ChatLayout({ initialConversationId = null }) {
                                                 className: "w-3.5 h-3.5"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                lineNumber: 699,
+                                                lineNumber: 880,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "Ready to attach"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                lineNumber: 700,
+                                                lineNumber: 881,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                        lineNumber: 698,
+                                        lineNumber: 879,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                lineNumber: 688,
+                                lineNumber: 869,
                                 columnNumber: 13
                             }, this),
                             showMetaAIChat ? /* Interactive Dummy LLM Meta AI Chat */ /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$chat$2f$DummyLLMChat$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -10037,7 +10471,7 @@ function ChatLayout({ initialConversationId = null }) {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                lineNumber: 706,
+                                lineNumber: 887,
                                 columnNumber: 13
                             }, this) : activeConversation ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
                                 children: [
@@ -10055,12 +10489,12 @@ function ChatLayout({ initialConversationId = null }) {
                                                             className: "w-5 h-5"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/chat/chatLayout.jsx",
-                                                            lineNumber: 723,
+                                                            lineNumber: 904,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                        lineNumber: 718,
+                                                        lineNumber: 899,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -10076,7 +10510,7 @@ function ChatLayout({ initialConversationId = null }) {
                                                                         className: "w-10 h-10 rounded-full object-cover ring-1 ring-[#222e35] group-hover:ring-[#00a884] transition-all"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                        lineNumber: 733,
+                                                                        lineNumber: 914,
                                                                         columnNumber: 25
                                                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                         className: "w-10 h-10 rounded-full bg-[#534b3e] flex items-center justify-center text-[#e9edef] font-semibold text-sm shadow-xs group-hover:ring-1 group-hover:ring-[#00a884] transition-all",
@@ -10084,25 +10518,25 @@ function ChatLayout({ initialConversationId = null }) {
                                                                             className: "w-5 h-5"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                            lineNumber: 742,
+                                                                            lineNumber: 923,
                                                                             columnNumber: 38
                                                                         }, this) : (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getInitials"])(conversationTitle)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                        lineNumber: 739,
+                                                                        lineNumber: 920,
                                                                         columnNumber: 25
                                                                     }, this),
                                                                     !isGroup && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                         className: `absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-[#202c33] ${isOtherUserOnline ? "bg-[#25d366] shadow-xs" : "bg-[#8696a0]"}`
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                        lineNumber: 747,
+                                                                        lineNumber: 928,
                                                                         columnNumber: 25
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                lineNumber: 731,
+                                                                lineNumber: 912,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -10115,7 +10549,7 @@ function ChatLayout({ initialConversationId = null }) {
                                                                                 children: conversationTitle
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                lineNumber: 760,
+                                                                                lineNumber: 941,
                                                                                 columnNumber: 25
                                                                             }, this),
                                                                             isGroup && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -10123,13 +10557,13 @@ function ChatLayout({ initialConversationId = null }) {
                                                                                 children: "Group"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                lineNumber: 762,
+                                                                                lineNumber: 943,
                                                                                 columnNumber: 27
                                                                             }, this)
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                        lineNumber: 759,
+                                                                        lineNumber: 940,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -10141,14 +10575,14 @@ function ChatLayout({ initialConversationId = null }) {
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                            lineNumber: 770,
+                                                                            lineNumber: 951,
                                                                             columnNumber: 27
                                                                         }, this) : currentTypers.some((t)=>(t._id || t.id)?.toString() === (otherUser?._id || otherUser?.id)?.toString()) ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                             className: "text-[#00a884] font-medium flex items-center gap-1 animate-pulse",
                                                                             children: "typing..."
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                            lineNumber: 772,
+                                                                            lineNumber: 953,
                                                                             columnNumber: 27
                                                                         }, this) : isOtherUserOnline ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                             className: "text-[#00a884] font-medium flex items-center gap-1",
@@ -10157,44 +10591,44 @@ function ChatLayout({ initialConversationId = null }) {
                                                                                     className: "w-1.5 h-1.5 rounded-full bg-[#25d366] animate-pulse"
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                    lineNumber: 777,
+                                                                                    lineNumber: 958,
                                                                                     columnNumber: 29
                                                                                 }, this),
                                                                                 "online"
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                            lineNumber: 776,
+                                                                            lineNumber: 957,
                                                                             columnNumber: 27
                                                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                             className: "text-[#8696a0] font-normal",
                                                                             children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["formatLiveLastSeen"])(otherUser?.lastSeen)
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                            lineNumber: 781,
+                                                                            lineNumber: 962,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                        lineNumber: 768,
+                                                                        lineNumber: 949,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                lineNumber: 758,
+                                                                lineNumber: 939,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                        lineNumber: 727,
+                                                        lineNumber: 908,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                lineNumber: 716,
+                                                lineNumber: 897,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -10204,29 +10638,12 @@ function ChatLayout({ initialConversationId = null }) {
                                                         className: "hidden sm:inline-flex"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                        lineNumber: 792,
+                                                        lineNumber: 973,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         className: "flex items-center gap-0.5 sm:gap-1 text-[#aebac1]",
                                                         children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                                type: "button",
-                                                                onClick: handleStartVoiceCall,
-                                                                title: isGroup ? "Start group voice call" : "Voice call",
-                                                                className: "p-1.5 sm:p-2 rounded-full hover:text-[#00a884] hover:bg-[#2a3942] active:scale-95 transition-all",
-                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$phone$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Phone$3e$__["Phone"], {
-                                                                    className: "w-4 h-4"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                    lineNumber: 801,
-                                                                    columnNumber: 23
-                                                                }, this)
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                lineNumber: 795,
-                                                                columnNumber: 21
-                                                            }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                                 type: "button",
                                                                 onClick: handleStartVideoCall,
@@ -10236,12 +10653,29 @@ function ChatLayout({ initialConversationId = null }) {
                                                                     className: "w-4 h-4"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                    lineNumber: 810,
+                                                                    lineNumber: 983,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                lineNumber: 804,
+                                                                lineNumber: 977,
+                                                                columnNumber: 21
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                type: "button",
+                                                                onClick: handleStartVoiceCall,
+                                                                title: isGroup ? "Start group voice call" : "Voice call",
+                                                                className: "p-1.5 sm:p-2 rounded-full hover:text-[#00a884] hover:bg-[#2a3942] active:scale-95 transition-all",
+                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$phone$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Phone$3e$__["Phone"], {
+                                                                    className: "w-4 h-4"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                    lineNumber: 993,
+                                                                    columnNumber: 23
+                                                                }, this)
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                lineNumber: 987,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -10253,68 +10687,562 @@ function ChatLayout({ initialConversationId = null }) {
                                                                     className: "w-4 h-4"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                    lineNumber: 823,
+                                                                    lineNumber: 1007,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                lineNumber: 813,
+                                                                lineNumber: 997,
                                                                 columnNumber: 21
                                                             }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                                type: "button",
-                                                                title: isGroup ? "Group info & settings" : "Contact info & details",
-                                                                onClick: ()=>setIsContactInfoOpen(!isContactInfoOpen),
-                                                                className: `p-1.5 sm:p-2 rounded-full transition-colors ${isContactInfoOpen ? "text-[#00a884] bg-[#2a3942]" : "text-[#aebac1] hover:text-[#e9edef] hover:bg-[#2a3942]"}`,
-                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$info$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Info$3e$__["Info"], {
-                                                                    className: "w-4 h-4"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                    lineNumber: 836,
-                                                                    columnNumber: 23
-                                                                }, this)
-                                                            }, void 0, false, {
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "relative",
+                                                                ref: headerMenuRef,
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                        type: "button",
+                                                                        title: "More options",
+                                                                        onClick: ()=>setIsHeaderMenuOpen(!isHeaderMenuOpen),
+                                                                        className: `p-1.5 sm:p-2 rounded-full transition-colors ${isHeaderMenuOpen ? "text-[#00a884] bg-[#2a3942]" : "text-[#aebac1] hover:text-[#e9edef] hover:bg-[#2a3942]"}`,
+                                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$ellipsis$2d$vertical$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MoreVertical$3e$__["MoreVertical"], {
+                                                                            className: "w-4 h-4"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                            lineNumber: 1022,
+                                                                            columnNumber: 25
+                                                                        }, this)
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                        lineNumber: 1012,
+                                                                        columnNumber: 23
+                                                                    }, this),
+                                                                    isHeaderMenuOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                        className: "absolute right-0 top-11 w-64 max-h-[85vh] overflow-y-auto py-1.5 rounded-2xl bg-[#233138] border border-[#2a3942] shadow-2xl z-50 text-xs text-[#d1d7db] animate-in zoom-in-95 duration-150 scrollbar-thin divide-y divide-[#2a3942]/70",
+                                                                        children: [
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                                className: "py-1",
+                                                                                children: [
+                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                                        type: "button",
+                                                                                        onClick: ()=>{
+                                                                                            setIsHeaderMenuOpen(false);
+                                                                                            setIsContactInfoOpen(true);
+                                                                                        },
+                                                                                        className: "w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center gap-3 transition-colors",
+                                                                                        children: [
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$info$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Info$3e$__["Info"], {
+                                                                                                className: "w-4 h-4 text-[#8696a0]"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1037,
+                                                                                                columnNumber: 31
+                                                                                            }, this),
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                                children: "Contact info"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1038,
+                                                                                                columnNumber: 31
+                                                                                            }, this)
+                                                                                        ]
+                                                                                    }, void 0, true, {
+                                                                                        fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                        lineNumber: 1029,
+                                                                                        columnNumber: 29
+                                                                                    }, this),
+                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                                        type: "button",
+                                                                                        onClick: ()=>{
+                                                                                            setIsHeaderMenuOpen(false);
+                                                                                            setIsInChatSearchOpen(true);
+                                                                                        },
+                                                                                        className: "w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center gap-3 transition-colors",
+                                                                                        children: [
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__["Search"], {
+                                                                                                className: "w-4 h-4 text-[#8696a0]"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1049,
+                                                                                                columnNumber: 31
+                                                                                            }, this),
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                                children: "Search"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1050,
+                                                                                                columnNumber: 31
+                                                                                            }, this)
+                                                                                        ]
+                                                                                    }, void 0, true, {
+                                                                                        fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                        lineNumber: 1041,
+                                                                                        columnNumber: 29
+                                                                                    }, this),
+                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                                        type: "button",
+                                                                                        onClick: ()=>{
+                                                                                            setIsHeaderMenuOpen(false);
+                                                                                            setHeaderToast("Select messages enabled");
+                                                                                            setTimeout(()=>setHeaderToast(""), 2500);
+                                                                                        },
+                                                                                        className: "w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center gap-3 transition-colors",
+                                                                                        children: [
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$square$2d$check$2d$big$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckSquare$3e$__["CheckSquare"], {
+                                                                                                className: "w-4 h-4 text-[#8696a0]"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1062,
+                                                                                                columnNumber: 31
+                                                                                            }, this),
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                                children: "Select messages"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1063,
+                                                                                                columnNumber: 31
+                                                                                            }, this)
+                                                                                        ]
+                                                                                    }, void 0, true, {
+                                                                                        fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                        lineNumber: 1053,
+                                                                                        columnNumber: 29
+                                                                                    }, this),
+                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                                        type: "button",
+                                                                                        onClick: ()=>{
+                                                                                            setIsHeaderMenuOpen(false);
+                                                                                            setHeaderToast("Notifications muted");
+                                                                                            setTimeout(()=>setHeaderToast(""), 2500);
+                                                                                        },
+                                                                                        className: "w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center justify-between transition-colors",
+                                                                                        children: [
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                                                className: "flex items-center gap-3",
+                                                                                                children: [
+                                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bell$2d$off$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BellOff$3e$__["BellOff"], {
+                                                                                                        className: "w-4 h-4 text-[#8696a0]"
+                                                                                                    }, void 0, false, {
+                                                                                                        fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                        lineNumber: 1076,
+                                                                                                        columnNumber: 33
+                                                                                                    }, this),
+                                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                                        children: "Mute notifications"
+                                                                                                    }, void 0, false, {
+                                                                                                        fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                        lineNumber: 1077,
+                                                                                                        columnNumber: 33
+                                                                                                    }, this)
+                                                                                                ]
+                                                                                            }, void 0, true, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1075,
+                                                                                                columnNumber: 31
+                                                                                            }, this),
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
+                                                                                                className: "w-3.5 h-3.5 text-[#8696a0]"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1079,
+                                                                                                columnNumber: 31
+                                                                                            }, this)
+                                                                                        ]
+                                                                                    }, void 0, true, {
+                                                                                        fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                        lineNumber: 1066,
+                                                                                        columnNumber: 29
+                                                                                    }, this),
+                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                                        type: "button",
+                                                                                        onClick: ()=>{
+                                                                                            setIsHeaderMenuOpen(false);
+                                                                                            setHeaderToast("Disappearing messages: Off");
+                                                                                            setTimeout(()=>setHeaderToast(""), 2500);
+                                                                                        },
+                                                                                        className: "w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center gap-3 transition-colors",
+                                                                                        children: [
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$clock$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Clock$3e$__["Clock"], {
+                                                                                                className: "w-4 h-4 text-[#8696a0]"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1091,
+                                                                                                columnNumber: 31
+                                                                                            }, this),
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                                children: "Disappearing messages"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1092,
+                                                                                                columnNumber: 31
+                                                                                            }, this)
+                                                                                        ]
+                                                                                    }, void 0, true, {
+                                                                                        fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                        lineNumber: 1082,
+                                                                                        columnNumber: 29
+                                                                                    }, this),
+                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                                        type: "button",
+                                                                                        onClick: ()=>{
+                                                                                            setIsHeaderMenuOpen(false);
+                                                                                            setHeaderToast("Added to favourites");
+                                                                                            setTimeout(()=>setHeaderToast(""), 2500);
+                                                                                        },
+                                                                                        className: "w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center gap-3 transition-colors",
+                                                                                        children: [
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$heart$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Heart$3e$__["Heart"], {
+                                                                                                className: "w-4 h-4 text-[#8696a0]"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1104,
+                                                                                                columnNumber: 31
+                                                                                            }, this),
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                                children: "Add to favourites"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1105,
+                                                                                                columnNumber: 31
+                                                                                            }, this)
+                                                                                        ]
+                                                                                    }, void 0, true, {
+                                                                                        fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                        lineNumber: 1095,
+                                                                                        columnNumber: 29
+                                                                                    }, this),
+                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                                        type: "button",
+                                                                                        onClick: ()=>{
+                                                                                            setIsHeaderMenuOpen(false);
+                                                                                            setHeaderToast("Added to custom list");
+                                                                                            setTimeout(()=>setHeaderToast(""), 2500);
+                                                                                        },
+                                                                                        className: "w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center justify-between transition-colors",
+                                                                                        children: [
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                                                className: "flex items-center gap-3",
+                                                                                                children: [
+                                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$folder$2d$plus$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FolderPlus$3e$__["FolderPlus"], {
+                                                                                                        className: "w-4 h-4 text-[#8696a0]"
+                                                                                                    }, void 0, false, {
+                                                                                                        fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                        lineNumber: 1118,
+                                                                                                        columnNumber: 33
+                                                                                                    }, this),
+                                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                                        children: "Add to list"
+                                                                                                    }, void 0, false, {
+                                                                                                        fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                        lineNumber: 1119,
+                                                                                                        columnNumber: 33
+                                                                                                    }, this)
+                                                                                                ]
+                                                                                            }, void 0, true, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1117,
+                                                                                                columnNumber: 31
+                                                                                            }, this),
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
+                                                                                                className: "w-3.5 h-3.5 text-[#8696a0]"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1121,
+                                                                                                columnNumber: 31
+                                                                                            }, this)
+                                                                                        ]
+                                                                                    }, void 0, true, {
+                                                                                        fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                        lineNumber: 1108,
+                                                                                        columnNumber: 29
+                                                                                    }, this),
+                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                                        type: "button",
+                                                                                        onClick: handleExportChat,
+                                                                                        className: "w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center gap-3 transition-colors",
+                                                                                        children: [
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__["Download"], {
+                                                                                                className: "w-4 h-4 text-[#8696a0]"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1129,
+                                                                                                columnNumber: 31
+                                                                                            }, this),
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                                children: "Export chat"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1130,
+                                                                                                columnNumber: 31
+                                                                                            }, this)
+                                                                                        ]
+                                                                                    }, void 0, true, {
+                                                                                        fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                        lineNumber: 1124,
+                                                                                        columnNumber: 29
+                                                                                    }, this),
+                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                                        type: "button",
+                                                                                        onClick: ()=>{
+                                                                                            setIsHeaderMenuOpen(false);
+                                                                                            setActiveConversation(null);
+                                                                                            setShowMobileSidebar(true);
+                                                                                        },
+                                                                                        className: "w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center gap-3 transition-colors",
+                                                                                        children: [
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$x$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__XCircle$3e$__["XCircle"], {
+                                                                                                className: "w-4 h-4 text-[#8696a0]"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1142,
+                                                                                                columnNumber: 31
+                                                                                            }, this),
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                                children: "Close chat"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1143,
+                                                                                                columnNumber: 31
+                                                                                            }, this)
+                                                                                        ]
+                                                                                    }, void 0, true, {
+                                                                                        fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                        lineNumber: 1133,
+                                                                                        columnNumber: 29
+                                                                                    }, this)
+                                                                                ]
+                                                                            }, void 0, true, {
+                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                lineNumber: 1028,
+                                                                                columnNumber: 27
+                                                                            }, this),
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                                className: "py-1",
+                                                                                children: [
+                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                                        type: "button",
+                                                                                        onClick: handleSendCallLink,
+                                                                                        className: "w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center gap-3 transition-colors",
+                                                                                        children: [
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$link$2d$2$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Link2$3e$__["Link2"], {
+                                                                                                className: "w-4 h-4 text-[#8696a0]"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1154,
+                                                                                                columnNumber: 31
+                                                                                            }, this),
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                                children: "Send call link"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1155,
+                                                                                                columnNumber: 31
+                                                                                            }, this)
+                                                                                        ]
+                                                                                    }, void 0, true, {
+                                                                                        fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                        lineNumber: 1149,
+                                                                                        columnNumber: 29
+                                                                                    }, this),
+                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                                        type: "button",
+                                                                                        onClick: ()=>{
+                                                                                            setIsHeaderMenuOpen(false);
+                                                                                            setHeaderToast("Call scheduled");
+                                                                                            setTimeout(()=>setHeaderToast(""), 2500);
+                                                                                        },
+                                                                                        className: "w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center gap-3 transition-colors",
+                                                                                        children: [
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Calendar$3e$__["Calendar"], {
+                                                                                                className: "w-4 h-4 text-[#8696a0]"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1167,
+                                                                                                columnNumber: 31
+                                                                                            }, this),
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                                children: "Schedule call"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1168,
+                                                                                                columnNumber: 31
+                                                                                            }, this)
+                                                                                        ]
+                                                                                    }, void 0, true, {
+                                                                                        fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                        lineNumber: 1158,
+                                                                                        columnNumber: 29
+                                                                                    }, this),
+                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                                        type: "button",
+                                                                                        onClick: ()=>{
+                                                                                            setIsHeaderMenuOpen(false);
+                                                                                            handleStartVoiceCall();
+                                                                                        },
+                                                                                        className: "w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center gap-3 transition-colors",
+                                                                                        children: [
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2d$plus$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__UserPlus$3e$__["UserPlus"], {
+                                                                                                className: "w-4 h-4 text-[#8696a0]"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1179,
+                                                                                                columnNumber: 31
+                                                                                            }, this),
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                                children: "New group call"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1180,
+                                                                                                columnNumber: 31
+                                                                                            }, this)
+                                                                                        ]
+                                                                                    }, void 0, true, {
+                                                                                        fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                        lineNumber: 1171,
+                                                                                        columnNumber: 29
+                                                                                    }, this)
+                                                                                ]
+                                                                            }, void 0, true, {
+                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                lineNumber: 1148,
+                                                                                columnNumber: 27
+                                                                            }, this),
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                                className: "py-1",
+                                                                                children: [
+                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                                        type: "button",
+                                                                                        onClick: promptReportUser,
+                                                                                        className: "w-full px-4 py-2.5 text-left hover:bg-rose-500/10 flex items-center gap-3 text-rose-400 hover:text-rose-300 transition-colors",
+                                                                                        children: [
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$thumbs$2d$down$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ThumbsDown$3e$__["ThumbsDown"], {
+                                                                                                className: "w-4 h-4"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1191,
+                                                                                                columnNumber: 31
+                                                                                            }, this),
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                                children: "Report"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1192,
+                                                                                                columnNumber: 31
+                                                                                            }, this)
+                                                                                        ]
+                                                                                    }, void 0, true, {
+                                                                                        fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                        lineNumber: 1186,
+                                                                                        columnNumber: 29
+                                                                                    }, this),
+                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                                        type: "button",
+                                                                                        onClick: promptBlockUser,
+                                                                                        className: "w-full px-4 py-2.5 text-left hover:bg-rose-500/10 flex items-center gap-3 text-rose-400 hover:text-rose-300 transition-colors",
+                                                                                        children: [
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$ban$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Ban$3e$__["Ban"], {
+                                                                                                className: "w-4 h-4"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1200,
+                                                                                                columnNumber: 31
+                                                                                            }, this),
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                                children: "Block"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1201,
+                                                                                                columnNumber: 31
+                                                                                            }, this)
+                                                                                        ]
+                                                                                    }, void 0, true, {
+                                                                                        fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                        lineNumber: 1195,
+                                                                                        columnNumber: 29
+                                                                                    }, this),
+                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                                        type: "button",
+                                                                                        onClick: ()=>promptClearChat(activeConversation._id),
+                                                                                        className: "w-full px-4 py-2.5 text-left hover:bg-amber-500/10 flex items-center gap-3 text-amber-400 hover:text-amber-300 transition-colors",
+                                                                                        children: [
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$minus$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MinusCircle$3e$__["MinusCircle"], {
+                                                                                                className: "w-4 h-4"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1209,
+                                                                                                columnNumber: 31
+                                                                                            }, this),
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                                children: "Clear chat"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1210,
+                                                                                                columnNumber: 31
+                                                                                            }, this)
+                                                                                        ]
+                                                                                    }, void 0, true, {
+                                                                                        fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                        lineNumber: 1204,
+                                                                                        columnNumber: 29
+                                                                                    }, this),
+                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                                        type: "button",
+                                                                                        onClick: ()=>promptDeleteConversation(activeConversation._id),
+                                                                                        className: "w-full px-4 py-2.5 text-left hover:bg-rose-500/10 flex items-center gap-3 text-rose-400 hover:text-rose-300 transition-colors",
+                                                                                        children: [
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__["Trash2"], {
+                                                                                                className: "w-4 h-4"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1218,
+                                                                                                columnNumber: 31
+                                                                                            }, this),
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                                children: "Delete chat"
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                                lineNumber: 1219,
+                                                                                                columnNumber: 31
+                                                                                            }, this)
+                                                                                        ]
+                                                                                    }, void 0, true, {
+                                                                                        fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                        lineNumber: 1213,
+                                                                                        columnNumber: 29
+                                                                                    }, this)
+                                                                                ]
+                                                                            }, void 0, true, {
+                                                                                fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                                lineNumber: 1185,
+                                                                                columnNumber: 27
+                                                                            }, this)
+                                                                        ]
+                                                                    }, void 0, true, {
+                                                                        fileName: "[project]/components/chat/chatLayout.jsx",
+                                                                        lineNumber: 1026,
+                                                                        columnNumber: 25
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                lineNumber: 826,
-                                                                columnNumber: 21
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                                type: "button",
-                                                                title: isGroup ? "Delete group" : "Delete chat",
-                                                                onClick: ()=>{
-                                                                    if (confirm(`Are you sure you want to delete this ${isGroup ? "group" : "chat"}? All messages will be permanently deleted.`)) {
-                                                                        handleDeleteConversation(activeConversation._id);
-                                                                    }
-                                                                },
-                                                                className: "p-1.5 sm:p-2 rounded-full text-[#aebac1] hover:text-rose-400 hover:bg-rose-500/10 transition-colors",
-                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__["Trash2"], {
-                                                                    className: "w-4 h-4"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                    lineNumber: 855,
-                                                                    columnNumber: 23
-                                                                }, this)
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                lineNumber: 839,
+                                                                lineNumber: 1011,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                        lineNumber: 794,
+                                                        lineNumber: 975,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                lineNumber: 791,
+                                                lineNumber: 972,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                        lineNumber: 715,
+                                        lineNumber: 896,
                                         columnNumber: 15
                                     }, this),
                                     isInChatSearchOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -10324,7 +11252,7 @@ function ChatLayout({ initialConversationId = null }) {
                                                 className: "w-4 h-4 text-[#8696a0] flex-shrink-0"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                lineNumber: 864,
+                                                lineNumber: 1232,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -10336,7 +11264,7 @@ function ChatLayout({ initialConversationId = null }) {
                                                 autoFocus: true
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                lineNumber: 865,
+                                                lineNumber: 1233,
                                                 columnNumber: 19
                                             }, this),
                                             inChatSearchQuery && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -10346,13 +11274,13 @@ function ChatLayout({ initialConversationId = null }) {
                                                 children: "Clear"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                lineNumber: 874,
+                                                lineNumber: 1242,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                        lineNumber: 863,
+                                        lineNumber: 1231,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -10373,15 +11301,15 @@ function ChatLayout({ initialConversationId = null }) {
                                                             onLoadMore: handleLoadMoreMessages,
                                                             onReply: handleReplyToMessage,
                                                             onReact: handleReactToMessage,
-                                                            onDeleteMessage: handleDeleteMessage
+                                                            onDeleteMessage: promptDeleteMessage
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/chat/chatLayout.jsx",
-                                                            lineNumber: 890,
+                                                            lineNumber: 1258,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                        lineNumber: 889,
+                                                        lineNumber: 1257,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$chat$2f$MessageInput$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -10390,13 +11318,13 @@ function ChatLayout({ initialConversationId = null }) {
                                                         droppedFiles: stagedDroppedFiles
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                        lineNumber: 905,
+                                                        lineNumber: 1273,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                lineNumber: 887,
+                                                lineNumber: 1255,
                                                 columnNumber: 17
                                             }, this),
                                             isContactInfoOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$chat$2f$ContactInfoSidebar$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -10410,23 +11338,23 @@ function ChatLayout({ initialConversationId = null }) {
                                                 onStartVideoCall: handleStartVideoCall,
                                                 onOpenSearch: ()=>setIsInChatSearchOpen(true),
                                                 onOpenGroupSettings: ()=>setIsGroupSettingOpen(true),
-                                                onClearChat: handleClearChat,
-                                                onDeleteChat: handleDeleteConversation
+                                                onClearChat: promptClearChat,
+                                                onDeleteChat: promptDeleteConversation
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                lineNumber: 914,
+                                                lineNumber: 1282,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                        lineNumber: 886,
+                                        lineNumber: 1254,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                lineNumber: 713,
+                                lineNumber: 894,
                                 columnNumber: 13
                             }, this) : /* WhatsApp Desktop Empty State matching screenshot */ /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$chat$2f$WhatsAppEmptyState$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                 onSendDocument: ()=>setIsNewChatOpen(true),
@@ -10437,19 +11365,19 @@ function ChatLayout({ initialConversationId = null }) {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                lineNumber: 933,
+                                lineNumber: 1301,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/chat/chatLayout.jsx",
-                        lineNumber: 677,
+                        lineNumber: 858,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/chat/chatLayout.jsx",
-                lineNumber: 540,
+                lineNumber: 721,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$chat$2f$NewChatModal$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -10458,7 +11386,7 @@ function ChatLayout({ initialConversationId = null }) {
                 onSelectConversation: (conv)=>handleSelectConversation(conv)
             }, void 0, false, {
                 fileName: "[project]/components/chat/chatLayout.jsx",
-                lineNumber: 946,
+                lineNumber: 1314,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$group$2f$CreateGroup$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -10467,7 +11395,7 @@ function ChatLayout({ initialConversationId = null }) {
                 onGroupCreated: (conv)=>handleSelectConversation(conv)
             }, void 0, false, {
                 fileName: "[project]/components/chat/chatLayout.jsx",
-                lineNumber: 952,
+                lineNumber: 1320,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$group$2f$GroupSetting$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -10477,7 +11405,7 @@ function ChatLayout({ initialConversationId = null }) {
                 onConversationUpdated: (updated)=>setActiveConversation(updated)
             }, void 0, false, {
                 fileName: "[project]/components/chat/chatLayout.jsx",
-                lineNumber: 958,
+                lineNumber: 1326,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$chat$2f$GlobalSearchModal$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -10503,7 +11431,7 @@ function ChatLayout({ initialConversationId = null }) {
                 }
             }, void 0, false, {
                 fileName: "[project]/components/chat/chatLayout.jsx",
-                lineNumber: 965,
+                lineNumber: 1333,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$profile$2f$ProfileModal$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -10511,7 +11439,7 @@ function ChatLayout({ initialConversationId = null }) {
                 onClose: ()=>setIsProfileOpen(false)
             }, void 0, false, {
                 fileName: "[project]/components/chat/chatLayout.jsx",
-                lineNumber: 989,
+                lineNumber: 1357,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$chat$2f$WhatsAppSettingsModal$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -10520,7 +11448,7 @@ function ChatLayout({ initialConversationId = null }) {
                 onLogout: handleLogout
             }, void 0, false, {
                 fileName: "[project]/components/chat/chatLayout.jsx",
-                lineNumber: 995,
+                lineNumber: 1363,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$call$2f$IncomingCallModal$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -10528,7 +11456,7 @@ function ChatLayout({ initialConversationId = null }) {
                 onDecline: declineCall
             }, void 0, false, {
                 fileName: "[project]/components/chat/chatLayout.jsx",
-                lineNumber: 1002,
+                lineNumber: 1370,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$call$2f$VideoCallModal$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -10537,24 +11465,63 @@ function ChatLayout({ initialConversationId = null }) {
                 isScreenSharing: isScreenSharing
             }, void 0, false, {
                 fileName: "[project]/components/chat/chatLayout.jsx",
-                lineNumber: 1003,
+                lineNumber: 1371,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$chat$2f$NotificationBanner$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                 onSelectConversation: handleSelectConversationById
             }, void 0, false, {
                 fileName: "[project]/components/chat/chatLayout.jsx",
-                lineNumber: 1010,
+                lineNumber: 1378,
                 columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$ConfirmModal$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                isOpen: confirmModal.isOpen,
+                title: confirmModal.title,
+                message: confirmModal.message,
+                confirmText: confirmModal.confirmText,
+                isDanger: confirmModal.isDanger,
+                onConfirm: confirmModal.onConfirm,
+                onClose: ()=>setConfirmModal((prev)=>({
+                            ...prev,
+                            isOpen: false
+                        }))
+            }, void 0, false, {
+                fileName: "[project]/components/chat/chatLayout.jsx",
+                lineNumber: 1381,
+                columnNumber: 7
+            }, this),
+            headerToast && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "fixed top-12 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full bg-[#202c33] border border-[#2a3942] text-xs font-medium text-[#e9edef] shadow-2xl flex items-center gap-2 animate-in fade-in slide-in-from-top-2 duration-150",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
+                        className: "w-3.5 h-3.5 text-[#00a884]"
+                    }, void 0, false, {
+                        fileName: "[project]/components/chat/chatLayout.jsx",
+                        lineNumber: 1394,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                        children: headerToast
+                    }, void 0, false, {
+                        fileName: "[project]/components/chat/chatLayout.jsx",
+                        lineNumber: 1395,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/components/chat/chatLayout.jsx",
+                lineNumber: 1393,
+                columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/chat/chatLayout.jsx",
-        lineNumber: 533,
+        lineNumber: 714,
         columnNumber: 5
     }, this);
 }
-_s(ChatLayout, "O/s8KfSp7Ekq1n1ihCzOSr6xnKo=", false, function() {
+_s(ChatLayout, "YDgHte+PoN3cX8CTRe+AvCKZKWs=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
         __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$authStore$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"],

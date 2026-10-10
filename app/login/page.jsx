@@ -125,6 +125,11 @@ export default function LoginPage() {
             Create account
           </Link>
         </p>
+
+        <div className="mt-8 pt-4 border-t border-[#e9edef] flex items-center justify-center gap-1.5 text-xs text-[#8696a0]">
+          <span>Made with ❤️ by</span>
+          <span className="font-semibold text-[#008069]">Shamshad Khan</span>
+        </div>
       </div>
     </main>
   );

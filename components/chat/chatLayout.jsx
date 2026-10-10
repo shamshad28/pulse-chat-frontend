@@ -23,6 +23,8 @@ import CallsList from "../call/CallsList";
 import ContactInfoSidebar from "./ContactInfoSidebar";
 import StatusList from "../status/StatusList";
 import ChannelsCommunitiesView from "./ChannelsCommunitiesView";
+import ConfirmModal from "../ui/ConfirmModal";
+import { getCallHistory } from "../../lib/callHistory";
 
 import useAuthStore from "../../store/authStore";
 import useChatStore from "../../store/chatStore";
@@ -65,6 +67,21 @@ import {
   Video,
   Trash2,
   UploadCloud,
+  MoreVertical,
+  CheckSquare,
+  ChevronRight,
+  Clock,
+  Heart,
+  FolderPlus,
+  Download,
+  XCircle,
+  Link2,
+  Calendar,
+  UserPlus,
+  ThumbsDown,
+  Ban,
+  MinusCircle,
+  Check,
 } from "lucide-react";
 
 export default function ChatLayout({ initialConversationId = null }) {
@@ -109,7 +126,61 @@ export default function ChatLayout({ initialConversationId = null }) {
   const [activeDockView, setActiveDockView] = useState("chats");
   const [showMetaAIChat, setShowMetaAIChat] = useState(false);
   const [isContactInfoOpen, setIsContactInfoOpen] = useState(false);
-  const [missedCallsCount, setMissedCallsCount] = useState(1);
+  const [isHeaderMenuOpen, setIsHeaderMenuOpen] = useState(false);
+  const headerMenuRef = useRef(null);
+  const [headerToast, setHeaderToast] = useState("");
+  const [confirmModal, setConfirmModal] = useState({
+    isOpen: false,
+    title: "",
+    message: "",
+    confirmText: "Delete",
+    isDanger: true,
+    onConfirm: null,
+  });
+
+  // Real-time missed calls calculation isolated per user
+  const [missedCallsCount, setMissedCallsCount] = useState(0);
+  useEffect(() => {
+    const updateMissed = () => {
+      const uid = (currentUser?._id || currentUser?.id)?.toString();
+      if (!uid) {
+        setMissedCallsCount(0);
+        return;
+      }
+      const history = getCallHistory(uid);
+      const count = history.filter(
+        (c) => c.direction === "missed" || c.status === "missed"
+      ).length;
+      setMissedCallsCount(count);
+    };
+
+    updateMissed();
+    window.addEventListener("wa_call_history_updated", updateMissed);
+    window.addEventListener("storage", updateMissed);
+    return () => {
+      window.removeEventListener("wa_call_history_updated", updateMissed);
+      window.removeEventListener("storage", updateMissed);
+    };
+  }, [currentUser]);
+
+  // Close header 3-dots dropdown menu when clicking outside or pressing Escape
+  useEffect(() => {
+    if (!isHeaderMenuOpen) return;
+    const handleClickOutside = (e) => {
+      if (headerMenuRef.current && !headerMenuRef.current.contains(e.target)) {
+        setIsHeaderMenuOpen(false);
+      }
+    };
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") setIsHeaderMenuOpen(false);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isHeaderMenuOpen]);
 
   // Real unread messages calculation (never hardcoded!)
   const totalUnreadCount = useMemo(() => {
@@ -414,86 +485,162 @@ export default function ChatLayout({ initialConversationId = null }) {
     setReplyingTo(message);
   };
 
-  // Delete entire conversation
-  const handleDeleteConversation = async (conversationId) => {
-    try {
-      await deleteConversation(conversationId);
-      removeConversation(conversationId);
-      if (activeConversation?._id === conversationId) {
-        setActiveConversation(null);
-      }
-    } catch (err) {
-      alert(err.response?.data?.message || "Failed to delete conversation");
-    }
-  };
+  // Delete entire conversation with confirmation
+  const promptDeleteConversation = (conversationId = activeConversation?._id) => {
+    setIsHeaderMenuOpen(false);
+    if (!conversationId) return;
 
-  // Clear all messages in conversation
-  const handleClearChat = async (conversationId) => {
-    try {
-      await clearChatMessages(conversationId);
-      clearMessagesInStore(conversationId);
-    } catch (err) {
-      alert(err.response?.data?.message || "Failed to clear chat");
-    }
-  };
-
-  // Delete single message
-  const handleDeleteMessage = async (messageId) => {
-    try {
-      await deleteMessage(messageId);
-      deleteMessageInStore(messageId);
-    } catch (err) {
-      alert(err.response?.data?.message || "Failed to delete message");
-    }
-  };
-
-  // WhatsApp WebRTC Video & Voice Calls
-  const {
-    startCall,
-    acceptCall,
-    declineCall,
-    endCall,
-    toggleScreenShare,
-    isScreenSharing,
-  } = useWebRTC();
-
-  const handleStartVoiceCall = () => {
-    if (!activeConversation) return;
-    const target = isGroup ? activeConversation.members?.[0] : otherUser;
-    if (!target) return;
-    startCall({
-      recipient: target,
-      conversationId: activeConversation._id,
-      isVideo: false,
-      isGroup,
+    setConfirmModal({
+      isOpen: true,
+      title: isGroup ? "Exit & delete group?" : "Delete this chat?",
+      message: "Are you sure you want to delete this chat? All messages and attachments will be permanently removed.",
+      confirmText: "Delete",
+      isDanger: true,
+      onConfirm: async () => {
+        try {
+          await deleteConversation(conversationId);
+          removeConversation(conversationId);
+          if (activeConversation?._id === conversationId) {
+            setActiveConversation(null);
+            setShowMobileSidebar(true);
+          }
+        } catch (err) {
+          alert(err.response?.data?.message || "Failed to delete conversation");
+        }
+      },
     });
   };
 
-  const handleStartVideoCall = () => {
-    if (!activeConversation) return;
-    const target = isGroup ? activeConversation.members?.[0] : otherUser;
-    if (!target) return;
-    startCall({
-      recipient: target,
-      conversationId: activeConversation._id,
-      isVideo: true,
-      isGroup,
+  // Clear all messages in conversation with confirmation
+  const promptClearChat = (conversationId = activeConversation?._id) => {
+    setIsHeaderMenuOpen(false);
+    if (!conversationId) return;
+
+    setConfirmModal({
+      isOpen: true,
+      title: "Clear this chat?",
+      message: "Are you sure you want to clear all messages in this chat? Messages cannot be recovered.",
+      confirmText: "Clear chat",
+      isDanger: true,
+      onConfirm: async () => {
+        try {
+          await clearChatMessages(conversationId);
+          clearMessagesInStore(conversationId);
+        } catch (err) {
+          alert(err.response?.data?.message || "Failed to clear chat");
+        }
+      },
     });
   };
 
-  // Logout
-  const handleLogout = async () => {
-    if (!confirm("Are you sure you want to log out?")) return;
-    try {
-      await logoutUser();
-      clearUser();
-      socket.disconnect();
-      router.push("/login");
-    } catch (err) {
-      console.error("Logout failed:", err);
-      clearUser();
-      router.push("/login");
+  // Delete single message with confirmation
+  const promptDeleteMessage = (messageId) => {
+    setConfirmModal({
+      isOpen: true,
+      title: "Delete message?",
+      message: "Are you sure you want to delete this message? It will be permanently removed for everyone.",
+      confirmText: "Delete",
+      isDanger: true,
+      onConfirm: async () => {
+        try {
+          await deleteMessage(messageId);
+          deleteMessageInStore(messageId);
+        } catch (err) {
+          alert(err.response?.data?.message || "Failed to delete message");
+        }
+      },
+    });
+  };
+
+  // Export chat messages to .txt file
+  const handleExportChat = () => {
+    setIsHeaderMenuOpen(false);
+    if (!activeConversation || messages.length === 0) {
+      setHeaderToast("No messages to export");
+      setTimeout(() => setHeaderToast(""), 2500);
+      return;
     }
+
+    const lines = messages.map((m) => {
+      const time = new Date(m.createdAt).toLocaleString();
+      const sender = m.sender?.name || m.sender?.username || "Contact";
+      const body = m.content || (m.type === "image" ? "<Photo>" : "<Attachment>");
+      return `[${time}] ${sender}: ${body}`;
+    });
+
+    const title = conversationTitle || "chat";
+    const blob = new Blob([lines.join("\n")], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `WhatsApp_Chat_${title.replace(/\s+/g, "_")}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+    setHeaderToast("Chat exported successfully");
+    setTimeout(() => setHeaderToast(""), 2500);
+  };
+
+  // Copy call link
+  const handleSendCallLink = () => {
+    setIsHeaderMenuOpen(false);
+    const link = `${window.location.origin}/chat?call_link=wa-${Date.now()}`;
+    navigator.clipboard.writeText(link);
+    setHeaderToast("Call link copied to clipboard!");
+    setTimeout(() => setHeaderToast(""), 3000);
+  };
+
+  // Block contact confirmation
+  const promptBlockUser = () => {
+    setIsHeaderMenuOpen(false);
+    setConfirmModal({
+      isOpen: true,
+      title: `Block ${conversationTitle}?`,
+      message: "Blocked contacts will no longer be able to call you or send you messages.",
+      confirmText: "Block",
+      isDanger: true,
+      onConfirm: () => {
+        setHeaderToast(`Blocked ${conversationTitle}`);
+        setTimeout(() => setHeaderToast(""), 3000);
+      },
+    });
+  };
+
+  // Report contact confirmation
+  const promptReportUser = () => {
+    setIsHeaderMenuOpen(false);
+    setConfirmModal({
+      isOpen: true,
+      title: `Report ${conversationTitle}?`,
+      message: "The last 5 messages from this chat will be forwarded to security. This contact will not be notified.",
+      confirmText: "Report",
+      isDanger: true,
+      onConfirm: () => {
+        setHeaderToast("Report submitted to security.");
+        setTimeout(() => setHeaderToast(""), 3000);
+      },
+    });
+  };
+
+  // Logout with confirmation
+  const handleLogout = () => {
+    setConfirmModal({
+      isOpen: true,
+      title: "Log out?",
+      message: "Are you sure you want to log out of PulseChat?",
+      confirmText: "Log out",
+      isDanger: false,
+      onConfirm: async () => {
+        try {
+          await logoutUser();
+          clearUser();
+          socket.disconnect();
+          router.push("/login");
+        } catch (err) {
+          clearUser();
+          router.push("/login");
+        }
+      },
+    });
   };
 
   // In-chat filtered messages
@@ -528,6 +675,40 @@ export default function ChatLayout({ initialConversationId = null }) {
   const conversationAvatarId = isGroup ? activeConversation._id : otherUser?._id;
 
   const currentTypers = activeConversation ? typingMap[activeConversation._id] || [] : [];
+
+  // WhatsApp WebRTC Video & Voice Calls
+  const {
+    startCall,
+    acceptCall,
+    declineCall,
+    endCall,
+    toggleScreenShare,
+    isScreenSharing,
+  } = useWebRTC();
+
+  const handleStartVoiceCall = () => {
+    if (!activeConversation) return;
+    const target = isGroup ? activeConversation.members?.[0] : otherUser;
+    if (!target) return;
+    startCall({
+      recipient: target,
+      conversationId: activeConversation._id,
+      isVideo: false,
+      isGroup,
+    });
+  };
+
+  const handleStartVideoCall = () => {
+    if (!activeConversation) return;
+    const target = isGroup ? activeConversation.members?.[0] : otherUser;
+    if (!target) return;
+    startCall({
+      recipient: target,
+      conversationId: activeConversation._id,
+      isVideo: true,
+      isGroup,
+    });
+  };
 
   return (
     <div className="flex flex-col h-screen w-screen overflow-hidden bg-[#111b21] text-[#e9edef] font-sans">
@@ -594,8 +775,8 @@ export default function ChatLayout({ initialConversationId = null }) {
                   setActiveConversation(null);
                 }}
                 onLogout={handleLogout}
-                onDeleteConversation={handleDeleteConversation}
-                onClearConversation={handleClearChat}
+                onDeleteConversation={promptDeleteConversation}
+                onClearConversation={promptClearChat}
               />
             )}
 
@@ -792,15 +973,7 @@ export default function ChatLayout({ initialConversationId = null }) {
                   <LiveClock className="hidden sm:inline-flex" />
 
                   <div className="flex items-center gap-0.5 sm:gap-1 text-[#aebac1]">
-                    <button
-                      type="button"
-                      onClick={handleStartVoiceCall}
-                      title={isGroup ? "Start group voice call" : "Voice call"}
-                      className="p-1.5 sm:p-2 rounded-full hover:text-[#00a884] hover:bg-[#2a3942] active:scale-95 transition-all"
-                    >
-                      <Phone className="w-4 h-4" />
-                    </button>
-
+                    {/* 1. Video Call Button */}
                     <button
                       type="button"
                       onClick={handleStartVideoCall}
@@ -810,6 +983,17 @@ export default function ChatLayout({ initialConversationId = null }) {
                       <Video className="w-4 h-4" />
                     </button>
 
+                    {/* 2. Voice Call Button */}
+                    <button
+                      type="button"
+                      onClick={handleStartVoiceCall}
+                      title={isGroup ? "Start group voice call" : "Voice call"}
+                      className="p-1.5 sm:p-2 rounded-full hover:text-[#00a884] hover:bg-[#2a3942] active:scale-95 transition-all"
+                    >
+                      <Phone className="w-4 h-4" />
+                    </button>
+
+                    {/* 3. Search Button */}
                     <button
                       type="button"
                       title="Search in this conversation"
@@ -823,37 +1007,221 @@ export default function ChatLayout({ initialConversationId = null }) {
                       <Search className="w-4 h-4" />
                     </button>
 
-                    <button
-                      type="button"
-                      title={isGroup ? "Group info & settings" : "Contact info & details"}
-                      onClick={() => setIsContactInfoOpen(!isContactInfoOpen)}
-                      className={`p-1.5 sm:p-2 rounded-full transition-colors ${
-                        isContactInfoOpen
-                          ? "text-[#00a884] bg-[#2a3942]"
-                          : "text-[#aebac1] hover:text-[#e9edef] hover:bg-[#2a3942]"
-                      }`}
-                    >
-                      <Info className="w-4 h-4" />
-                    </button>
+                    {/* 4. WhatsApp 3-Dots Dropdown Menu */}
+                    <div className="relative" ref={headerMenuRef}>
+                      <button
+                        type="button"
+                        title="More options"
+                        onClick={() => setIsHeaderMenuOpen(!isHeaderMenuOpen)}
+                        className={`p-1.5 sm:p-2 rounded-full transition-colors ${
+                          isHeaderMenuOpen
+                            ? "text-[#00a884] bg-[#2a3942]"
+                            : "text-[#aebac1] hover:text-[#e9edef] hover:bg-[#2a3942]"
+                        }`}
+                      >
+                        <MoreVertical className="w-4 h-4" />
+                      </button>
 
-                    <button
-                      type="button"
-                      title={isGroup ? "Delete group" : "Delete chat"}
-                      onClick={() => {
-                        if (
-                          confirm(
-                            `Are you sure you want to delete this ${
-                              isGroup ? "group" : "chat"
-                            }? All messages will be permanently deleted.`
-                          )
-                        ) {
-                          handleDeleteConversation(activeConversation._id);
-                        }
-                      }}
-                      className="p-1.5 sm:p-2 rounded-full text-[#aebac1] hover:text-rose-400 hover:bg-rose-500/10 transition-colors"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
+                      {isHeaderMenuOpen && (
+                        <div className="absolute right-0 top-11 w-64 max-h-[85vh] overflow-y-auto py-1.5 rounded-2xl bg-[#233138] border border-[#2a3942] shadow-2xl z-50 text-xs text-[#d1d7db] animate-in zoom-in-95 duration-150 scrollbar-thin divide-y divide-[#2a3942]/70">
+                          {/* Group 1: Contact & Chat Actions */}
+                          <div className="py-1">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setIsHeaderMenuOpen(false);
+                                setIsContactInfoOpen(true);
+                              }}
+                              className="w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center gap-3 transition-colors"
+                            >
+                              <Info className="w-4 h-4 text-[#8696a0]" />
+                              <span>Contact info</span>
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setIsHeaderMenuOpen(false);
+                                setIsInChatSearchOpen(true);
+                              }}
+                              className="w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center gap-3 transition-colors"
+                            >
+                              <Search className="w-4 h-4 text-[#8696a0]" />
+                              <span>Search</span>
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setIsHeaderMenuOpen(false);
+                                setHeaderToast("Select messages enabled");
+                                setTimeout(() => setHeaderToast(""), 2500);
+                              }}
+                              className="w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center gap-3 transition-colors"
+                            >
+                              <CheckSquare className="w-4 h-4 text-[#8696a0]" />
+                              <span>Select messages</span>
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setIsHeaderMenuOpen(false);
+                                setHeaderToast("Notifications muted");
+                                setTimeout(() => setHeaderToast(""), 2500);
+                              }}
+                              className="w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center justify-between transition-colors"
+                            >
+                              <div className="flex items-center gap-3">
+                                <BellOff className="w-4 h-4 text-[#8696a0]" />
+                                <span>Mute notifications</span>
+                              </div>
+                              <ChevronRight className="w-3.5 h-3.5 text-[#8696a0]" />
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setIsHeaderMenuOpen(false);
+                                setHeaderToast("Disappearing messages: Off");
+                                setTimeout(() => setHeaderToast(""), 2500);
+                              }}
+                              className="w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center gap-3 transition-colors"
+                            >
+                              <Clock className="w-4 h-4 text-[#8696a0]" />
+                              <span>Disappearing messages</span>
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setIsHeaderMenuOpen(false);
+                                setHeaderToast("Added to favourites");
+                                setTimeout(() => setHeaderToast(""), 2500);
+                              }}
+                              className="w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center gap-3 transition-colors"
+                            >
+                              <Heart className="w-4 h-4 text-[#8696a0]" />
+                              <span>Add to favourites</span>
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setIsHeaderMenuOpen(false);
+                                setHeaderToast("Added to custom list");
+                                setTimeout(() => setHeaderToast(""), 2500);
+                              }}
+                              className="w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center justify-between transition-colors"
+                            >
+                              <div className="flex items-center gap-3">
+                                <FolderPlus className="w-4 h-4 text-[#8696a0]" />
+                                <span>Add to list</span>
+                              </div>
+                              <ChevronRight className="w-3.5 h-3.5 text-[#8696a0]" />
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={handleExportChat}
+                              className="w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center gap-3 transition-colors"
+                            >
+                              <Download className="w-4 h-4 text-[#8696a0]" />
+                              <span>Export chat</span>
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setIsHeaderMenuOpen(false);
+                                setActiveConversation(null);
+                                setShowMobileSidebar(true);
+                              }}
+                              className="w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center gap-3 transition-colors"
+                            >
+                              <XCircle className="w-4 h-4 text-[#8696a0]" />
+                              <span>Close chat</span>
+                            </button>
+                          </div>
+
+                          {/* Group 2: Call Options */}
+                          <div className="py-1">
+                            <button
+                              type="button"
+                              onClick={handleSendCallLink}
+                              className="w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center gap-3 transition-colors"
+                            >
+                              <Link2 className="w-4 h-4 text-[#8696a0]" />
+                              <span>Send call link</span>
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setIsHeaderMenuOpen(false);
+                                setHeaderToast("Call scheduled");
+                                setTimeout(() => setHeaderToast(""), 2500);
+                              }}
+                              className="w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center gap-3 transition-colors"
+                            >
+                              <Calendar className="w-4 h-4 text-[#8696a0]" />
+                              <span>Schedule call</span>
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setIsHeaderMenuOpen(false);
+                                handleStartVoiceCall();
+                              }}
+                              className="w-full px-4 py-2.5 text-left hover:bg-[#182229] hover:text-white flex items-center gap-3 transition-colors"
+                            >
+                              <UserPlus className="w-4 h-4 text-[#8696a0]" />
+                              <span>New group call</span>
+                            </button>
+                          </div>
+
+                          {/* Group 3: Privacy, Clear & Delete */}
+                          <div className="py-1">
+                            <button
+                              type="button"
+                              onClick={promptReportUser}
+                              className="w-full px-4 py-2.5 text-left hover:bg-rose-500/10 flex items-center gap-3 text-rose-400 hover:text-rose-300 transition-colors"
+                            >
+                              <ThumbsDown className="w-4 h-4" />
+                              <span>Report</span>
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={promptBlockUser}
+                              className="w-full px-4 py-2.5 text-left hover:bg-rose-500/10 flex items-center gap-3 text-rose-400 hover:text-rose-300 transition-colors"
+                            >
+                              <Ban className="w-4 h-4" />
+                              <span>Block</span>
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() => promptClearChat(activeConversation._id)}
+                              className="w-full px-4 py-2.5 text-left hover:bg-amber-500/10 flex items-center gap-3 text-amber-400 hover:text-amber-300 transition-colors"
+                            >
+                              <MinusCircle className="w-4 h-4" />
+                              <span>Clear chat</span>
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() => promptDeleteConversation(activeConversation._id)}
+                              className="w-full px-4 py-2.5 text-left hover:bg-rose-500/10 flex items-center gap-3 text-rose-400 hover:text-rose-300 transition-colors"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                              <span>Delete chat</span>
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </header>
@@ -897,7 +1265,7 @@ export default function ChatLayout({ initialConversationId = null }) {
                       onLoadMore={handleLoadMoreMessages}
                       onReply={handleReplyToMessage}
                       onReact={handleReactToMessage}
-                      onDeleteMessage={handleDeleteMessage}
+                      onDeleteMessage={promptDeleteMessage}
                     />
                   </div>
 
@@ -922,8 +1290,8 @@ export default function ChatLayout({ initialConversationId = null }) {
                     onStartVideoCall={handleStartVideoCall}
                     onOpenSearch={() => setIsInChatSearchOpen(true)}
                     onOpenGroupSettings={() => setIsGroupSettingOpen(true)}
-                    onClearChat={handleClearChat}
-                    onDeleteChat={handleDeleteConversation}
+                    onClearChat={promptClearChat}
+                    onDeleteChat={promptDeleteConversation}
                   />
                 )}
               </div>
@@ -1008,6 +1376,25 @@ export default function ChatLayout({ initialConversationId = null }) {
 
       {/* WhatsApp-Style In-App Notification Toasts */}
       <NotificationBanner onSelectConversation={handleSelectConversationById} />
+
+      {/* Reusable WhatsApp Confirmation Modal */}
+      <ConfirmModal
+        isOpen={confirmModal.isOpen}
+        title={confirmModal.title}
+        message={confirmModal.message}
+        confirmText={confirmModal.confirmText}
+        isDanger={confirmModal.isDanger}
+        onConfirm={confirmModal.onConfirm}
+        onClose={() => setConfirmModal((prev) => ({ ...prev, isOpen: false }))}
+      />
+
+      {/* Floating Action Feedback Toast Pill */}
+      {headerToast && (
+        <div className="fixed top-12 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full bg-[#202c33] border border-[#2a3942] text-xs font-medium text-[#e9edef] shadow-2xl flex items-center gap-2 animate-in fade-in slide-in-from-top-2 duration-150">
+          <Check className="w-3.5 h-3.5 text-[#00a884]" />
+          <span>{headerToast}</span>
+        </div>
+      )}
     </div>
   );
 }

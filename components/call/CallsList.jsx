@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import useAuthStore from "../../store/authStore";
 import { getInitials } from "../../lib/utils";
+import ConfirmModal from "../ui/ConfirmModal";
 import {
   getCallHistory,
   saveCallHistory,
@@ -41,14 +42,32 @@ export default function CallsList({
   const [copiedLink, setCopiedLink] = useState(false);
   const [selectedCallDetail, setSelectedCallDetail] = useState(null);
   const [isNewCallModalOpen, setIsNewCallModalOpen] = useState(false);
+  const [confirmModal, setConfirmModal] = useState({
+    isOpen: false,
+    title: "",
+    message: "",
+    confirmText: "Delete",
+    onConfirm: null,
+  });
 
-  // Load call history isolated for the current logged-in user
+  // Load call history isolated for current logged-in user + listen to real-time call updates
   useEffect(() => {
-    if (currentUserId) {
-      setCalls(getCallHistory(currentUserId));
-    } else {
-      setCalls([]);
-    }
+    const refreshHistory = () => {
+      if (currentUserId) {
+        setCalls(getCallHistory(currentUserId));
+      } else {
+        setCalls([]);
+      }
+    };
+
+    refreshHistory();
+    window.addEventListener("wa_call_history_updated", refreshHistory);
+    window.addEventListener("storage", refreshHistory);
+
+    return () => {
+      window.removeEventListener("wa_call_history_updated", refreshHistory);
+      window.removeEventListener("storage", refreshHistory);
+    };
   }, [currentUserId]);
 
   const filteredCalls = useMemo(() => {
@@ -120,23 +139,37 @@ export default function CallsList({
 
   const handleDeleteCall = (e, callId) => {
     e.stopPropagation();
-    if (currentUserId) {
-      const updated = deleteCallLog(currentUserId, callId);
-      setCalls(updated);
-    } else {
-      setCalls((prev) => prev.filter((c) => c.id !== callId));
-    }
-    if (selectedCallDetail?.id === callId) {
-      setSelectedCallDetail(null);
-    }
+    setConfirmModal({
+      isOpen: true,
+      title: "Delete call log?",
+      message: "Do you want to delete this call from your history?",
+      confirmText: "Delete",
+      onConfirm: () => {
+        if (currentUserId) {
+          const updated = deleteCallLog(currentUserId, callId);
+          setCalls(updated);
+        } else {
+          setCalls((prev) => prev.filter((c) => c.id !== callId));
+        }
+        if (selectedCallDetail?.id === callId) {
+          setSelectedCallDetail(null);
+        }
+      },
+    });
   };
 
   const handleClearHistory = () => {
-    if (confirm("Clear your entire call log?")) {
-      clearCallHistory(currentUserId);
-      setCalls([]);
-      setSelectedCallDetail(null);
-    }
+    setConfirmModal({
+      isOpen: true,
+      title: "Clear all calls?",
+      message: "Do you want to clear your entire call log history? This action cannot be undone.",
+      confirmText: "Clear all",
+      onConfirm: () => {
+        clearCallHistory(currentUserId);
+        setCalls([]);
+        setSelectedCallDetail(null);
+      },
+    });
   };
 
   const handleOpenChatFromCall = (callItem) => {
@@ -527,6 +560,16 @@ export default function CallsList({
           </div>
         </div>
       )}
+
+      {/* Confirmation Modal */}
+      <ConfirmModal
+        isOpen={confirmModal.isOpen}
+        title={confirmModal.title}
+        message={confirmModal.message}
+        confirmText={confirmModal.confirmText}
+        onConfirm={confirmModal.onConfirm}
+        onClose={() => setConfirmModal((prev) => ({ ...prev, isOpen: false }))}
+      />
     </div>
   );
 }

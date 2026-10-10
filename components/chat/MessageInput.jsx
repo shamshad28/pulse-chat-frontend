@@ -35,11 +35,13 @@ export default function MessageInput({
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [filePreviews, setFilePreviews] = useState([]);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [showAttachMenu, setShowAttachMenu] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [isRecordingVoice, setIsRecordingVoice] = useState(false);
   const [recordingSeconds, setRecordingSeconds] = useState(0);
 
   const fileInputRef = useRef(null);
+  const imageInputRef = useRef(null);
   const textareaRef = useRef(null);
   const typingTimerRef = useRef(null);
   const isTypingRef = useRef(false);
@@ -382,11 +384,26 @@ export default function MessageInput({
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="flex items-center gap-1.5 sm:gap-2 max-w-5xl mx-auto">
-          {/* Hidden File Input */}
+          {/* Hidden File Inputs */}
+          <input
+            type="file"
+            ref={imageInputRef}
+            onChange={(e) => {
+              handleFileChange(e);
+              setShowAttachMenu(false);
+            }}
+            multiple
+            className="hidden"
+            accept="image/*,video/*"
+          />
+
           <input
             type="file"
             ref={fileInputRef}
-            onChange={handleFileChange}
+            onChange={(e) => {
+              handleFileChange(e);
+              setShowAttachMenu(false);
+            }}
             multiple
             className="hidden"
             accept="image/*,video/*,audio/*,.pdf,.doc,.docx,.txt,.zip"
@@ -396,7 +413,10 @@ export default function MessageInput({
           <button
             type="button"
             title="Emojis"
-            onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+            onClick={() => {
+              setShowEmojiPicker(!showEmojiPicker);
+              setShowAttachMenu(false);
+            }}
             className={`p-1.5 sm:p-2 rounded-full transition-colors ${
               showEmojiPicker
                 ? "text-[#00a884] bg-[#103629]"
@@ -406,16 +426,69 @@ export default function MessageInput({
             <Smile className="w-5 h-5" />
           </button>
 
-          {/* Attachment Button */}
+          {/* Direct "Select Image" Button (Requested by User) */}
           <button
             type="button"
-            title="Attach files (or drag & drop)"
-            onClick={() => fileInputRef.current?.click()}
+            title="Select Photos & Videos"
+            onClick={() => imageInputRef.current?.click()}
             disabled={uploading || sendingMessage}
-            className="p-1.5 sm:p-2 rounded-full text-[#8696a0] hover:text-[#e9edef] hover:bg-[#2a3942] transition-colors disabled:opacity-50"
+            className="p-1.5 sm:p-2 rounded-full text-[#8696a0] hover:text-[#00a884] hover:bg-[#2a3942] transition-colors disabled:opacity-50"
           >
-            <Paperclip className="w-5 h-5" />
+            <ImageIcon className="w-5 h-5" />
           </button>
+
+          {/* Attachment Popup Menu Trigger */}
+          <div className="relative">
+            <button
+              type="button"
+              title="Attach document or media"
+              onClick={() => {
+                setShowAttachMenu(!showAttachMenu);
+                setShowEmojiPicker(false);
+              }}
+              disabled={uploading || sendingMessage}
+              className={`p-1.5 sm:p-2 rounded-full transition-colors disabled:opacity-50 ${
+                showAttachMenu
+                  ? "text-[#00a884] bg-[#103629]"
+                  : "text-[#8696a0] hover:text-[#e9edef] hover:bg-[#2a3942]"
+              }`}
+            >
+              <Paperclip className="w-5 h-5" />
+            </button>
+
+            {/* WhatsApp Attachment Menu Popup */}
+            {showAttachMenu && (
+              <div className="absolute bottom-12 left-0 z-40 w-52 py-2 rounded-2xl bg-[#233138] border border-[#2a3942] shadow-2xl animate-in zoom-in-95 duration-150">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowAttachMenu(false);
+                    imageInputRef.current?.click();
+                  }}
+                  className="w-full px-4 py-2.5 text-left text-xs font-medium text-[#e9edef] hover:bg-[#182229] flex items-center gap-3 transition-colors"
+                >
+                  <div className="w-8 h-8 rounded-full bg-[#00a884]/20 text-[#00a884] flex items-center justify-center">
+                    <ImageIcon className="w-4 h-4" />
+                  </div>
+                  <span>Photos & Videos</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowAttachMenu(false);
+                    fileInputRef.current?.click();
+                  }}
+                  className="w-full px-4 py-2.5 text-left text-xs font-medium text-[#e9edef] hover:bg-[#182229] flex items-center gap-3 transition-colors"
+                >
+                  <div className="w-8 h-8 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center">
+                    <FileText className="w-4 h-4" />
+                  </div>
+                  <span>Document</span>
+                </button>
+              </div>
+            )}
+          </div>
 
           {/* Expanding Textarea */}
           <div className="relative flex-1">

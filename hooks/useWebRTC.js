@@ -10,6 +10,7 @@ import {
   playCallEndSound,
   stopCallAudio,
 } from "../lib/sound";
+import { addCallLog, updateCallLog } from "../lib/callHistory";
 
 const ICE_SERVERS = {
   iceServers: [
@@ -21,6 +22,10 @@ const ICE_SERVERS = {
 
 export default function useWebRTC() {
   const currentUser = useAuthStore((state) => state.user);
+  const currentUserRef = useRef(currentUser);
+  useEffect(() => {
+    currentUserRef.current = currentUser;
+  }, [currentUser]);
 
   const callStatus = useCallStore((state) => state.callStatus);
   const callType = useCallStore((state) => state.callType);
@@ -45,6 +50,7 @@ export default function useWebRTC() {
   const timerRef = useRef(null);
   const screenTrackRef = useRef(null);
   const originalVideoTrackRef = useRef(null);
+  const currentCallLogRef = useRef(null);
 
   // Helper to acquire local media stream with resilient fallbacks
   const getMediaStream = useCallback(async (withVideo = true) => {
@@ -122,7 +128,30 @@ export default function useWebRTC() {
   const startCall = useCallback(
     async ({ recipient, conversationId, isVideo = true, isGroup = false }) => {
       const otherUserId = recipient?._id || recipient?.id;
-      if (!otherUserId || !currentUser) return;
+      const myUserId = currentUser?._id || currentUser?.id;
+      if (!otherUserId || !myUserId) return;
+
+      const callLogId = `call-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`;
+      currentCallLogRef.current = {
+        id: callLogId,
+        userId: myUserId,
+        startTime: Date.now(),
+        direction: "outgoing",
+        connectedTime: null,
+      };
+
+      // Record in caller's history
+      addCallLog(myUserId, {
+        id: callLogId,
+        contactName: recipient?.name || recipient?.username || "Contact",
+        contactUsername: recipient?.username || "",
+        avatar: recipient?.avatar || null,
+        type: isVideo ? "video" : "voice",
+        direction: "outgoing",
+        status: "calling",
+        duration: "Calling...",
+        isGroup: !!isGroup,
+      });
 
       initiateCallAction({
         otherUser: recipient,
@@ -166,6 +195,14 @@ export default function useWebRTC() {
 
     stopCallAudio();
 
+    if (currentCallLogRef.current) {
+      updateCallLog(currentCallLogRef.current.userId, currentCallLogRef.current.id, {
+        status: "answered",
+        duration: "Ongoing",
+      });
+      currentCallLogRef.current.connectedTime = Date.now();
+    }
+
     const isVideo = callType === "video";
     const stream = await getMediaStream(isVideo);
     localStreamRef.current = stream;
@@ -198,6 +235,15 @@ export default function useWebRTC() {
     stopCallAudio();
     playCallEndSound();
 
+    if (currentCallLogRef.current) {
+      updateCallLog(currentCallLogRef.current.userId, currentCallLogRef.current.id, {
+        status: "declined",
+        direction: "missed",
+        duration: "Declined",
+      });
+      currentCallLogRef.current = null;
+    }
+
     if (activeCall?.otherUser) {
       const callerId = activeCall.otherUser._id || activeCall.otherUser.id;
       socket.emit("call:decline", { callerId, reason: "Decline" });
@@ -211,6 +257,23 @@ export default function useWebRTC() {
   const endCall = useCallback(() => {
     stopCallAudio();
     playCallEndSound();
+
+    if (currentCallLogRef.current) {
+      const connected = !!currentCallLogRef.current.connectedTime;
+      let durationStr = "0:00";
+      if (connected) {
+        const elapsedSec = Math.max(1, Math.floor((Date.now() - currentCallLogRef.current.connectedTime) / 1000));
+        const mins = Math.floor(elapsedSec / 60);
+        const secs = elapsedSec % 60;
+        durationStr = `${mins}:${secs < 10 ? "0" : ""}${secs}`;
+      }
+      updateCallLog(currentCallLogRef.current.userId, currentCallLogRef.current.id, {
+        status: connected ? "answered" : (currentCallLogRef.current.direction === "incoming" ? "missed" : "unanswered"),
+        direction: (!connected && currentCallLogRef.current.direction === "incoming") ? "missed" : currentCallLogRef.current.direction,
+        duration: connected ? durationStr : "Cancelled",
+      });
+      currentCallLogRef.current = null;
+    }
 
     if (activeCall?.otherUser) {
       const targetUserId = activeCall.otherUser._id || activeCall.otherUser.id;
@@ -327,6 +390,29 @@ export default function useWebRTC() {
         return;
       }
 
+      const myUserId = currentUserRef.current?._id || currentUserRef.current?.id;
+      if (myUserId) {
+        const callLogId = `call-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`;
+        currentCallLogRef.current = {
+          id: callLogId,
+          userId: myUserId,
+          startTime: Date.now(),
+          direction: "incoming",
+          connectedTime: null,
+        };
+        addCallLog(myUserId, {
+          id: callLogId,
+          contactName: caller?.name || caller?.username || "Contact",
+          contactUsername: caller?.username || "",
+          avatar: caller?.avatar || null,
+          type: isVideo ? "video" : "voice",
+          direction: "incoming",
+          status: "missed",
+          duration: "Incoming...",
+          isGroup: !!isGroup,
+        });
+      }
+
       startIncomingRingtone();
       receiveCallAction({ caller, conversationId, isVideo, isGroup });
     };
@@ -334,6 +420,14 @@ export default function useWebRTC() {
     // 2. Call Accepted by Remote Peer
     const handleCallAccepted = async ({ recipient }) => {
       stopCallAudio();
+
+      if (currentCallLogRef.current) {
+        updateCallLog(currentCallLogRef.current.userId, currentCallLogRef.current.id, {
+          status: "answered",
+          duration: "Ongoing",
+        });
+        currentCallLogRef.current.connectedTime = Date.now();
+      }
 
       if (pcRef.current) {
         try {
@@ -386,6 +480,15 @@ export default function useWebRTC() {
     const handleCallDeclined = () => {
       stopCallAudio();
       playCallEndSound();
+
+      if (currentCallLogRef.current) {
+        updateCallLog(currentCallLogRef.current.userId, currentCallLogRef.current.id, {
+          status: "unanswered",
+          duration: "Declined",
+        });
+        currentCallLogRef.current = null;
+      }
+
       endCallAction();
       setTimeout(() => resetCallAction(), 1200);
     };
@@ -394,6 +497,24 @@ export default function useWebRTC() {
     const handleCallEnded = () => {
       stopCallAudio();
       playCallEndSound();
+
+      if (currentCallLogRef.current) {
+        const connected = !!currentCallLogRef.current.connectedTime;
+        let durationStr = "0:00";
+        if (connected) {
+          const elapsedSec = Math.max(1, Math.floor((Date.now() - currentCallLogRef.current.connectedTime) / 1000));
+          const mins = Math.floor(elapsedSec / 60);
+          const secs = elapsedSec % 60;
+          durationStr = `${mins}:${secs < 10 ? "0" : ""}${secs}`;
+        }
+        updateCallLog(currentCallLogRef.current.userId, currentCallLogRef.current.id, {
+          status: connected ? "answered" : (currentCallLogRef.current.direction === "incoming" ? "missed" : "unanswered"),
+          direction: (!connected && currentCallLogRef.current.direction === "incoming") ? "missed" : currentCallLogRef.current.direction,
+          duration: connected ? durationStr : "Ended",
+        });
+        currentCallLogRef.current = null;
+      }
+
       if (pcRef.current) {
         pcRef.current.close();
         pcRef.current = null;

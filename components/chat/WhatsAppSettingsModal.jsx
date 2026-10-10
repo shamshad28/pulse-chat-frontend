@@ -631,11 +631,28 @@ export default function WhatsAppSettingsModal({ isOpen, onClose, onLogout }) {
           {activeTab === "help" && (
             <div className="space-y-6 max-w-lg">
               <h3 className="text-lg font-semibold text-white">Help</h3>
-              <div className="p-4 rounded-xl bg-[#202c33] border border-[#2a3942] space-y-3 text-xs">
-                <div className="text-sm font-semibold text-[#00a884]">
-                  WhatsApp Desktop
+              <div className="p-4 rounded-xl bg-[#202c33] border border-[#2a3942] space-y-3.5 text-xs">
+                <div className="flex items-center justify-between">
+                  <div className="text-sm font-semibold text-[#00a884]">
+                    WhatsApp Desktop
+                  </div>
+                  <span className="text-[10px] text-[#8696a0] bg-[#111b21] px-2 py-0.5 rounded-full border border-[#2a3942]">
+                    v2.24.18
+                  </span>
                 </div>
-                <div className="text-[#8696a0]">Version 2.24.18.7 Desktop Edition</div>
+
+                <div className="p-3 rounded-lg bg-[#111b21] border border-[#2a3942] flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-[#00a884]/20 text-[#00a884] flex items-center justify-center font-bold text-sm">
+                    SK
+                  </div>
+                  <div>
+                    <div className="font-semibold text-white">Made by Shamshad Khan</div>
+                    <div className="text-[11px] text-[#8696a0]">
+                      Crafted with ❤️ for real-time messaging, audio & video calling
+                    </div>
+                  </div>
+                </div>
+
                 <div className="border-t border-[#2a3942] pt-3 space-y-2">
                   <a href="#" className="block text-[#00a884] hover:underline">
                     Help Center & FAQs

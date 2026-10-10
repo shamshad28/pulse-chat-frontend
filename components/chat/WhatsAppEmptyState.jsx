@@ -58,10 +58,16 @@ export default function WhatsAppEmptyState({
         </button>
       </div>
 
-      {/* Subtle End-to-end encryption note at bottom */}
-      <div className="absolute bottom-6 flex items-center gap-1.5 text-xs text-[#8696a0]/80">
-        <Lock className="w-3.5 h-3.5" />
-        <span>End-to-end encrypted</span>
+      {/* Subtle End-to-end encryption & Creator attribution note at bottom */}
+      <div className="absolute bottom-6 flex flex-col items-center gap-1.5 text-xs text-[#8696a0]/80 text-center">
+        <div className="flex items-center gap-1.5">
+          <Lock className="w-3.5 h-3.5" />
+          <span>End-to-end encrypted</span>
+        </div>
+        <div className="text-[11px] text-[#8696a0] font-medium tracking-wide">
+          Made with <span className="text-rose-500">❤️</span> by{" "}
+          <span className="text-[#00a884] font-semibold">Shamshad Khan</span>
+        </div>
       </div>
     </div>
   );

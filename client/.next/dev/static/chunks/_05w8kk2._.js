@@ -386,8 +386,10 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$socket$2e$js__$5b$app
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$callStore$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/store/callStore.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$authStore$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/store/authStore.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/sound.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$callHistory$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/callHistory.js [app-client] (ecmascript)");
 var _s = __turbopack_context__.k.signature();
 "use client";
+;
 ;
 ;
 ;
@@ -411,6 +413,14 @@ function useWebRTC() {
     const currentUser = (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$authStore$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])({
         "useWebRTC.useAuthStore[currentUser]": (state)=>state.user
     }["useWebRTC.useAuthStore[currentUser]"]);
+    const currentUserRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(currentUser);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "useWebRTC.useEffect": ()=>{
+            currentUserRef.current = currentUser;
+        }
+    }["useWebRTC.useEffect"], [
+        currentUser
+    ]);
     const callStatus = (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$callStore$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])({
         "useWebRTC.useCallStore[callStatus]": (state)=>state.callStatus
     }["useWebRTC.useCallStore[callStatus]"]);
@@ -464,6 +474,7 @@ function useWebRTC() {
     const timerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const screenTrackRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const originalVideoTrackRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const currentCallLogRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     // Helper to acquire local media stream with resilient fallbacks
     const getMediaStream = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
         "useWebRTC.useCallback[getMediaStream]": async (withVideo = true)=>{
@@ -552,7 +563,28 @@ function useWebRTC() {
     const startCall = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
         "useWebRTC.useCallback[startCall]": async ({ recipient, conversationId, isVideo = true, isGroup = false })=>{
             const otherUserId = recipient?._id || recipient?.id;
-            if (!otherUserId || !currentUser) return;
+            const myUserId = currentUser?._id || currentUser?.id;
+            if (!otherUserId || !myUserId) return;
+            const callLogId = `call-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`;
+            currentCallLogRef.current = {
+                id: callLogId,
+                userId: myUserId,
+                startTime: Date.now(),
+                direction: "outgoing",
+                connectedTime: null
+            };
+            // Record in caller's history
+            (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$callHistory$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["addCallLog"])(myUserId, {
+                id: callLogId,
+                contactName: recipient?.name || recipient?.username || "Contact",
+                contactUsername: recipient?.username || "",
+                avatar: recipient?.avatar || null,
+                type: isVideo ? "video" : "voice",
+                direction: "outgoing",
+                status: "calling",
+                duration: "Calling...",
+                isGroup: !!isGroup
+            });
             initiateCallAction({
                 otherUser: recipient,
                 conversationId,
@@ -590,6 +622,13 @@ function useWebRTC() {
             if (!activeCall?.otherUser) return;
             const callerId = activeCall.otherUser._id || activeCall.otherUser.id;
             (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["stopCallAudio"])();
+            if (currentCallLogRef.current) {
+                (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$callHistory$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["updateCallLog"])(currentCallLogRef.current.userId, currentCallLogRef.current.id, {
+                    status: "answered",
+                    duration: "Ongoing"
+                });
+                currentCallLogRef.current.connectedTime = Date.now();
+            }
             const isVideo = callType === "video";
             const stream = await getMediaStream(isVideo);
             localStreamRef.current = stream;
@@ -621,6 +660,14 @@ function useWebRTC() {
         "useWebRTC.useCallback[declineCall]": ()=>{
             (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["stopCallAudio"])();
             (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["playCallEndSound"])();
+            if (currentCallLogRef.current) {
+                (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$callHistory$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["updateCallLog"])(currentCallLogRef.current.userId, currentCallLogRef.current.id, {
+                    status: "declined",
+                    direction: "missed",
+                    duration: "Declined"
+                });
+                currentCallLogRef.current = null;
+            }
             if (activeCall?.otherUser) {
                 const callerId = activeCall.otherUser._id || activeCall.otherUser.id;
                 __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$socket$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].emit("call:decline", {
@@ -643,6 +690,22 @@ function useWebRTC() {
         "useWebRTC.useCallback[endCall]": ()=>{
             (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["stopCallAudio"])();
             (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["playCallEndSound"])();
+            if (currentCallLogRef.current) {
+                const connected = !!currentCallLogRef.current.connectedTime;
+                let durationStr = "0:00";
+                if (connected) {
+                    const elapsedSec = Math.max(1, Math.floor((Date.now() - currentCallLogRef.current.connectedTime) / 1000));
+                    const mins = Math.floor(elapsedSec / 60);
+                    const secs = elapsedSec % 60;
+                    durationStr = `${mins}:${secs < 10 ? "0" : ""}${secs}`;
+                }
+                (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$callHistory$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["updateCallLog"])(currentCallLogRef.current.userId, currentCallLogRef.current.id, {
+                    status: connected ? "answered" : currentCallLogRef.current.direction === "incoming" ? "missed" : "unanswered",
+                    direction: !connected && currentCallLogRef.current.direction === "incoming" ? "missed" : currentCallLogRef.current.direction,
+                    duration: connected ? durationStr : "Cancelled"
+                });
+                currentCallLogRef.current = null;
+            }
             if (activeCall?.otherUser) {
                 const targetUserId = activeCall.otherUser._id || activeCall.otherUser.id;
                 __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$socket$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].emit("call:end", {
@@ -778,6 +841,28 @@ function useWebRTC() {
                         });
                         return;
                     }
+                    const myUserId = currentUserRef.current?._id || currentUserRef.current?.id;
+                    if (myUserId) {
+                        const callLogId = `call-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`;
+                        currentCallLogRef.current = {
+                            id: callLogId,
+                            userId: myUserId,
+                            startTime: Date.now(),
+                            direction: "incoming",
+                            connectedTime: null
+                        };
+                        (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$callHistory$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["addCallLog"])(myUserId, {
+                            id: callLogId,
+                            contactName: caller?.name || caller?.username || "Contact",
+                            contactUsername: caller?.username || "",
+                            avatar: caller?.avatar || null,
+                            type: isVideo ? "video" : "voice",
+                            direction: "incoming",
+                            status: "missed",
+                            duration: "Incoming...",
+                            isGroup: !!isGroup
+                        });
+                    }
                     (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["startIncomingRingtone"])();
                     receiveCallAction({
                         caller,
@@ -791,6 +876,13 @@ function useWebRTC() {
             const handleCallAccepted = {
                 "useWebRTC.useEffect.handleCallAccepted": async ({ recipient })=>{
                     (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["stopCallAudio"])();
+                    if (currentCallLogRef.current) {
+                        (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$callHistory$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["updateCallLog"])(currentCallLogRef.current.userId, currentCallLogRef.current.id, {
+                            status: "answered",
+                            duration: "Ongoing"
+                        });
+                        currentCallLogRef.current.connectedTime = Date.now();
+                    }
                     if (pcRef.current) {
                         try {
                             const offer = await pcRef.current.createOffer();
@@ -839,6 +931,13 @@ function useWebRTC() {
                 "useWebRTC.useEffect.handleCallDeclined": ()=>{
                     (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["stopCallAudio"])();
                     (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["playCallEndSound"])();
+                    if (currentCallLogRef.current) {
+                        (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$callHistory$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["updateCallLog"])(currentCallLogRef.current.userId, currentCallLogRef.current.id, {
+                            status: "unanswered",
+                            duration: "Declined"
+                        });
+                        currentCallLogRef.current = null;
+                    }
                     endCallAction();
                     setTimeout({
                         "useWebRTC.useEffect.handleCallDeclined": ()=>resetCallAction()
@@ -850,6 +949,22 @@ function useWebRTC() {
                 "useWebRTC.useEffect.handleCallEnded": ()=>{
                     (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["stopCallAudio"])();
                     (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["playCallEndSound"])();
+                    if (currentCallLogRef.current) {
+                        const connected = !!currentCallLogRef.current.connectedTime;
+                        let durationStr = "0:00";
+                        if (connected) {
+                            const elapsedSec = Math.max(1, Math.floor((Date.now() - currentCallLogRef.current.connectedTime) / 1000));
+                            const mins = Math.floor(elapsedSec / 60);
+                            const secs = elapsedSec % 60;
+                            durationStr = `${mins}:${secs < 10 ? "0" : ""}${secs}`;
+                        }
+                        (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$callHistory$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["updateCallLog"])(currentCallLogRef.current.userId, currentCallLogRef.current.id, {
+                            status: connected ? "answered" : currentCallLogRef.current.direction === "incoming" ? "missed" : "unanswered",
+                            direction: !connected && currentCallLogRef.current.direction === "incoming" ? "missed" : currentCallLogRef.current.direction,
+                            duration: connected ? durationStr : "Ended"
+                        });
+                        currentCallLogRef.current = null;
+                    }
                     if (pcRef.current) {
                         pcRef.current.close();
                         pcRef.current = null;
@@ -913,7 +1028,7 @@ function useWebRTC() {
         isScreenSharing
     };
 }
-_s(useWebRTC, "vKj9w2WcFNOHvPA+4ks6bamSXtw=", false, function() {
+_s(useWebRTC, "oZNnrApRy+2zDCJi2LbIU+hASKM=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$authStore$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"],
         __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$callStore$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"],
@@ -1033,7 +1148,9 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
     "getCallHistoryKey",
     ()=>getCallHistoryKey,
     "saveCallHistory",
-    ()=>saveCallHistory
+    ()=>saveCallHistory,
+    "updateCallLog",
+    ()=>updateCallLog
 ]);
 const getCallHistoryKey = (userId)=>{
     return userId ? `wa_call_history_${userId}` : "wa_call_history_guest";
@@ -1074,26 +1191,46 @@ const saveCallHistory = (userId, calls)=>{
     try {
         const key = getCallHistoryKey(userId);
         localStorage.setItem(key, JSON.stringify(calls));
+        window.dispatchEvent(new CustomEvent("wa_call_history_updated", {
+            detail: {
+                userId,
+                count: calls.length
+            }
+        }));
     } catch (err) {
         console.error("Error saving call history:", err);
     }
 };
 const addCallLog = (userId, callData)=>{
+    if (!userId) return [];
     const current = getCallHistory(userId);
     const newCall = {
-        id: `call-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`,
+        id: callData.id || `call-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`,
         timestamp: formatCallTime(new Date()),
         createdAt: new Date().toISOString(),
         ...callData
     };
+    // Avoid duplicating if call with same ID already added
+    const filtered = current.filter((c)=>c.id !== newCall.id);
     const updated = [
         newCall,
-        ...current
+        ...filtered
     ];
     saveCallHistory(userId, updated);
     return updated;
 };
+const updateCallLog = (userId, callId, patch)=>{
+    if (!userId || !callId) return [];
+    const current = getCallHistory(userId);
+    const updated = current.map((c)=>c.id === callId ? {
+            ...c,
+            ...patch
+        } : c);
+    saveCallHistory(userId, updated);
+    return updated;
+};
 const deleteCallLog = (userId, callId)=>{
+    if (!userId) return [];
     const current = getCallHistory(userId);
     const updated = current.filter((c)=>c.id !== callId);
     saveCallHistory(userId, updated);
@@ -1107,6 +1244,12 @@ const clearCallHistory = (userId)=>{
         localStorage.removeItem(key);
         // Remove legacy shared mock key
         localStorage.removeItem("wa_call_history");
+        window.dispatchEvent(new CustomEvent("wa_call_history_updated", {
+            detail: {
+                userId,
+                count: 0
+            }
+        }));
     } catch (err) {
         console.error("Error clearing call history:", err);
     }

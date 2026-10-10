@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "WhatsApp",
+  title: "WhatsApp • Made by Shamshad Khan",
   description:
-    "WhatsApp Web & Desktop - End-to-end encrypted messaging, Meta AI Assistant, group channels, and calls.",
+    "WhatsApp Web & Desktop - End-to-end encrypted messaging, Meta AI Assistant, and calls. Made by Shamshad Khan.",
 };
 
 export const viewport = {

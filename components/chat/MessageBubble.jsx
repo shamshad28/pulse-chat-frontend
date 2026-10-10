@@ -141,11 +141,7 @@ export default function MessageBubble({
             <button
               type="button"
               title="Delete message"
-              onClick={() => {
-                if (confirm("Delete this message?")) {
-                  onDeleteMessage(message._id);
-                }
-              }}
+              onClick={() => onDeleteMessage(message._id)}
               className="p-1 rounded-full text-[#8696a0] hover:text-rose-400 hover:bg-rose-500/10 transition-colors"
             >
               <Trash2 className="w-3.5 h-3.5" />

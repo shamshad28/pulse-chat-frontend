@@ -31,9 +31,14 @@ export default function WhatsAppTitleBar() {
         >
           <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.63C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 6.46 17.5 2 12.04 2M12.04 20.15C10.56 20.15 9.11 19.76 7.84 19.01L7.54 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.8 7.37 7.5 3.67 12.04 3.67C16.58 3.67 20.28 7.37 20.28 11.91C20.28 16.46 16.58 20.15 12.04 20.15Z" />
         </svg>
-        <span className="text-xs font-normal text-[#d1d7db] tracking-wide">
-          WhatsApp
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-normal text-[#d1d7db] tracking-wide">
+            WhatsApp
+          </span>
+          <span className="text-[10px] text-[#8696a0] font-normal hidden sm:inline-flex items-center gap-1 bg-[#111b21] px-2 py-0.5 rounded-full border border-[#2a3942]">
+            Made by <span className="text-[#00a884] font-medium">Shamshad Khan</span>
+          </span>
+        </div>
       </div>
 
       {/* Right: Windows Desktop Window Controls */}
