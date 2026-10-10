@@ -11,101 +11,20 @@ import {
   Plus,
   Search,
   X,
-  Clock,
-  User,
+  Trash2,
+  MessageSquare,
   Users,
   Check,
-  ChevronRight,
 } from "lucide-react";
-import { getInitials, formatMessageTime } from "../../lib/utils";
-
-const INITIAL_CALL_HISTORY = [
-  {
-    id: "call-1",
-    contactName: "Priya Mali",
-    contactUsername: "priyamali",
-    avatar: null,
-    type: "video", // 'voice' | 'video'
-    direction: "outgoing", // 'incoming' | 'outgoing' | 'missed'
-    status: "answered",
-    duration: "14m 20s",
-    timestamp: "Today, 10:15 AM",
-    createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
-  },
-  {
-    id: "call-2",
-    contactName: "Vaibhav Bhai Nexcore",
-    contactUsername: "vaibhav",
-    avatar: null,
-    type: "voice",
-    direction: "missed",
-    status: "missed",
-    duration: "0s",
-    timestamp: "Today, 9:20 AM",
-    createdAt: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString(),
-  },
-  {
-    id: "call-3",
-    contactName: "Khan family",
-    contactUsername: "family",
-    avatar: null,
-    type: "video",
-    direction: "incoming",
-    status: "answered",
-    duration: "25m 04s",
-    timestamp: "Yesterday, 8:40 PM",
-    isGroup: true,
-    createdAt: new Date(Date.now() - 16 * 60 * 60 * 1000).toISOString(),
-  },
-  {
-    id: "call-4",
-    contactName: "Afreen Khan",
-    contactUsername: "afreen",
-    avatar: null,
-    type: "voice",
-    direction: "incoming",
-    status: "answered",
-    duration: "6m 12s",
-    timestamp: "Yesterday, 4:10 PM",
-    createdAt: new Date(Date.now() - 20 * 60 * 60 * 1000).toISOString(),
-  },
-  {
-    id: "call-5",
-    contactName: "Muaz Theem",
-    contactUsername: "muaztheem",
-    avatar: null,
-    type: "voice",
-    direction: "outgoing",
-    status: "answered",
-    duration: "1m 45s",
-    timestamp: "Oct 7, 6:30 PM",
-    createdAt: new Date(Date.now() - 40 * 60 * 60 * 1000).toISOString(),
-  },
-  {
-    id: "call-6",
-    contactName: "HR Anjali",
-    contactUsername: "anjali",
-    avatar: null,
-    type: "voice",
-    direction: "missed",
-    status: "missed",
-    duration: "0s",
-    timestamp: "Oct 6, 11:15 AM",
-    createdAt: new Date(Date.now() - 65 * 60 * 60 * 1000).toISOString(),
-  },
-  {
-    id: "call-7",
-    contactName: "Shadab Nexa Core",
-    contactUsername: "shadab",
-    avatar: null,
-    type: "video",
-    direction: "outgoing",
-    status: "answered",
-    duration: "18m 55s",
-    timestamp: "Oct 5, 3:20 PM",
-    createdAt: new Date(Date.now() - 90 * 60 * 60 * 1000).toISOString(),
-  },
-];
+import useAuthStore from "../../store/authStore";
+import { getInitials } from "../../lib/utils";
+import {
+  getCallHistory,
+  saveCallHistory,
+  deleteCallLog,
+  clearCallHistory,
+  addCallLog,
+} from "../../lib/callHistory";
 
 export default function CallsList({
   onStartVoiceCall,
@@ -113,29 +32,24 @@ export default function CallsList({
   onSelectContactForChat,
   conversations = [],
 }) {
-  const [calls, setCalls] = useState(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("wa_call_history");
-      if (saved) {
-        try {
-          return JSON.parse(saved);
-        } catch {}
-      }
-    }
-    return INITIAL_CALL_HISTORY;
-  });
+  const currentUser = useAuthStore((state) => state.user);
+  const currentUserId = (currentUser?._id || currentUser?.id)?.toString();
 
+  const [calls, setCalls] = useState([]);
   const [activeFilter, setActiveFilter] = useState("all"); // 'all' | 'missed'
   const [searchQuery, setSearchQuery] = useState("");
   const [copiedLink, setCopiedLink] = useState(false);
   const [selectedCallDetail, setSelectedCallDetail] = useState(null);
   const [isNewCallModalOpen, setIsNewCallModalOpen] = useState(false);
 
+  // Load call history isolated for the current logged-in user
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("wa_call_history", JSON.stringify(calls));
+    if (currentUserId) {
+      setCalls(getCallHistory(currentUserId));
+    } else {
+      setCalls([]);
     }
-  }, [calls]);
+  }, [currentUserId]);
 
   const filteredCalls = useMemo(() => {
     let list = [...calls];
@@ -144,9 +58,10 @@ export default function CallsList({
     }
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
-      list = list.filter((c) =>
-        c.contactName?.toLowerCase().includes(q) ||
-        c.contactUsername?.toLowerCase().includes(q)
+      list = list.filter(
+        (c) =>
+          c.contactName?.toLowerCase().includes(q) ||
+          c.contactUsername?.toLowerCase().includes(q)
       );
     }
     return list;
@@ -160,18 +75,20 @@ export default function CallsList({
   };
 
   const handleCallUser = (callItem, isVideo = false) => {
-    // Look up conversation or user
     const matchingConv = conversations.find(
       (c) =>
         c.name === callItem.contactName ||
         (c.members || []).some(
-          (m) => m.name === callItem.contactName || m.username === callItem.contactUsername
+          (m) =>
+            m.name === callItem.contactName ||
+            m.username === callItem.contactUsername
         )
     );
 
     const userObj = matchingConv
       ? matchingConv.type === "direct"
-        ? matchingConv.members?.find((m) => m.name === callItem.contactName) || matchingConv.members?.[0]
+        ? matchingConv.members?.find((m) => m.name === callItem.contactName) ||
+          matchingConv.members?.[0]
         : matchingConv
       : {
           name: callItem.contactName,
@@ -179,20 +96,20 @@ export default function CallsList({
           avatar: callItem.avatar,
         };
 
-    // Log call entry
-    const newEntry = {
-      id: `call-${Date.now()}`,
-      contactName: callItem.contactName,
-      contactUsername: callItem.contactUsername,
-      avatar: callItem.avatar,
-      type: isVideo ? "video" : "voice",
-      direction: "outgoing",
-      status: "answered",
-      duration: "Just now",
-      timestamp: "Just now",
-      createdAt: new Date().toISOString(),
-    };
-    setCalls((prev) => [newEntry, ...prev]);
+    // Log call entry for current user
+    if (currentUserId) {
+      const updated = addCallLog(currentUserId, {
+        contactName: callItem.contactName,
+        contactUsername: callItem.contactUsername,
+        avatar: callItem.avatar,
+        type: isVideo ? "video" : "voice",
+        direction: "outgoing",
+        status: "answered",
+        duration: "Just now",
+        isGroup: !!callItem.isGroup,
+      });
+      setCalls(updated);
+    }
 
     if (isVideo) {
       if (onStartVideoCall) onStartVideoCall(userObj);
@@ -201,11 +118,40 @@ export default function CallsList({
     }
   };
 
+  const handleDeleteCall = (e, callId) => {
+    e.stopPropagation();
+    if (currentUserId) {
+      const updated = deleteCallLog(currentUserId, callId);
+      setCalls(updated);
+    } else {
+      setCalls((prev) => prev.filter((c) => c.id !== callId));
+    }
+    if (selectedCallDetail?.id === callId) {
+      setSelectedCallDetail(null);
+    }
+  };
+
   const handleClearHistory = () => {
     if (confirm("Clear your entire call log?")) {
+      clearCallHistory(currentUserId);
       setCalls([]);
-      localStorage.removeItem("wa_call_history");
       setSelectedCallDetail(null);
+    }
+  };
+
+  const handleOpenChatFromCall = (callItem) => {
+    if (!onSelectContactForChat) return;
+    const matchingConv = conversations.find(
+      (c) =>
+        c.name === callItem.contactName ||
+        (c.members || []).some(
+          (m) =>
+            m.name === callItem.contactName ||
+            m.username === callItem.contactUsername
+        )
+    );
+    if (matchingConv) {
+      onSelectContactForChat(matchingConv);
     }
   };
 
@@ -249,7 +195,7 @@ export default function CallsList({
         </div>
       </div>
 
-      {/* 3. Filter Pills: All / Missed */}
+      {/* 3. Filter Pills: All / Missed & Clear Log */}
       <div className="flex items-center gap-2 px-3 py-2 border-b border-[#222e35]/60">
         <button
           type="button"
@@ -310,35 +256,43 @@ export default function CallsList({
               )}
             </div>
             <p className="text-xs text-[#8696a0] truncate mt-0.5">
-              Share a link for your WhatsApp call
+              Share a link for your PulseChat call
             </p>
           </div>
         </div>
 
         <div className="px-3 py-2 text-[11px] font-semibold text-[#8696a0] uppercase tracking-wider bg-[#111b21]">
-          Recent
+          Recent Calls
         </div>
 
         {filteredCalls.length === 0 ? (
-          <div className="py-16 px-4 text-center text-[#8696a0]">
-            <div className="w-12 h-12 rounded-full bg-[#202c33] flex items-center justify-center mx-auto mb-2 text-xl">
+          <div className="py-20 px-4 text-center text-[#8696a0]">
+            <div className="w-12 h-12 rounded-full bg-[#202c33] flex items-center justify-center mx-auto mb-3 text-xl">
               📞
             </div>
-            <p className="text-sm font-medium text-[#e9edef]">No calls found</p>
-            <p className="text-xs text-[#8696a0] mt-1">
-              {searchQuery ? "Try searching another contact name" : "To start a call, select a contact or click '+'"}
+            <p className="text-sm font-semibold text-[#e9edef]">No calls in history</p>
+            <p className="text-xs text-[#8696a0] mt-1 max-w-xs mx-auto">
+              {searchQuery
+                ? "No calls match your search query."
+                : "Calls with other contacts will appear here. Click '+' to start a call."}
             </p>
+            <button
+              type="button"
+              onClick={() => setIsNewCallModalOpen(true)}
+              className="mt-4 px-4 py-2 rounded-full bg-[#00a884] hover:bg-[#008069] text-white text-xs font-medium shadow-md transition-all active:scale-95"
+            >
+              Start a Call
+            </button>
           </div>
         ) : (
           filteredCalls.map((call) => {
             const isMissed = call.direction === "missed";
-            const isVideo = call.type === "video";
 
             return (
               <div
                 key={call.id}
                 onClick={() => setSelectedCallDetail(call)}
-                className={`flex items-center justify-between px-3 py-2.5 hover:bg-[#202c33] cursor-pointer transition-colors ${
+                className={`group flex items-center justify-between px-3 py-2.5 hover:bg-[#202c33] cursor-pointer transition-colors ${
                   selectedCallDetail?.id === call.id ? "bg-[#2a3942]" : ""
                 }`}
               >
@@ -352,7 +306,11 @@ export default function CallsList({
                     />
                   ) : (
                     <div className="w-11 h-11 rounded-full bg-[#534b3e] flex items-center justify-center text-[#e9edef] font-semibold text-sm shadow-xs">
-                      {call.isGroup ? <Users className="w-5 h-5 text-[#d1d7db]" /> : getInitials(call.contactName)}
+                      {call.isGroup ? (
+                        <Users className="w-5 h-5 text-[#d1d7db]" />
+                      ) : (
+                        getInitials(call.contactName)
+                      )}
                     </div>
                   )}
                 </div>
@@ -368,7 +326,7 @@ export default function CallsList({
                   </h4>
 
                   <div className="flex items-center gap-1.5 text-xs text-[#8696a0] mt-0.5">
-                    {/* Call Direction Indicator Arrow */}
+                    {/* Direction Arrow */}
                     {isMissed ? (
                       <PhoneMissed className="w-3.5 h-3.5 text-rose-500 flex-shrink-0" />
                     ) : call.direction === "incoming" ? (
@@ -379,13 +337,15 @@ export default function CallsList({
 
                     <span className="truncate">{call.timestamp}</span>
                     {call.duration && call.duration !== "0s" && (
-                      <span className="text-[10px] text-[#8696a0]/70">({call.duration})</span>
+                      <span className="text-[10px] text-[#8696a0]/70">
+                        ({call.duration})
+                      </span>
                     )}
                   </div>
                 </div>
 
-                {/* Right: Quick Call Trigger Icons */}
-                <div className="flex items-center gap-1 ml-2 flex-shrink-0">
+                {/* Right: Quick Action Buttons (Call, Video, Delete) */}
+                <div className="flex items-center gap-0.5 ml-2 flex-shrink-0">
                   <button
                     type="button"
                     onClick={(e) => {
@@ -408,6 +368,16 @@ export default function CallsList({
                     className="p-2 rounded-full text-[#00a884] hover:bg-[#2a3942] active:scale-95 transition-all"
                   >
                     <Video className="w-4 h-4" />
+                  </button>
+
+                  {/* Delete this single call log entry */}
+                  <button
+                    type="button"
+                    onClick={(e) => handleDeleteCall(e, call.id)}
+                    title="Delete call from log"
+                    className="p-2 rounded-full text-[#8696a0] hover:text-rose-400 hover:bg-[#2a3942] active:scale-95 transition-all opacity-80 group-hover:opacity-100"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>
@@ -432,32 +402,57 @@ export default function CallsList({
             </button>
           </div>
 
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-3">
             <div>
               <div className="font-semibold text-sm text-white">
                 {selectedCallDetail.contactName}
               </div>
-              <div className="text-xs text-[#8696a0]">
-                {selectedCallDetail.type === "video" ? "Video call" : "Voice call"} • {selectedCallDetail.timestamp}
+              <div className="text-xs text-[#8696a0] mt-0.5">
+                {selectedCallDetail.type === "video" ? "Video call" : "Voice call"} •{" "}
+                {selectedCallDetail.timestamp}
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 flex-wrap justify-end">
+              {/* Message Contact Button */}
+              <button
+                type="button"
+                onClick={() => handleOpenChatFromCall(selectedCallDetail)}
+                title="Open chat"
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-[#2a3942] hover:bg-[#374248] text-[#d1d7db] text-xs font-medium"
+              >
+                <MessageSquare className="w-3.5 h-3.5" />
+                <span>Chat</span>
+              </button>
+
+              {/* Call */}
               <button
                 type="button"
                 onClick={() => handleCallUser(selectedCallDetail, false)}
-                className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-[#008069] hover:bg-[#00a884] text-white text-xs font-medium"
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-[#008069] hover:bg-[#00a884] text-white text-xs font-medium"
               >
                 <Phone className="w-3.5 h-3.5" />
                 <span>Call</span>
               </button>
+
+              {/* Video */}
               <button
                 type="button"
                 onClick={() => handleCallUser(selectedCallDetail, true)}
-                className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-[#2a3942] hover:bg-[#374248] text-[#00a884] text-xs font-medium border border-[#2a3942]"
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-[#2a3942] hover:bg-[#374248] text-[#00a884] text-xs font-medium border border-[#2a3942]"
               >
                 <Video className="w-3.5 h-3.5" />
                 <span>Video</span>
+              </button>
+
+              {/* Delete this call */}
+              <button
+                type="button"
+                onClick={(e) => handleDeleteCall(e, selectedCallDetail.id)}
+                title="Delete call"
+                className="p-1.5 rounded-full text-[#8696a0] hover:text-rose-400 hover:bg-[#2a3942]"
+              >
+                <Trash2 className="w-4 h-4" />
               </button>
             </div>
           </div>
@@ -480,45 +475,54 @@ export default function CallsList({
             </div>
 
             <p className="text-xs text-[#8696a0] mb-3">
-              Select a contact to start a high-definition encrypted call:
+              Select a contact to start an encrypted voice or video call:
             </p>
 
             <div className="max-h-60 overflow-y-auto divide-y divide-[#222e35] space-y-1">
-              {(conversations || []).map((conv) => {
-                const title = conv.name || conv.members?.map((m) => m.name).join(", ") || "Chat";
-                return (
-                  <div
-                    key={conv._id}
-                    className="flex items-center justify-between py-2 px-1 hover:bg-[#202c33] rounded-lg transition-colors cursor-pointer"
-                  >
-                    <span className="text-xs font-medium text-[#e9edef] truncate max-w-[180px]">
-                      {title}
-                    </span>
-                    <div className="flex items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setIsNewCallModalOpen(false);
-                          handleCallUser({ contactName: title }, false);
-                        }}
-                        className="p-1.5 rounded-full text-[#00a884] hover:bg-[#2a3942]"
-                      >
-                        <Phone className="w-4 h-4" />
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setIsNewCallModalOpen(false);
-                          handleCallUser({ contactName: title }, true);
-                        }}
-                        className="p-1.5 rounded-full text-[#00a884] hover:bg-[#2a3942]"
-                      >
-                        <Video className="w-4 h-4" />
-                      </button>
+              {(conversations || []).length === 0 ? (
+                <div className="py-6 text-center text-xs text-[#8696a0]">
+                  No active contacts yet. Start a chat first to call contacts.
+                </div>
+              ) : (
+                conversations.map((conv) => {
+                  const title =
+                    conv.name ||
+                    conv.members?.map((m) => m.name).join(", ") ||
+                    "Contact";
+                  return (
+                    <div
+                      key={conv._id}
+                      className="flex items-center justify-between py-2 px-1 hover:bg-[#202c33] rounded-lg transition-colors cursor-pointer"
+                    >
+                      <span className="text-xs font-medium text-[#e9edef] truncate max-w-[180px]">
+                        {title}
+                      </span>
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setIsNewCallModalOpen(false);
+                            handleCallUser({ contactName: title }, false);
+                          }}
+                          className="p-1.5 rounded-full text-[#00a884] hover:bg-[#2a3942]"
+                        >
+                          <Phone className="w-4 h-4" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setIsNewCallModalOpen(false);
+                            handleCallUser({ contactName: title }, true);
+                          }}
+                          className="p-1.5 rounded-full text-[#00a884] hover:bg-[#2a3942]"
+                        >
+                          <Video className="w-4 h-4" />
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })
+              )}
             </div>
           </div>
         </div>

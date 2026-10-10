@@ -24,6 +24,8 @@ export default function ConversationList({
   onOpenSettings,
   onOpenMetaAI,
   onLogout,
+  onDeleteConversation,
+  onClearConversation,
 }) {
   const [filterQuery, setFilterQuery] = useState("");
   const [activePill, setActivePill] = useState("all"); // 'all' | 'unread' | 'favourites'
@@ -76,12 +78,10 @@ export default function ConversationList({
       });
     }
 
-    // Sort: Pinned first (e.g. Khan shamshad (You)), then by updatedAt
+    // Sort: Pinned first, then by latest message / update
     list.sort((a, b) => {
-      const aPinned = a.name?.includes("shamshad") || a.isPinned;
-      const bPinned = b.name?.includes("shamshad") || b.isPinned;
-      if (aPinned && !bPinned) return -1;
-      if (!aPinned && bPinned) return 1;
+      if (a.isPinned && !b.isPinned) return -1;
+      if (!a.isPinned && b.isPinned) return 1;
       return new Date(b.updatedAt || 0) - new Date(a.updatedAt || 0);
     });
 
@@ -260,13 +260,20 @@ export default function ConversationList({
           </div>
         ) : filteredConversations.length === 0 ? (
           <div className="py-16 px-4 text-center text-[#8696a0]">
-            <div className="w-12 h-12 rounded-full bg-[#202c33] flex items-center justify-center mx-auto mb-2 text-xl">
+            <div className="w-12 h-12 rounded-full bg-[#202c33] flex items-center justify-center mx-auto mb-3 text-xl">
               💬
             </div>
-            <p className="text-sm font-medium text-[#e9edef]">No chats found</p>
-            <p className="text-xs text-[#8696a0] mt-1">
-              {filterQuery ? "Try searching another contact or message" : "Click '+' to start a new chat!"}
+            <p className="text-sm font-semibold text-[#e9edef]">No chats found</p>
+            <p className="text-xs text-[#8696a0] mt-1 max-w-xs mx-auto">
+              {filterQuery ? "Try searching another contact or message" : "Click '+' to start a new chat with another user or admin!"}
             </p>
+            <button
+              type="button"
+              onClick={onOpenNewChat}
+              className="mt-4 px-4 py-2 rounded-full bg-[#00a884] hover:bg-[#008069] text-white text-xs font-medium shadow-md transition-all active:scale-95"
+            >
+              Start a Chat
+            </button>
           </div>
         ) : (
           filteredConversations.map((conversation, idx) => (
@@ -275,6 +282,8 @@ export default function ConversationList({
               conversation={conversation}
               isSelected={activeConversation?._id === conversation._id}
               onClick={() => onSelectConversation(conversation)}
+              onDelete={onDeleteConversation}
+              onClear={onClearConversation}
             />
           ))
         )}

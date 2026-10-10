@@ -33,16 +33,15 @@ export const logoutUser = async () => {
 
 export const getCurrentUser = async () => {
   if (typeof window !== "undefined" && !localStorage.getItem("chat_token")) {
-    try {
-      const loginRes = await loginUser({
-        email: "shamshad@pulsechat.com",
-        password: "password123",
-      });
-      return loginRes.user || loginRes;
-    } catch {
-      return null;
-    }
+    return null;
   }
-  const response = await api.get("/api/auth/me");
-  return response.data;
+  try {
+    const response = await api.get("/api/auth/me");
+    return response.data;
+  } catch (err) {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("chat_token");
+    }
+    return null;
+  }
 };

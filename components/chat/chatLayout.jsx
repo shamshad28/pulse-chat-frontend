@@ -594,11 +594,14 @@ export default function ChatLayout({ initialConversationId = null }) {
                   setActiveConversation(null);
                 }}
                 onLogout={handleLogout}
+                onDeleteConversation={handleDeleteConversation}
+                onClearConversation={handleClearChat}
               />
             )}
 
             {activeDockView === "calls" && (
               <CallsList
+                conversations={conversations}
                 onStartVoiceCall={(target) => {
                   startCall({
                     recipient: target,

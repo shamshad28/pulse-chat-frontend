@@ -538,18 +538,17 @@ const logoutUser = async ()=>{
 };
 const getCurrentUser = async ()=>{
     if (("TURBOPACK compile-time value", "object") !== "undefined" && !localStorage.getItem("chat_token")) {
-        try {
-            const loginRes = await loginUser({
-                email: "shamshad@pulsechat.com",
-                password: "password123"
-            });
-            return loginRes.user || loginRes;
-        } catch  {
-            return null;
-        }
+        return null;
     }
-    const response = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get("/api/auth/me");
-    return response.data;
+    try {
+        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get("/api/auth/me");
+        return response.data;
+    } catch (err) {
+        if ("TURBOPACK compile-time truthy", 1) {
+            localStorage.removeItem("chat_token");
+        }
+        return null;
+    }
 };
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
