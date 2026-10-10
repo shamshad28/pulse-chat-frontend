@@ -951,7 +951,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib
 // Dynamically resolve backend base URL (works across localhost, LAN IP, and production)
 const getBaseURL = ()=>{
     if ("TURBOPACK compile-time truthy", 1) {
-        return "TURBOPACK compile-time value", "http://localhost:5000";
+        return ("TURBOPACK compile-time value", "http://localhost:5000").replace(/\/+$/, "");
     }
     //TURBOPACK unreachable
     ;
@@ -1079,8 +1079,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$socket$2e$io$2d$client$2f$build$2f$esm$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/socket.io-client/build/esm/index.js [app-client] (ecmascript) <locals>");
 ;
 const getSocketUrl = ()=>{
+    const customUrl = ("TURBOPACK compile-time value", "http://localhost:5000") || ("TURBOPACK compile-time value", "http://localhost:5000");
     if ("TURBOPACK compile-time truthy", 1) {
-        return "TURBOPACK compile-time value", "http://localhost:5000";
+        return customUrl.replace(/\/+$/, "");
     }
     //TURBOPACK unreachable
     ;

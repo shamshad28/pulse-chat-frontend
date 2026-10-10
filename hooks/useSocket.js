@@ -87,10 +87,10 @@ export default function useSocket() {
             message.type === "image"
               ? "📷 Photo"
               : message.type === "video"
-              ? "🎥 Video"
-              : message.type === "document"
-              ? "📄 Document"
-              : message.content || "Sent an attachment";
+                ? "🎥 Video"
+                : message.type === "document"
+                  ? "📄 Document"
+                  : message.content || "Sent an attachment";
 
           showDesktopNotification(senderName, snippet);
 
@@ -127,10 +127,10 @@ export default function useSocket() {
           message.type === "image"
             ? "📷 Photo"
             : message.type === "video"
-            ? "🎥 Video"
-            : message.type === "document"
-            ? "📄 Document"
-            : message.content || "Media";
+              ? "🎥 Video"
+              : message.type === "document"
+                ? "📄 Document"
+                : message.content || "Media";
 
         showDesktopNotification(title, `${message.sender?.name || "User"}: ${snippet}`);
 
