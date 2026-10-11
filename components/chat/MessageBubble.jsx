@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { formatMessageTime, formatFileSize, getAvatarColor, getInitials } from "../../lib/utils";
+import { formatMessageTime, formatFileSize, getAvatarColor, getInitials, sanitizeUrl } from "../../lib/utils";
 import ReactionPicker from "./ReactionPicker";
 import {
   Check,
@@ -78,9 +78,9 @@ export default function MessageBubble({
       {/* Left Avatar for Received messages in Group */}
       {!isMe && (
         <div className="flex-shrink-0 self-end mb-1">
-          {message.sender?.avatar ? (
+          {sanitizeUrl(message.sender?.avatar) ? (
             <img
-              src={message.sender.avatar}
+              src={sanitizeUrl(message.sender.avatar)}
               alt={message.sender.name || "User"}
               className="w-8 h-8 rounded-full object-cover ring-1 ring-[#e9edef]"
             />
@@ -196,9 +196,11 @@ export default function MessageBubble({
               {message.attachments.map((att, idx) => {
                 const attType = att.type || (att.mimeType?.startsWith("image/") ? "image" : "document");
                 const rawUrl = att.url || "";
-                const mediaUrl = rawUrl.startsWith("http://") || rawUrl.startsWith("https://") || rawUrl.startsWith("blob:") || rawUrl.startsWith("data:")
+                const computedMediaUrl = rawUrl.startsWith("http://") || rawUrl.startsWith("https://") || rawUrl.startsWith("blob:") || rawUrl.startsWith("data:")
                   ? rawUrl
                   : `${(process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000").replace(/\/$/, "")}/${rawUrl.replace(/^\//, "")}`;
+                const mediaUrl = sanitizeUrl(computedMediaUrl);
+                if (!mediaUrl) return null;
 
                 if (attType === "image" || att.mimeType?.startsWith("image/")) {
                   return (

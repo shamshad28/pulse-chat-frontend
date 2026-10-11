@@ -1553,7 +1553,9 @@ __turbopack_context__.s([
     "getAvatarColor",
     ()=>getAvatarColor,
     "getInitials",
-    ()=>getInitials
+    ()=>getInitials,
+    "sanitizeUrl",
+    ()=>sanitizeUrl
 ]);
 const formatMessageTime = (dateString)=>{
     if (!dateString) return "";
@@ -1687,6 +1689,24 @@ const getAvatarColor = (id = "")=>{
         hash = id.charCodeAt(i) + ((hash << 5) - hash);
     }
     return colors[Math.abs(hash) % colors.length];
+};
+const sanitizeUrl = (url)=>{
+    if (!url || typeof url !== "string") return "";
+    const trimmed = url.trim();
+    if (trimmed.startsWith("/") && !trimmed.startsWith("//")) return trimmed;
+    try {
+        const parsed = new URL(trimmed);
+        if ([
+            "http:",
+            "https:",
+            "blob:"
+        ].includes(parsed.protocol)) {
+            return trimmed;
+        }
+    } catch  {
+        return "";
+    }
+    return "";
 };
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);

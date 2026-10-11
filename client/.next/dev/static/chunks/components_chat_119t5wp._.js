@@ -4416,8 +4416,8 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
         children: [
             !isMe && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "flex-shrink-0 self-end mb-1",
-                children: message.sender?.avatar ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                    src: message.sender.avatar,
+                children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["sanitizeUrl"])(message.sender?.avatar) ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                    src: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["sanitizeUrl"])(message.sender.avatar),
                     alt: message.sender.name || "User",
                     className: "w-8 h-8 rounded-full object-cover ring-1 ring-[#e9edef]"
                 }, void 0, false, {
@@ -4583,7 +4583,9 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                 children: message.attachments.map((att, idx)=>{
                                     const attType = att.type || (att.mimeType?.startsWith("image/") ? "image" : "document");
                                     const rawUrl = att.url || "";
-                                    const mediaUrl = rawUrl.startsWith("http://") || rawUrl.startsWith("https://") || rawUrl.startsWith("blob:") || rawUrl.startsWith("data:") ? rawUrl : `${(("TURBOPACK compile-time value", "http://localhost:5000") || "http://localhost:5000").replace(/\/$/, "")}/${rawUrl.replace(/^\//, "")}`;
+                                    const computedMediaUrl = rawUrl.startsWith("http://") || rawUrl.startsWith("https://") || rawUrl.startsWith("blob:") || rawUrl.startsWith("data:") ? rawUrl : `${(("TURBOPACK compile-time value", "http://localhost:5000") || "http://localhost:5000").replace(/\/$/, "")}/${rawUrl.replace(/^\//, "")}`;
+                                    const mediaUrl = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["sanitizeUrl"])(computedMediaUrl);
+                                    if (!mediaUrl) return null;
                                     if (attType === "image" || att.mimeType?.startsWith("image/")) {
                                         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "overflow-hidden rounded-xl cursor-pointer group/img relative",
@@ -4596,7 +4598,7 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                                     loading: "lazy"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                    lineNumber: 210,
+                                                    lineNumber: 212,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4605,18 +4607,18 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                                         className: "w-5 h-5 text-white drop-shadow"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                        lineNumber: 217,
+                                                        lineNumber: 219,
                                                         columnNumber: 25
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                    lineNumber: 216,
+                                                    lineNumber: 218,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, idx, true, {
                                             fileName: "[project]/components/chat/MessageBubble.jsx",
-                                            lineNumber: 205,
+                                            lineNumber: 207,
                                             columnNumber: 21
                                         }, this);
                                     }
@@ -4629,12 +4631,12 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                                 className: "max-h-72 w-full rounded-xl"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                lineNumber: 226,
+                                                lineNumber: 228,
                                                 columnNumber: 23
                                             }, this)
                                         }, idx, false, {
                                             fileName: "[project]/components/chat/MessageBubble.jsx",
-                                            lineNumber: 225,
+                                            lineNumber: 227,
                                             columnNumber: 21
                                         }, this);
                                     }
@@ -4647,12 +4649,12 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                                 className: "w-full h-9"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                lineNumber: 234,
+                                                lineNumber: 236,
                                                 columnNumber: 23
                                             }, this)
                                         }, idx, false, {
                                             fileName: "[project]/components/chat/MessageBubble.jsx",
-                                            lineNumber: 233,
+                                            lineNumber: 235,
                                             columnNumber: 21
                                         }, this);
                                     }
@@ -4670,12 +4672,12 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                                     className: "w-4 h-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                    lineNumber: 254,
+                                                    lineNumber: 256,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                lineNumber: 253,
+                                                lineNumber: 255,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4686,7 +4688,7 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                                         children: att.fileName || "File"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                        lineNumber: 257,
+                                                        lineNumber: 259,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4694,13 +4696,13 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                                         children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["formatFileSize"])(att.size)
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                        lineNumber: 258,
+                                                        lineNumber: 260,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                lineNumber: 256,
+                                                lineNumber: 258,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4709,18 +4711,18 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                                     className: "w-3.5 h-3.5 text-[#54656f]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                    lineNumber: 261,
+                                                    lineNumber: 263,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/MessageBubble.jsx",
-                                                lineNumber: 260,
+                                                lineNumber: 262,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, idx, true, {
                                         fileName: "[project]/components/chat/MessageBubble.jsx",
-                                        lineNumber: 241,
+                                        lineNumber: 243,
                                         columnNumber: 19
                                     }, this);
                                 })
@@ -4734,7 +4736,7 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                 children: message.content
                             }, void 0, false, {
                                 fileName: "[project]/components/chat/MessageBubble.jsx",
-                                lineNumber: 271,
+                                lineNumber: 273,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4745,7 +4747,7 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                         children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["formatMessageTime"])(message.createdAt)
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/MessageBubble.jsx",
-                                        lineNumber: 282,
+                                        lineNumber: 284,
                                         columnNumber: 13
                                     }, this),
                                     isMe && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4754,39 +4756,39 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                             className: "w-3 h-3 text-[#8696a0] animate-spin"
                                         }, void 0, false, {
                                             fileName: "[project]/components/chat/MessageBubble.jsx",
-                                            lineNumber: 288,
+                                            lineNumber: 290,
                                             columnNumber: 19
                                         }, this) : isRead ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2d$check$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCheck$3e$__["CheckCheck"], {
                                             className: "w-4 h-4 text-[#53bdeb] stroke-[2.2]",
                                             title: "Read"
                                         }, void 0, false, {
                                             fileName: "[project]/components/chat/MessageBubble.jsx",
-                                            lineNumber: 290,
+                                            lineNumber: 292,
                                             columnNumber: 19
                                         }, this) : isDelivered ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2d$check$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCheck$3e$__["CheckCheck"], {
                                             className: "w-4 h-4 text-[#8696a0]",
                                             title: "Delivered"
                                         }, void 0, false, {
                                             fileName: "[project]/components/chat/MessageBubble.jsx",
-                                            lineNumber: 292,
+                                            lineNumber: 294,
                                             columnNumber: 19
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                             className: "w-3.5 h-3.5 text-[#8696a0]",
                                             title: "Sent"
                                         }, void 0, false, {
                                             fileName: "[project]/components/chat/MessageBubble.jsx",
-                                            lineNumber: 294,
+                                            lineNumber: 296,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/MessageBubble.jsx",
-                                        lineNumber: 286,
+                                        lineNumber: 288,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/MessageBubble.jsx",
-                                lineNumber: 277,
+                                lineNumber: 279,
                                 columnNumber: 11
                             }, this)
                         ]
@@ -4806,7 +4808,7 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                         children: emoji
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/MessageBubble.jsx",
-                                        lineNumber: 315,
+                                        lineNumber: 317,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4814,18 +4816,18 @@ function MessageBubble({ message, currentUser, isGroup, onReply, onReact, onScro
                                         children: group.count
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/MessageBubble.jsx",
-                                        lineNumber: 316,
+                                        lineNumber: 318,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, emoji, true, {
                                 fileName: "[project]/components/chat/MessageBubble.jsx",
-                                lineNumber: 305,
+                                lineNumber: 307,
                                 columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/components/chat/MessageBubble.jsx",
-                        lineNumber: 303,
+                        lineNumber: 305,
                         columnNumber: 11
                     }, this)
                 ]
