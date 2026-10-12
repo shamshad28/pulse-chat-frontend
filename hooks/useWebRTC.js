@@ -75,7 +75,10 @@ export default function useWebRTC() {
         const ctx = canvas.getContext("2d");
         ctx.fillStyle = "#111b21";
         ctx.fillRect(0, 0, 640, 480);
-        const mockStream = canvas.captureStream(15);
+        const mockStream =
+          typeof canvas.captureStream === "function"
+            ? canvas.captureStream(15)
+            : new MediaStream();
         return mockStream;
       }
     }

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { formatMessageTime, formatFileSize, getAvatarColor, getInitials, sanitizeUrl } from "../../lib/utils";
+import { getBaseURL } from "../../lib/axios";
 import ReactionPicker from "./ReactionPicker";
 import {
   Check,
@@ -27,6 +28,7 @@ export default function MessageBubble({
   onDeleteMessage,
 }) {
   const [showReactionPicker, setShowReactionPicker] = useState(false);
+  const [showMobileActions, setShowMobileActions] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const currentUserId = (currentUser?._id || currentUser?.id)?.toString();
@@ -105,25 +107,33 @@ export default function MessageBubble({
           </span>
         )}
 
-        {/* Floating Quick Action Toolbar on Hover */}
+        {/* Floating Quick Action Toolbar (Desktop Hover / Mobile Tap) */}
         <div
-          className={`absolute z-20 -top-8 hidden group-hover:flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-white/95 backdrop-blur-md border border-[#e9edef] shadow-md ${
+          className={`absolute z-20 -top-8 ${
+            showMobileActions ? "flex" : "hidden group-hover:flex"
+          } items-center gap-0.5 px-2 py-0.5 rounded-full bg-[#202c33] border border-[#2a3942] shadow-xl text-[#e9edef] ${
             isMe ? "right-2" : "left-2"
           }`}
         >
           <button
             type="button"
             title="React"
-            onClick={() => setShowReactionPicker(!showReactionPicker)}
-            className="p-1 rounded-full text-[#8696a0] hover:text-[#e9edef] hover:bg-[#202c33] transition-colors"
+            onClick={() => {
+              setShowReactionPicker(!showReactionPicker);
+              setShowMobileActions(false);
+            }}
+            className="p-1 rounded-full text-[#8696a0] hover:text-[#e9edef] hover:bg-[#2a3942] transition-colors"
           >
             <Smile className="w-3.5 h-3.5" />
           </button>
           <button
             type="button"
             title="Reply"
-            onClick={() => onReply(message)}
-            className="p-1 rounded-full text-[#8696a0] hover:text-[#e9edef] hover:bg-[#202c33] transition-colors"
+            onClick={() => {
+              onReply(message);
+              setShowMobileActions(false);
+            }}
+            className="p-1 rounded-full text-[#8696a0] hover:text-[#e9edef] hover:bg-[#2a3942] transition-colors"
           >
             <CornerUpLeft className="w-3.5 h-3.5" />
           </button>
@@ -131,8 +141,11 @@ export default function MessageBubble({
             <button
               type="button"
               title={copied ? "Copied!" : "Copy"}
-              onClick={handleCopy}
-              className="p-1 rounded-full text-[#8696a0] hover:text-[#e9edef] hover:bg-[#202c33] transition-colors"
+              onClick={() => {
+                handleCopy();
+                setShowMobileActions(false);
+              }}
+              className="p-1 rounded-full text-[#8696a0] hover:text-[#e9edef] hover:bg-[#2a3942] transition-colors"
             >
               <Copy className="w-3.5 h-3.5" />
             </button>
@@ -141,7 +154,10 @@ export default function MessageBubble({
             <button
               type="button"
               title="Delete message"
-              onClick={() => onDeleteMessage(message._id)}
+              onClick={() => {
+                onDeleteMessage(message._id);
+                setShowMobileActions(false);
+              }}
               className="p-1 rounded-full text-[#8696a0] hover:text-rose-400 hover:bg-rose-500/10 transition-colors"
             >
               <Trash2 className="w-3.5 h-3.5" />
@@ -195,10 +211,10 @@ export default function MessageBubble({
             <div className="space-y-1.5 mb-1.5">
               {message.attachments.map((att, idx) => {
                 const attType = att.type || (att.mimeType?.startsWith("image/") ? "image" : "document");
-                const rawUrl = att.url || "";
+                const baseUrl = getBaseURL() || (typeof window !== "undefined" ? window.location.origin : "");
                 const computedMediaUrl = rawUrl.startsWith("http://") || rawUrl.startsWith("https://") || rawUrl.startsWith("blob:") || rawUrl.startsWith("data:")
                   ? rawUrl
-                  : `${(process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000").replace(/\/$/, "")}/${rawUrl.replace(/^\//, "")}`;
+                  : `${baseUrl.replace(/\/$/, "")}/${rawUrl.replace(/^\//, "")}`;
                 const mediaUrl = sanitizeUrl(computedMediaUrl);
                 if (!mediaUrl) return null;
 

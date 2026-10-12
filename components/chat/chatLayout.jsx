@@ -711,7 +711,7 @@ export default function ChatLayout({ initialConversationId = null }) {
   };
 
   return (
-    <div className="flex flex-col h-screen w-screen overflow-hidden bg-[#111b21] text-[#e9edef] font-sans">
+    <div className="flex flex-col h-screen h-[100dvh] w-full max-w-[100vw] overflow-hidden bg-[#111b21] text-[#e9edef] font-sans">
       {/* 1. NATIVE-LOOKING WINDOW TITLE BAR (Desktop Only) */}
       <div className="hidden md:block flex-shrink-0">
         <WhatsAppTitleBar />
@@ -893,13 +893,13 @@ export default function ChatLayout({ initialConversationId = null }) {
           ) : activeConversation ? (
             <>
               {/* Active Conversation Header (WhatsApp Dark Desktop Style) */}
-              <header className="flex items-center justify-between px-4 sm:px-6 h-[60px] min-h-[60px] max-h-[60px] border-b border-[#222e35] bg-[#202c33] z-10 flex-shrink-0">
-                <div className="flex items-center gap-3 min-w-0">
+              <header className="flex items-center justify-between px-2.5 sm:px-6 h-[60px] min-h-[60px] max-h-[60px] border-b border-[#222e35] bg-[#202c33] z-10 flex-shrink-0">
+                <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1 mr-2">
                   {/* Mobile Back Button */}
                   <button
                     type="button"
                     onClick={() => setShowMobileSidebar(true)}
-                    className="md:hidden p-2 -ml-2 rounded-full text-[#8696a0] hover:text-[#e9edef] hover:bg-[#2a3942]"
+                    className="md:hidden p-1.5 -ml-1 rounded-full text-[#8696a0] hover:text-[#e9edef] hover:bg-[#2a3942]"
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </button>
@@ -907,26 +907,26 @@ export default function ChatLayout({ initialConversationId = null }) {
                   {/* Clickable Avatar & Contact Info */}
                   <div
                     onClick={() => setIsContactInfoOpen(true)}
-                    className="flex items-center gap-3 cursor-pointer group"
+                    className="flex items-center gap-2.5 sm:gap-3 cursor-pointer group min-w-0 flex-1"
                   >
                     <div className="relative flex-shrink-0">
                       {conversationAvatar ? (
                         <img
                           src={conversationAvatar}
                           alt={conversationTitle}
-                          className="w-10 h-10 rounded-full object-cover ring-1 ring-[#222e35] group-hover:ring-[#00a884] transition-all"
+                          className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover ring-1 ring-[#222e35] group-hover:ring-[#00a884] transition-all"
                         />
                       ) : (
                         <div
-                          className="w-10 h-10 rounded-full bg-[#534b3e] flex items-center justify-center text-[#e9edef] font-semibold text-sm shadow-xs group-hover:ring-1 group-hover:ring-[#00a884] transition-all"
+                          className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#534b3e] flex items-center justify-center text-[#e9edef] font-semibold text-xs sm:text-sm shadow-xs group-hover:ring-1 group-hover:ring-[#00a884] transition-all"
                         >
-                          {isGroup ? <Users className="w-5 h-5" /> : getInitials(conversationTitle)}
+                          {isGroup ? <Users className="w-4 h-4 sm:w-5 sm:h-5" /> : getInitials(conversationTitle)}
                         </div>
                       )}
 
                       {!isGroup && (
                         <span
-                          className={`absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-[#202c33] ${
+                          className={`absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full border-2 border-[#202c33] ${
                             isOtherUserOnline
                               ? "bg-[#25d366] shadow-xs"
                               : "bg-[#8696a0]"
@@ -936,11 +936,11 @@ export default function ChatLayout({ initialConversationId = null }) {
                     </div>
 
                     {/* Contact Title & Status */}
-                    <div className="min-w-0 flex flex-col justify-center">
-                      <h1 className="font-semibold text-sm sm:text-base text-[#e9edef] group-hover:text-white truncate flex items-center gap-2 leading-tight transition-colors">
-                        <span>{conversationTitle}</span>
+                    <div className="min-w-0 flex flex-col justify-center flex-1">
+                      <h1 className="font-semibold text-sm sm:text-base text-[#e9edef] group-hover:text-white truncate flex items-center gap-1.5 leading-tight transition-colors">
+                        <span className="truncate">{conversationTitle}</span>
                         {isGroup && (
-                          <span className="text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-[#103629] text-[#25d366] border border-[#25d366]/20">
+                          <span className="text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-[#103629] text-[#25d366] border border-[#25d366]/20 flex-shrink-0">
                             Group
                           </span>
                         )}
@@ -959,7 +959,7 @@ export default function ChatLayout({ initialConversationId = null }) {
                             online
                           </span>
                         ) : (
-                          <span className="text-[#8696a0] font-normal">
+                          <span className="text-[#8696a0] font-normal truncate">
                             {formatLiveLastSeen(otherUser?.lastSeen)}
                           </span>
                         )}
@@ -969,8 +969,8 @@ export default function ChatLayout({ initialConversationId = null }) {
                 </div>
 
                 {/* Header Actions: Call Buttons & In-Chat Search & Contact Info */}
-                <div className="flex items-center gap-2">
-                  <LiveClock className="hidden sm:inline-flex" />
+                <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+                  <LiveClock className="hidden lg:inline-flex" />
 
                   <div className="flex items-center gap-0.5 sm:gap-1 text-[#aebac1]">
                     {/* 1. Video Call Button */}

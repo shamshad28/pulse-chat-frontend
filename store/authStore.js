@@ -23,9 +23,20 @@ const useAuthStore = create((set, get) => ({
     }),
 
   fetchCurrentUser: async () => {
+    if (typeof window !== "undefined" && !localStorage.getItem("chat_token")) {
+      set({ user: null, loading: false });
+      return null;
+    }
+
     try {
-      set({ loading: true });
+      if (!get().user) {
+        set({ loading: true });
+      }
       const data = await getCurrentUser();
+      if (!data) {
+        set({ user: null, loading: false });
+        return null;
+      }
       const user = data.user || data;
       set({ user, loading: false });
       return user;

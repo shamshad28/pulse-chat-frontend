@@ -501,7 +501,7 @@ export default function MessageInput({
               placeholder={selectedFiles.length > 0 ? "Add a caption..." : "Type a message"}
               rows={1}
               disabled={uploading || sendingMessage}
-              className="w-full resize-none max-h-32 py-2 px-3 sm:px-4 rounded-lg bg-[#2a3942] border border-transparent text-[#e9edef] placeholder-[#8696a0] focus:outline-none focus:border-[#00a884]/60 text-sm leading-relaxed"
+              className="w-full resize-none max-h-32 py-2 px-3 sm:px-4 rounded-lg bg-[#2a3942] border border-transparent text-[#e9edef] placeholder-[#8696a0] focus:outline-none focus:border-[#00a884]/60 text-[16px] sm:text-sm leading-relaxed"
             />
           </div>
 
