@@ -21,13 +21,18 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$message$2d$square$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MessageSquare$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/message-square.mjs [app-client] (ecmascript) <export default as MessageSquare>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/users.mjs [app-client] (ecmascript) <export default as Users>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/check.mjs [app-client] (ecmascript) <export default as Check>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/loader-circle.mjs [app-client] (ecmascript) <export default as Loader2>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$authStore$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/store/authStore.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$chatStore$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/store/chatStore.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/utils.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$ConfirmModal$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/ConfirmModal.jsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$callHistory$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/callHistory.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$userService$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/services/userService.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
+;
+;
 ;
 ;
 ;
@@ -40,12 +45,18 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
         "CallsList.useAuthStore[currentUser]": (state)=>state.user
     }["CallsList.useAuthStore[currentUser]"]);
     const currentUserId = (currentUser?._id || currentUser?.id)?.toString();
+    const onlineUsers = (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$chatStore$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])({
+        "CallsList.useChatStore[onlineUsers]": (state)=>state.onlineUsers
+    }["CallsList.useChatStore[onlineUsers]"]);
     const [calls, setCalls] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [activeFilter, setActiveFilter] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("all"); // 'all' | 'missed'
     const [searchQuery, setSearchQuery] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [copiedLink, setCopiedLink] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [selectedCallDetail, setSelectedCallDetail] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [isNewCallModalOpen, setIsNewCallModalOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [modalUsers, setModalUsers] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [modalSearchQuery, setModalSearchQuery] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [loadingModalUsers, setLoadingModalUsers] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [confirmModal, setConfirmModal] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
         isOpen: false,
         title: "",
@@ -78,6 +89,41 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
     }["CallsList.useEffect"], [
         currentUserId
     ]);
+    // Load registered contacts when "New Call" modal opens
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "CallsList.useEffect": ()=>{
+            if (!isNewCallModalOpen) return;
+            let isMounted = true;
+            const fetchContacts = {
+                "CallsList.useEffect.fetchContacts": async ()=>{
+                    try {
+                        setLoadingModalUsers(true);
+                        if (modalSearchQuery.trim()) {
+                            const res = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$userService$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["searchUsers"])(modalSearchQuery.trim());
+                            if (isMounted) setModalUsers(res.users || []);
+                        } else {
+                            const res = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$userService$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getAllUsers"])();
+                            if (isMounted) setModalUsers(res.users || []);
+                        }
+                    } catch (err) {
+                        console.error("Failed to load contacts for calling:", err);
+                    } finally{
+                        if (isMounted) setLoadingModalUsers(false);
+                    }
+                }
+            }["CallsList.useEffect.fetchContacts"];
+            const timer = setTimeout(fetchContacts, 250);
+            return ({
+                "CallsList.useEffect": ()=>{
+                    isMounted = false;
+                    clearTimeout(timer);
+                }
+            })["CallsList.useEffect"];
+        }
+    }["CallsList.useEffect"], [
+        isNewCallModalOpen,
+        modalSearchQuery
+    ]);
     const filteredCalls = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
         "CallsList.useMemo[filteredCalls]": ()=>{
             let list = [
@@ -101,37 +147,156 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
         activeFilter,
         searchQuery
     ]);
+    // Combined selectable contacts for "New Call" modal
+    const selectableContacts = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
+        "CallsList.useMemo[selectableContacts]": ()=>{
+            const list = [];
+            const seenUserIds = new Set();
+            // 1. First include other users from active conversations
+            (conversations || []).forEach({
+                "CallsList.useMemo[selectableContacts]": (conv)=>{
+                    if (conv.type === "direct") {
+                        const other = conv.members?.find({
+                            "CallsList.useMemo[selectableContacts]": (m)=>(m._id || m.id)?.toString() !== currentUserId
+                        }["CallsList.useMemo[selectableContacts]"]);
+                        if (other) {
+                            const uId = (other._id || other.id)?.toString();
+                            if (uId && !seenUserIds.has(uId)) {
+                                seenUserIds.add(uId);
+                                list.push({
+                                    _id: uId,
+                                    id: uId,
+                                    name: other.name || other.username || "Contact",
+                                    username: other.username || "",
+                                    avatar: other.avatar || null,
+                                    conversationId: conv._id,
+                                    isGroup: false
+                                });
+                            }
+                        }
+                    } else if (conv.type === "group") {
+                        // Also support groups in the call modal
+                        list.push({
+                            _id: conv._id,
+                            id: conv._id,
+                            name: conv.name || "Group Call",
+                            username: `${conv.members?.length || 0} members`,
+                            avatar: conv.avatar || null,
+                            conversationId: conv._id,
+                            isGroup: true,
+                            members: conv.members
+                        });
+                    }
+                }
+            }["CallsList.useMemo[selectableContacts]"]);
+            // 2. Include all registered users from modalUsers not already added
+            (modalUsers || []).forEach({
+                "CallsList.useMemo[selectableContacts]": (u)=>{
+                    const uId = (u._id || u.id)?.toString();
+                    if (uId && uId !== currentUserId && !seenUserIds.has(uId)) {
+                        seenUserIds.add(uId);
+                        // Find if an active direct conversation exists for this user
+                        const matchingConv = (conversations || []).find({
+                            "CallsList.useMemo[selectableContacts].matchingConv": (c)=>c.type === "direct" && (c.members || []).some({
+                                    "CallsList.useMemo[selectableContacts].matchingConv": (m)=>(m._id || m.id)?.toString() === uId
+                                }["CallsList.useMemo[selectableContacts].matchingConv"])
+                        }["CallsList.useMemo[selectableContacts].matchingConv"]);
+                        list.push({
+                            _id: uId,
+                            id: uId,
+                            name: u.name || u.username || "User",
+                            username: u.username || "",
+                            avatar: u.avatar || null,
+                            conversationId: matchingConv?._id || "call",
+                            isGroup: false
+                        });
+                    }
+                }
+            }["CallsList.useMemo[selectableContacts]"]);
+            // Filter by modal search query
+            if (modalSearchQuery.trim()) {
+                const q = modalSearchQuery.toLowerCase();
+                return list.filter({
+                    "CallsList.useMemo[selectableContacts]": (c)=>c.name?.toLowerCase().includes(q) || c.username?.toLowerCase().includes(q)
+                }["CallsList.useMemo[selectableContacts]"]);
+            }
+            return list;
+        }
+    }["CallsList.useMemo[selectableContacts]"], [
+        conversations,
+        modalUsers,
+        currentUserId,
+        modalSearchQuery
+    ]);
     const handleCreateCallLink = ()=>{
         const link = `${window.location.origin}/chat?call_link=wa-${Date.now()}`;
         navigator.clipboard.writeText(link);
         setCopiedLink(true);
         setTimeout(()=>setCopiedLink(false), 2500);
     };
-    const handleCallUser = (callItem, isVideo = false)=>{
-        const matchingConv = conversations.find((c)=>c.name === callItem.contactName || (c.members || []).some((m)=>m.name === callItem.contactName || m.username === callItem.contactUsername));
-        const userObj = matchingConv ? matchingConv.type === "direct" ? matchingConv.members?.find((m)=>m.name === callItem.contactName) || matchingConv.members?.[0] : matchingConv : {
-            name: callItem.contactName,
-            username: callItem.contactUsername,
-            avatar: callItem.avatar
-        };
-        // Log call entry for current user
-        if (currentUserId) {
-            const updated = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$callHistory$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["addCallLog"])(currentUserId, {
-                contactName: callItem.contactName,
-                contactUsername: callItem.contactUsername,
-                avatar: callItem.avatar,
-                type: isVideo ? "video" : "voice",
-                direction: "outgoing",
-                status: "answered",
-                duration: "Just now",
-                isGroup: !!callItem.isGroup
+    const handleCallUser = (targetItem, isVideo = false)=>{
+        let recipientId = targetItem?._id || targetItem?.id || targetItem?.contactId;
+        let targetName = targetItem?.name || targetItem?.contactName || "Contact";
+        let targetUsername = targetItem?.username || targetItem?.contactUsername || "";
+        let targetAvatar = targetItem?.avatar || null;
+        let convId = targetItem?.conversationId;
+        let isGroup = !!targetItem?.isGroup;
+        // 1. If recipientId is missing, resolve it from conversations
+        if (!recipientId && (conversations || []).length > 0) {
+            const match = conversations.find((c)=>{
+                if (c.name && c.name === targetName) return true;
+                return (c.members || []).some((m)=>m.name === targetName || targetUsername && m.username === targetUsername);
             });
-            setCalls(updated);
+            if (match) {
+                convId = convId || match._id;
+                isGroup = isGroup || match.type === "group";
+                if (match.type === "direct") {
+                    const other = match.members?.find((m)=>(m._id || m.id)?.toString() !== currentUserId);
+                    if (other) {
+                        recipientId = other._id || other.id;
+                        targetName = other.name || targetName;
+                        targetUsername = other.username || targetUsername;
+                        targetAvatar = other.avatar || targetAvatar;
+                    }
+                } else {
+                    const other = match.members?.find((m)=>(m._id || m.id)?.toString() !== currentUserId) || match.members?.[0];
+                    if (other) {
+                        recipientId = other._id || other.id;
+                    }
+                }
+            }
         }
+        // 2. Fallback: check modalUsers list
+        if (!recipientId && (modalUsers || []).length > 0) {
+            const uMatch = modalUsers.find((u)=>u.name === targetName || targetUsername && u.username === targetUsername);
+            if (uMatch) {
+                recipientId = uMatch._id || uMatch.id;
+                targetName = uMatch.name || targetName;
+                targetUsername = uMatch.username || targetUsername;
+                targetAvatar = uMatch.avatar || targetAvatar;
+            }
+        }
+        if (!recipientId) {
+            console.warn("Could not find a valid user ID to call:", targetItem);
+            return;
+        }
+        const recipientObj = {
+            _id: recipientId,
+            id: recipientId,
+            name: targetName,
+            username: targetUsername,
+            avatar: targetAvatar,
+            isGroup,
+            conversationId: convId || "call"
+        };
+        if (selectedCallDetail) {
+            setSelectedCallDetail(null);
+        }
+        // Trigger call - useWebRTC's startCall will log the call properly in history
         if (isVideo) {
-            if (onStartVideoCall) onStartVideoCall(userObj);
+            if (onStartVideoCall) onStartVideoCall(recipientObj, convId);
         } else {
-            if (onStartVoiceCall) onStartVoiceCall(userObj);
+            if (onStartVoiceCall) onStartVoiceCall(recipientObj, convId);
         }
     };
     const handleDeleteCall = (e, callId)=>{
@@ -169,7 +334,21 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
     };
     const handleOpenChatFromCall = (callItem)=>{
         if (!onSelectContactForChat) return;
-        const matchingConv = conversations.find((c)=>c.name === callItem.contactName || (c.members || []).some((m)=>m.name === callItem.contactName || m.username === callItem.contactUsername));
+        if (callItem.conversationId) {
+            const matchingConv = conversations.find((c)=>c._id?.toString() === callItem.conversationId?.toString());
+            if (matchingConv) {
+                onSelectContactForChat(matchingConv);
+                return;
+            }
+        }
+        if (callItem.contactId) {
+            const matchingConv = conversations.find((c)=>c.type === "direct" && (c.members || []).some((m)=>(m._id || m.id)?.toString() === callItem.contactId?.toString()));
+            if (matchingConv) {
+                onSelectContactForChat(matchingConv);
+                return;
+            }
+        }
+        const matchingConv = conversations.find((c)=>c.name === callItem.contactName || (c.members || []).some((m)=>m.name === callItem.contactName || callItem.contactUsername && m.username === callItem.contactUsername));
         if (matchingConv) {
             onSelectContactForChat(matchingConv);
         }
@@ -185,7 +364,7 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                         children: "Calls"
                     }, void 0, false, {
                         fileName: "[project]/components/call/CallsList.jsx",
-                        lineNumber: 195,
+                        lineNumber: 378,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -199,23 +378,23 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                 className: "w-5 h-5 stroke-[2.5]"
                             }, void 0, false, {
                                 fileName: "[project]/components/call/CallsList.jsx",
-                                lineNumber: 203,
+                                lineNumber: 386,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/call/CallsList.jsx",
-                            lineNumber: 197,
+                            lineNumber: 380,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/call/CallsList.jsx",
-                        lineNumber: 196,
+                        lineNumber: 379,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/call/CallsList.jsx",
-                lineNumber: 194,
+                lineNumber: 377,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -227,7 +406,7 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                             className: "absolute left-3.5 w-4 h-4 text-[#8696a0] pointer-events-none"
                         }, void 0, false, {
                             fileName: "[project]/components/call/CallsList.jsx",
-                            lineNumber: 211,
+                            lineNumber: 394,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -238,7 +417,7 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                             className: "w-full pl-10 pr-8 py-1.5 rounded-lg bg-[#202c33] text-xs text-[#d1d7db] placeholder-[#8696a0] focus:outline-none focus:ring-1 focus:ring-[#00a884]/80 transition-all border border-transparent"
                         }, void 0, false, {
                             fileName: "[project]/components/call/CallsList.jsx",
-                            lineNumber: 212,
+                            lineNumber: 395,
                             columnNumber: 11
                         }, this),
                         searchQuery && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -249,23 +428,23 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                 className: "w-3.5 h-3.5"
                             }, void 0, false, {
                                 fileName: "[project]/components/call/CallsList.jsx",
-                                lineNumber: 225,
+                                lineNumber: 408,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/call/CallsList.jsx",
-                            lineNumber: 220,
+                            lineNumber: 403,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/call/CallsList.jsx",
-                    lineNumber: 210,
+                    lineNumber: 393,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/call/CallsList.jsx",
-                lineNumber: 209,
+                lineNumber: 392,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -278,7 +457,7 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                         children: "All"
                     }, void 0, false, {
                         fileName: "[project]/components/call/CallsList.jsx",
-                        lineNumber: 233,
+                        lineNumber: 416,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -290,7 +469,7 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                 children: "Missed"
                             }, void 0, false, {
                                 fileName: "[project]/components/call/CallsList.jsx",
-                                lineNumber: 253,
+                                lineNumber: 436,
                                 columnNumber: 11
                             }, this),
                             calls.filter((c)=>c.direction === "missed").length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -298,13 +477,13 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                 children: calls.filter((c)=>c.direction === "missed").length
                             }, void 0, false, {
                                 fileName: "[project]/components/call/CallsList.jsx",
-                                lineNumber: 255,
+                                lineNumber: 438,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/call/CallsList.jsx",
-                        lineNumber: 244,
+                        lineNumber: 427,
                         columnNumber: 9
                     }, this),
                     calls.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -314,13 +493,13 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                         children: "Clear log"
                     }, void 0, false, {
                         fileName: "[project]/components/call/CallsList.jsx",
-                        lineNumber: 262,
+                        lineNumber: 445,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/call/CallsList.jsx",
-                lineNumber: 232,
+                lineNumber: 415,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -336,12 +515,12 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                     className: "w-5 h-5 -rotate-45"
                                 }, void 0, false, {
                                     fileName: "[project]/components/call/CallsList.jsx",
-                                    lineNumber: 280,
+                                    lineNumber: 463,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/call/CallsList.jsx",
-                                lineNumber: 279,
+                                lineNumber: 462,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -354,7 +533,7 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                                 children: "Create call link"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/call/CallsList.jsx",
-                                                lineNumber: 284,
+                                                lineNumber: 467,
                                                 columnNumber: 15
                                             }, this),
                                             copiedLink && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -364,20 +543,20 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                                         className: "w-3 h-3"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/call/CallsList.jsx",
-                                                        lineNumber: 287,
+                                                        lineNumber: 470,
                                                         columnNumber: 19
                                                     }, this),
                                                     " Copied link"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/call/CallsList.jsx",
-                                                lineNumber: 286,
+                                                lineNumber: 469,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/call/CallsList.jsx",
-                                        lineNumber: 283,
+                                        lineNumber: 466,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -385,19 +564,19 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                         children: "Share a link for your PulseChat call"
                                     }, void 0, false, {
                                         fileName: "[project]/components/call/CallsList.jsx",
-                                        lineNumber: 291,
+                                        lineNumber: 474,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/call/CallsList.jsx",
-                                lineNumber: 282,
+                                lineNumber: 465,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/call/CallsList.jsx",
-                        lineNumber: 275,
+                        lineNumber: 458,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -405,7 +584,7 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                         children: "Recent Calls"
                     }, void 0, false, {
                         fileName: "[project]/components/call/CallsList.jsx",
-                        lineNumber: 297,
+                        lineNumber: 480,
                         columnNumber: 9
                     }, this),
                     filteredCalls.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -416,7 +595,7 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                 children: "📞"
                             }, void 0, false, {
                                 fileName: "[project]/components/call/CallsList.jsx",
-                                lineNumber: 303,
+                                lineNumber: 486,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -424,15 +603,15 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                 children: "No calls in history"
                             }, void 0, false, {
                                 fileName: "[project]/components/call/CallsList.jsx",
-                                lineNumber: 306,
+                                lineNumber: 489,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 className: "text-xs text-[#8696a0] mt-1 max-w-xs mx-auto",
-                                children: searchQuery ? "No calls match your search query." : "Calls with other contacts will appear here. Click '+' to start a call."
+                                children: searchQuery ? "No calls match your search query." : "Calls with other contacts will appear here. Click 'Start a Call' to begin."
                             }, void 0, false, {
                                 fileName: "[project]/components/call/CallsList.jsx",
-                                lineNumber: 307,
+                                lineNumber: 490,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -442,13 +621,13 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                 children: "Start a Call"
                             }, void 0, false, {
                                 fileName: "[project]/components/call/CallsList.jsx",
-                                lineNumber: 312,
+                                lineNumber: 495,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/call/CallsList.jsx",
-                        lineNumber: 302,
+                        lineNumber: 485,
                         columnNumber: 11
                     }, this) : filteredCalls.map((call)=>{
                         const isMissed = call.direction === "missed";
@@ -464,7 +643,7 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                         className: "w-11 h-11 rounded-full object-cover ring-1 ring-[#222e35]"
                                     }, void 0, false, {
                                         fileName: "[project]/components/call/CallsList.jsx",
-                                        lineNumber: 335,
+                                        lineNumber: 518,
                                         columnNumber: 21
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "w-11 h-11 rounded-full bg-[#534b3e] flex items-center justify-center text-[#e9edef] font-semibold text-sm shadow-xs",
@@ -472,17 +651,17 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                             className: "w-5 h-5 text-[#d1d7db]"
                                         }, void 0, false, {
                                             fileName: "[project]/components/call/CallsList.jsx",
-                                            lineNumber: 343,
+                                            lineNumber: 526,
                                             columnNumber: 25
                                         }, this) : (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getInitials"])(call.contactName)
                                     }, void 0, false, {
                                         fileName: "[project]/components/call/CallsList.jsx",
-                                        lineNumber: 341,
+                                        lineNumber: 524,
                                         columnNumber: 21
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/call/CallsList.jsx",
-                                    lineNumber: 333,
+                                    lineNumber: 516,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -493,7 +672,7 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                             children: call.contactName
                                         }, void 0, false, {
                                             fileName: "[project]/components/call/CallsList.jsx",
-                                            lineNumber: 353,
+                                            lineNumber: 536,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -503,19 +682,19 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                                     className: "w-3.5 h-3.5 text-rose-500 flex-shrink-0"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/call/CallsList.jsx",
-                                                    lineNumber: 364,
+                                                    lineNumber: 547,
                                                     columnNumber: 23
                                                 }, this) : call.direction === "incoming" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$phone$2d$incoming$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__PhoneIncoming$3e$__["PhoneIncoming"], {
                                                     className: "w-3.5 h-3.5 text-[#25d366] flex-shrink-0"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/call/CallsList.jsx",
-                                                    lineNumber: 366,
+                                                    lineNumber: 549,
                                                     columnNumber: 23
                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$phone$2d$outgoing$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__PhoneOutgoing$3e$__["PhoneOutgoing"], {
                                                     className: "w-3.5 h-3.5 text-[#25d366] flex-shrink-0"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/call/CallsList.jsx",
-                                                    lineNumber: 368,
+                                                    lineNumber: 551,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -523,7 +702,7 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                                     children: call.timestamp
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/call/CallsList.jsx",
-                                                    lineNumber: 371,
+                                                    lineNumber: 554,
                                                     columnNumber: 21
                                                 }, this),
                                                 call.duration && call.duration !== "0s" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -535,19 +714,19 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/call/CallsList.jsx",
-                                                    lineNumber: 373,
+                                                    lineNumber: 556,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/call/CallsList.jsx",
-                                            lineNumber: 361,
+                                            lineNumber: 544,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/call/CallsList.jsx",
-                                    lineNumber: 352,
+                                    lineNumber: 535,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -565,12 +744,12 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                                 className: "w-4 h-4"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/call/CallsList.jsx",
-                                                lineNumber: 391,
+                                                lineNumber: 574,
                                                 columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/call/CallsList.jsx",
-                                            lineNumber: 382,
+                                            lineNumber: 565,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -585,12 +764,12 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                                 className: "w-4 h-4"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/call/CallsList.jsx",
-                                                lineNumber: 403,
+                                                lineNumber: 586,
                                                 columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/call/CallsList.jsx",
-                                            lineNumber: 394,
+                                            lineNumber: 577,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -602,31 +781,31 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                                 className: "w-3.5 h-3.5"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/call/CallsList.jsx",
-                                                lineNumber: 413,
+                                                lineNumber: 596,
                                                 columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/call/CallsList.jsx",
-                                            lineNumber: 407,
+                                            lineNumber: 590,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/call/CallsList.jsx",
-                                    lineNumber: 381,
+                                    lineNumber: 564,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, call.id, true, {
                             fileName: "[project]/components/call/CallsList.jsx",
-                            lineNumber: 325,
+                            lineNumber: 508,
                             columnNumber: 15
                         }, this);
                     })
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/call/CallsList.jsx",
-                lineNumber: 273,
+                lineNumber: 456,
                 columnNumber: 7
             }, this),
             selectedCallDetail && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -640,7 +819,7 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                 children: "Call Details"
                             }, void 0, false, {
                                 fileName: "[project]/components/call/CallsList.jsx",
-                                lineNumber: 426,
+                                lineNumber: 609,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -651,18 +830,18 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                     className: "w-4 h-4"
                                 }, void 0, false, {
                                     fileName: "[project]/components/call/CallsList.jsx",
-                                    lineNumber: 434,
+                                    lineNumber: 617,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/call/CallsList.jsx",
-                                lineNumber: 429,
+                                lineNumber: 612,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/call/CallsList.jsx",
-                        lineNumber: 425,
+                        lineNumber: 608,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -675,7 +854,7 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                         children: selectedCallDetail.contactName
                                     }, void 0, false, {
                                         fileName: "[project]/components/call/CallsList.jsx",
-                                        lineNumber: 440,
+                                        lineNumber: 623,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -688,13 +867,13 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/call/CallsList.jsx",
-                                        lineNumber: 443,
+                                        lineNumber: 626,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/call/CallsList.jsx",
-                                lineNumber: 439,
+                                lineNumber: 622,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -710,20 +889,20 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                                 className: "w-3.5 h-3.5"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/call/CallsList.jsx",
-                                                lineNumber: 457,
+                                                lineNumber: 640,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "Chat"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/call/CallsList.jsx",
-                                                lineNumber: 458,
+                                                lineNumber: 641,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/call/CallsList.jsx",
-                                        lineNumber: 451,
+                                        lineNumber: 634,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -735,20 +914,20 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                                 className: "w-3.5 h-3.5"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/call/CallsList.jsx",
-                                                lineNumber: 467,
+                                                lineNumber: 650,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "Call"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/call/CallsList.jsx",
-                                                lineNumber: 468,
+                                                lineNumber: 651,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/call/CallsList.jsx",
-                                        lineNumber: 462,
+                                        lineNumber: 645,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -760,20 +939,20 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                                 className: "w-3.5 h-3.5"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/call/CallsList.jsx",
-                                                lineNumber: 477,
+                                                lineNumber: 660,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "Video"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/call/CallsList.jsx",
-                                                lineNumber: 478,
+                                                lineNumber: 661,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/call/CallsList.jsx",
-                                        lineNumber: 472,
+                                        lineNumber: 655,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -785,68 +964,71 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                                             className: "w-4 h-4"
                                         }, void 0, false, {
                                             fileName: "[project]/components/call/CallsList.jsx",
-                                            lineNumber: 488,
+                                            lineNumber: 671,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/call/CallsList.jsx",
-                                        lineNumber: 482,
+                                        lineNumber: 665,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/call/CallsList.jsx",
-                                lineNumber: 449,
+                                lineNumber: 632,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/call/CallsList.jsx",
-                        lineNumber: 438,
+                        lineNumber: 621,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/call/CallsList.jsx",
-                lineNumber: 424,
+                lineNumber: 607,
                 columnNumber: 9
             }, this),
             isNewCallModalOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs",
+                className: "fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-150",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "w-full max-w-sm rounded-2xl bg-[#111b21] border border-[#222e35] p-5 shadow-2xl animate-in zoom-in-95 duration-100",
+                    className: "w-full max-w-sm rounded-2xl bg-[#111b21] border border-[#222e35] p-5 shadow-2xl animate-in zoom-in-95 duration-100 flex flex-col max-h-[85vh]",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex items-center justify-between mb-4",
+                            className: "flex items-center justify-between mb-3",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                     className: "font-semibold text-base text-white",
                                     children: "New Call"
                                 }, void 0, false, {
                                     fileName: "[project]/components/call/CallsList.jsx",
-                                    lineNumber: 500,
+                                    lineNumber: 683,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     type: "button",
-                                    onClick: ()=>setIsNewCallModalOpen(false),
+                                    onClick: ()=>{
+                                        setIsNewCallModalOpen(false);
+                                        setModalSearchQuery("");
+                                    },
                                     className: "text-[#8696a0] hover:text-white",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
                                         className: "w-5 h-5"
                                     }, void 0, false, {
                                         fileName: "[project]/components/call/CallsList.jsx",
-                                        lineNumber: 506,
+                                        lineNumber: 692,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/call/CallsList.jsx",
-                                    lineNumber: 501,
+                                    lineNumber: 684,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/call/CallsList.jsx",
-                            lineNumber: 499,
+                            lineNumber: 682,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -854,103 +1036,233 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                             children: "Select a contact to start an encrypted voice or video call:"
                         }, void 0, false, {
                             fileName: "[project]/components/call/CallsList.jsx",
-                            lineNumber: 510,
+                            lineNumber: 696,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "max-h-60 overflow-y-auto divide-y divide-[#222e35] space-y-1",
-                            children: (conversations || []).length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "py-6 text-center text-xs text-[#8696a0]",
-                                children: "No active contacts yet. Start a chat first to call contacts."
+                            className: "relative flex items-center mb-3",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__["Search"], {
+                                    className: "absolute left-3 w-3.5 h-3.5 text-[#8696a0] pointer-events-none"
+                                }, void 0, false, {
+                                    fileName: "[project]/components/call/CallsList.jsx",
+                                    lineNumber: 702,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                    type: "text",
+                                    value: modalSearchQuery,
+                                    onChange: (e)=>setModalSearchQuery(e.target.value),
+                                    placeholder: "Search contacts by name or username",
+                                    className: "w-full pl-9 pr-7 py-1.5 rounded-lg bg-[#202c33] text-xs text-[#d1d7db] placeholder-[#8696a0] focus:outline-none focus:ring-1 focus:ring-[#00a884]/80 transition-all border border-transparent"
+                                }, void 0, false, {
+                                    fileName: "[project]/components/call/CallsList.jsx",
+                                    lineNumber: 703,
+                                    columnNumber: 15
+                                }, this),
+                                modalSearchQuery && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    type: "button",
+                                    onClick: ()=>setModalSearchQuery(""),
+                                    className: "absolute right-2 text-[#8696a0] hover:text-[#d1d7db]",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
+                                        className: "w-3.5 h-3.5"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/call/CallsList.jsx",
+                                        lineNumber: 716,
+                                        columnNumber: 19
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/components/call/CallsList.jsx",
+                                    lineNumber: 711,
+                                    columnNumber: 17
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/components/call/CallsList.jsx",
+                            lineNumber: 701,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "overflow-y-auto flex-1 divide-y divide-[#222e35] space-y-1",
+                            children: loadingModalUsers ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "py-10 flex flex-col items-center justify-center text-[#00a884]",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__["Loader2"], {
+                                        className: "w-5 h-5 animate-spin"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/call/CallsList.jsx",
+                                        lineNumber: 725,
+                                        columnNumber: 19
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-xs text-[#8696a0] mt-2",
+                                        children: "Loading contacts..."
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/call/CallsList.jsx",
+                                        lineNumber: 726,
+                                        columnNumber: 19
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/call/CallsList.jsx",
+                                lineNumber: 724,
+                                columnNumber: 17
+                            }, this) : selectableContacts.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "py-8 text-center text-xs text-[#8696a0]",
+                                children: modalSearchQuery ? "No contacts match your search." : "No contacts available. Start a chat first."
                             }, void 0, false, {
                                 fileName: "[project]/components/call/CallsList.jsx",
-                                lineNumber: 516,
+                                lineNumber: 729,
                                 columnNumber: 17
-                            }, this) : conversations.map((conv)=>{
-                                const title = conv.name || conv.members?.map((m)=>m.name).join(", ") || "Contact";
+                            }, this) : selectableContacts.map((contact)=>{
+                                const isOnline = !contact.isGroup && onlineUsers.some((id)=>id?.toString() === contact._id?.toString());
                                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex items-center justify-between py-2 px-1 hover:bg-[#202c33] rounded-lg transition-colors cursor-pointer",
+                                    className: "flex items-center justify-between py-2.5 px-2 hover:bg-[#202c33] rounded-xl transition-colors cursor-pointer group",
                                     children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-xs font-medium text-[#e9edef] truncate max-w-[180px]",
-                                            children: title
-                                        }, void 0, false, {
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex items-center gap-2.5 min-w-0 flex-1 mr-2",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "relative flex-shrink-0",
+                                                    children: [
+                                                        contact.avatar ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                            src: contact.avatar,
+                                                            alt: contact.name,
+                                                            className: "w-9 h-9 rounded-full object-cover ring-1 ring-[#222e35]"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/components/call/CallsList.jsx",
+                                                            lineNumber: 749,
+                                                            columnNumber: 29
+                                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "w-9 h-9 rounded-full bg-[#202c33] flex items-center justify-center text-[#e9edef] font-semibold text-xs border border-[#2a3942]",
+                                                            children: contact.isGroup ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"], {
+                                                                className: "w-4 h-4 text-[#00a884]"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/components/call/CallsList.jsx",
+                                                                lineNumber: 757,
+                                                                columnNumber: 33
+                                                            }, this) : (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getInitials"])(contact.name)
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/components/call/CallsList.jsx",
+                                                            lineNumber: 755,
+                                                            columnNumber: 29
+                                                        }, this),
+                                                        isOnline && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#25d366] ring-2 ring-[#111b21]"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/components/call/CallsList.jsx",
+                                                            lineNumber: 764,
+                                                            columnNumber: 29
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/components/call/CallsList.jsx",
+                                                    lineNumber: 747,
+                                                    columnNumber: 25
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "min-w-0 flex-1",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                            className: "text-xs font-semibold text-[#e9edef] truncate",
+                                                            children: contact.name
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/components/call/CallsList.jsx",
+                                                            lineNumber: 770,
+                                                            columnNumber: 27
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                            className: "text-[11px] text-[#8696a0] truncate mt-0.2",
+                                                            children: contact.isGroup ? contact.username : isOnline ? "Online" : contact.username ? `@${contact.username}` : "Offline"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/components/call/CallsList.jsx",
+                                                            lineNumber: 773,
+                                                            columnNumber: 27
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/components/call/CallsList.jsx",
+                                                    lineNumber: 769,
+                                                    columnNumber: 25
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
                                             fileName: "[project]/components/call/CallsList.jsx",
-                                            lineNumber: 530,
+                                            lineNumber: 745,
                                             columnNumber: 23
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "flex items-center gap-2",
+                                            className: "flex items-center gap-1 flex-shrink-0",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                     type: "button",
                                                     onClick: ()=>{
                                                         setIsNewCallModalOpen(false);
-                                                        handleCallUser({
-                                                            contactName: title
-                                                        }, false);
+                                                        setModalSearchQuery("");
+                                                        handleCallUser(contact, false);
                                                     },
-                                                    className: "p-1.5 rounded-full text-[#00a884] hover:bg-[#2a3942]",
+                                                    title: "Voice call",
+                                                    className: "p-2 rounded-full text-[#00a884] hover:bg-[#2a3942] active:scale-95 transition-all",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$phone$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Phone$3e$__["Phone"], {
                                                         className: "w-4 h-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/call/CallsList.jsx",
-                                                        lineNumber: 542,
+                                                        lineNumber: 797,
                                                         columnNumber: 27
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/call/CallsList.jsx",
-                                                    lineNumber: 534,
+                                                    lineNumber: 787,
                                                     columnNumber: 25
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                     type: "button",
                                                     onClick: ()=>{
                                                         setIsNewCallModalOpen(false);
-                                                        handleCallUser({
-                                                            contactName: title
-                                                        }, true);
+                                                        setModalSearchQuery("");
+                                                        handleCallUser(contact, true);
                                                     },
-                                                    className: "p-1.5 rounded-full text-[#00a884] hover:bg-[#2a3942]",
+                                                    title: "Video call",
+                                                    className: "p-2 rounded-full text-[#00a884] hover:bg-[#2a3942] active:scale-95 transition-all",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$video$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Video$3e$__["Video"], {
                                                         className: "w-4 h-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/call/CallsList.jsx",
-                                                        lineNumber: 552,
+                                                        lineNumber: 809,
                                                         columnNumber: 27
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/call/CallsList.jsx",
-                                                    lineNumber: 544,
+                                                    lineNumber: 799,
                                                     columnNumber: 25
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/call/CallsList.jsx",
-                                            lineNumber: 533,
+                                            lineNumber: 786,
                                             columnNumber: 23
                                         }, this)
                                     ]
-                                }, conv._id, true, {
+                                }, contact._id, true, {
                                     fileName: "[project]/components/call/CallsList.jsx",
-                                    lineNumber: 526,
+                                    lineNumber: 741,
                                     columnNumber: 21
                                 }, this);
                             })
                         }, void 0, false, {
                             fileName: "[project]/components/call/CallsList.jsx",
-                            lineNumber: 514,
+                            lineNumber: 722,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/call/CallsList.jsx",
-                    lineNumber: 498,
+                    lineNumber: 681,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/call/CallsList.jsx",
-                lineNumber: 497,
+                lineNumber: 680,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$ConfirmModal$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -965,19 +1277,20 @@ function CallsList({ onStartVoiceCall, onStartVideoCall, onSelectContactForChat,
                         }))
             }, void 0, false, {
                 fileName: "[project]/components/call/CallsList.jsx",
-                lineNumber: 565,
+                lineNumber: 822,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/call/CallsList.jsx",
-        lineNumber: 192,
+        lineNumber: 375,
         columnNumber: 5
     }, this);
 }
-_s(CallsList, "xRYZmpugwXJCqajRYywHvk6/mzg=", false, function() {
+_s(CallsList, "J5P3rKEd7k9YR8HoRGvKDeFukv0=", false, function() {
     return [
-        __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$authStore$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"]
+        __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$authStore$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$chatStore$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"]
     ];
 });
 _c = CallsList;

@@ -331,15 +331,32 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 
 __turbopack_context__.s([
     "default",
-    ()=>__TURBOPACK__default__export__
+    ()=>__TURBOPACK__default__export__,
+    "getBaseURL",
+    ()=>getBaseURL
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/axios/lib/axios.js [app-client] (ecmascript)");
 ;
-// Dynamically resolve backend base URL (works across localhost, LAN IP, and production)
 const getBaseURL = ()=>{
+    const envUrl = ("TURBOPACK compile-time value", "http://localhost:5000");
     if ("TURBOPACK compile-time truthy", 1) {
-        return ("TURBOPACK compile-time value", "http://localhost:5000").replace(/\/+$/, "");
+        const hostname = window.location.hostname || "localhost";
+        const protocol = window.location.protocol === "https:" ? "https:" : "http:";
+        // 1. If running locally on development computer
+        if (hostname === "localhost" || hostname === "127.0.0.1") {
+            return ("TURBOPACK compile-time truthy", 1) ? envUrl.replace(/\/+$/, "") : "TURBOPACK unreachable";
+        }
+        // 2. If accessing via local network IP (e.g. phone on same Wi-Fi)
+        if (/^(\d{1,3}\.){3}\d{1,3}$/.test(hostname)) {
+            return `${protocol}//${hostname}:5000`;
+        }
+        // 3. If running on a remote production domain (e.g. *.vercel.app)
+        if (envUrl && !envUrl.includes("localhost") && !envUrl.includes("127.0.0.1")) {
+            return envUrl.replace(/\/+$/, "");
+        }
+        // Default to relative root on production (handles rewrites and same-origin routes without mixed content)
+        return "";
     }
     //TURBOPACK unreachable
     ;
@@ -489,11 +506,27 @@ const useAuthStore = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_mo
                 loading
             }),
         fetchCurrentUser: async ()=>{
-            try {
+            if (("TURBOPACK compile-time value", "object") !== "undefined" && !localStorage.getItem("chat_token")) {
                 set({
-                    loading: true
+                    user: null,
+                    loading: false
                 });
+                return null;
+            }
+            try {
+                if (!get().user) {
+                    set({
+                        loading: true
+                    });
+                }
                 const data = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$authService$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getCurrentUser"])();
+                if (!data) {
+                    set({
+                        user: null,
+                        loading: false
+                    });
+                    return null;
+                }
                 const user = data.user || data;
                 set({
                     user,
