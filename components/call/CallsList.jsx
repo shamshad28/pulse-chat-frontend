@@ -15,17 +15,18 @@ import {
   MessageSquare,
   Users,
   Check,
+  Loader2,
 } from "lucide-react";
 import useAuthStore from "../../store/authStore";
-import { getInitials } from "../../lib/utils";
+import useChatStore from "../../store/chatStore";
+import { getAvatarColor, getInitials } from "../../lib/utils";
 import ConfirmModal from "../ui/ConfirmModal";
 import {
   getCallHistory,
-  saveCallHistory,
   deleteCallLog,
   clearCallHistory,
-  addCallLog,
 } from "../../lib/callHistory";
+import { getAllUsers, searchUsers } from "../../services/userService";
 
 export default function CallsList({
   onStartVoiceCall,
@@ -35,6 +36,7 @@ export default function CallsList({
 }) {
   const currentUser = useAuthStore((state) => state.user);
   const currentUserId = (currentUser?._id || currentUser?.id)?.toString();
+  const onlineUsers = useChatStore((state) => state.onlineUsers);
 
   const [calls, setCalls] = useState([]);
   const [activeFilter, setActiveFilter] = useState("all"); // 'all' | 'missed'
@@ -42,6 +44,10 @@ export default function CallsList({
   const [copiedLink, setCopiedLink] = useState(false);
   const [selectedCallDetail, setSelectedCallDetail] = useState(null);
   const [isNewCallModalOpen, setIsNewCallModalOpen] = useState(false);
+  const [modalUsers, setModalUsers] = useState([]);
+  const [modalSearchQuery, setModalSearchQuery] = useState("");
+  const [loadingModalUsers, setLoadingModalUsers] = useState(false);
+
   const [confirmModal, setConfirmModal] = useState({
     isOpen: false,
     title: "",
@@ -70,6 +76,35 @@ export default function CallsList({
     };
   }, [currentUserId]);
 
+  // Load registered contacts when "New Call" modal opens
+  useEffect(() => {
+    if (!isNewCallModalOpen) return;
+
+    let isMounted = true;
+    const fetchContacts = async () => {
+      try {
+        setLoadingModalUsers(true);
+        if (modalSearchQuery.trim()) {
+          const res = await searchUsers(modalSearchQuery.trim());
+          if (isMounted) setModalUsers(res.users || []);
+        } else {
+          const res = await getAllUsers();
+          if (isMounted) setModalUsers(res.users || []);
+        }
+      } catch (err) {
+        console.error("Failed to load contacts for calling:", err);
+      } finally {
+        if (isMounted) setLoadingModalUsers(false);
+      }
+    };
+
+    const timer = setTimeout(fetchContacts, 250);
+    return () => {
+      isMounted = false;
+      clearTimeout(timer);
+    };
+  }, [isNewCallModalOpen, modalSearchQuery]);
+
   const filteredCalls = useMemo(() => {
     let list = [...calls];
     if (activeFilter === "missed") {
@@ -86,6 +121,84 @@ export default function CallsList({
     return list;
   }, [calls, activeFilter, searchQuery]);
 
+  // Combined selectable contacts for "New Call" modal
+  const selectableContacts = useMemo(() => {
+    const list = [];
+    const seenUserIds = new Set();
+
+    // 1. First include other users from active conversations
+    (conversations || []).forEach((conv) => {
+      if (conv.type === "direct") {
+        const other = conv.members?.find(
+          (m) => (m._id || m.id)?.toString() !== currentUserId
+        );
+        if (other) {
+          const uId = (other._id || other.id)?.toString();
+          if (uId && !seenUserIds.has(uId)) {
+            seenUserIds.add(uId);
+            list.push({
+              _id: uId,
+              id: uId,
+              name: other.name || other.username || "Contact",
+              username: other.username || "",
+              avatar: other.avatar || null,
+              conversationId: conv._id,
+              isGroup: false,
+            });
+          }
+        }
+      } else if (conv.type === "group") {
+        // Also support groups in the call modal
+        list.push({
+          _id: conv._id,
+          id: conv._id,
+          name: conv.name || "Group Call",
+          username: `${conv.members?.length || 0} members`,
+          avatar: conv.avatar || null,
+          conversationId: conv._id,
+          isGroup: true,
+          members: conv.members,
+        });
+      }
+    });
+
+    // 2. Include all registered users from modalUsers not already added
+    (modalUsers || []).forEach((u) => {
+      const uId = (u._id || u.id)?.toString();
+      if (uId && uId !== currentUserId && !seenUserIds.has(uId)) {
+        seenUserIds.add(uId);
+        // Find if an active direct conversation exists for this user
+        const matchingConv = (conversations || []).find(
+          (c) =>
+            c.type === "direct" &&
+            (c.members || []).some((m) => (m._id || m.id)?.toString() === uId)
+        );
+
+        list.push({
+          _id: uId,
+          id: uId,
+          name: u.name || u.username || "User",
+          username: u.username || "",
+          avatar: u.avatar || null,
+          conversationId: matchingConv?._id || "call",
+          isGroup: false,
+        });
+      }
+    });
+
+    // Filter by modal search query
+    if (modalSearchQuery.trim()) {
+      const q = modalSearchQuery.toLowerCase();
+      return list.filter(
+        (c) =>
+          c.name?.toLowerCase().includes(q) ||
+          c.username?.toLowerCase().includes(q)
+      );
+    }
+
+    return list;
+  }, [conversations, modalUsers, currentUserId, modalSearchQuery]);
+
   const handleCreateCallLink = () => {
     const link = `${window.location.origin}/chat?call_link=wa-${Date.now()}`;
     navigator.clipboard.writeText(link);
@@ -93,47 +206,92 @@ export default function CallsList({
     setTimeout(() => setCopiedLink(false), 2500);
   };
 
-  const handleCallUser = (callItem, isVideo = false) => {
-    const matchingConv = conversations.find(
-      (c) =>
-        c.name === callItem.contactName ||
-        (c.members || []).some(
+  const handleCallUser = (targetItem, isVideo = false) => {
+    let recipientId =
+      targetItem?._id ||
+      targetItem?.id ||
+      targetItem?.contactId;
+    let targetName = targetItem?.name || targetItem?.contactName || "Contact";
+    let targetUsername = targetItem?.username || targetItem?.contactUsername || "";
+    let targetAvatar = targetItem?.avatar || null;
+    let convId = targetItem?.conversationId;
+    let isGroup = !!targetItem?.isGroup;
+
+    // 1. If recipientId is missing, resolve it from conversations
+    if (!recipientId && (conversations || []).length > 0) {
+      const match = conversations.find((c) => {
+        if (c.name && c.name === targetName) return true;
+        return (c.members || []).some(
           (m) =>
-            m.name === callItem.contactName ||
-            m.username === callItem.contactUsername
-        )
-    );
-
-    const userObj = matchingConv
-      ? matchingConv.type === "direct"
-        ? matchingConv.members?.find((m) => m.name === callItem.contactName) ||
-          matchingConv.members?.[0]
-        : matchingConv
-      : {
-          name: callItem.contactName,
-          username: callItem.contactUsername,
-          avatar: callItem.avatar,
-        };
-
-    // Log call entry for current user
-    if (currentUserId) {
-      const updated = addCallLog(currentUserId, {
-        contactName: callItem.contactName,
-        contactUsername: callItem.contactUsername,
-        avatar: callItem.avatar,
-        type: isVideo ? "video" : "voice",
-        direction: "outgoing",
-        status: "answered",
-        duration: "Just now",
-        isGroup: !!callItem.isGroup,
+            m.name === targetName ||
+            (targetUsername && m.username === targetUsername)
+        );
       });
-      setCalls(updated);
+
+      if (match) {
+        convId = convId || match._id;
+        isGroup = isGroup || match.type === "group";
+        if (match.type === "direct") {
+          const other = match.members?.find(
+            (m) => (m._id || m.id)?.toString() !== currentUserId
+          );
+          if (other) {
+            recipientId = other._id || other.id;
+            targetName = other.name || targetName;
+            targetUsername = other.username || targetUsername;
+            targetAvatar = other.avatar || targetAvatar;
+          }
+        } else {
+          const other =
+            match.members?.find(
+              (m) => (m._id || m.id)?.toString() !== currentUserId
+            ) || match.members?.[0];
+          if (other) {
+            recipientId = other._id || other.id;
+          }
+        }
+      }
     }
 
+    // 2. Fallback: check modalUsers list
+    if (!recipientId && (modalUsers || []).length > 0) {
+      const uMatch = modalUsers.find(
+        (u) =>
+          u.name === targetName ||
+          (targetUsername && u.username === targetUsername)
+      );
+      if (uMatch) {
+        recipientId = uMatch._id || uMatch.id;
+        targetName = uMatch.name || targetName;
+        targetUsername = uMatch.username || targetUsername;
+        targetAvatar = uMatch.avatar || targetAvatar;
+      }
+    }
+
+    if (!recipientId) {
+      console.warn("Could not find a valid user ID to call:", targetItem);
+      return;
+    }
+
+    const recipientObj = {
+      _id: recipientId,
+      id: recipientId,
+      name: targetName,
+      username: targetUsername,
+      avatar: targetAvatar,
+      isGroup,
+      conversationId: convId || "call",
+    };
+
+    if (selectedCallDetail) {
+      setSelectedCallDetail(null);
+    }
+
+    // Trigger call - useWebRTC's startCall will log the call properly in history
     if (isVideo) {
-      if (onStartVideoCall) onStartVideoCall(userObj);
+      if (onStartVideoCall) onStartVideoCall(recipientObj, convId);
     } else {
-      if (onStartVoiceCall) onStartVoiceCall(userObj);
+      if (onStartVoiceCall) onStartVoiceCall(recipientObj, convId);
     }
   };
 
@@ -174,13 +332,38 @@ export default function CallsList({
 
   const handleOpenChatFromCall = (callItem) => {
     if (!onSelectContactForChat) return;
+
+    if (callItem.conversationId) {
+      const matchingConv = conversations.find(
+        (c) => c._id?.toString() === callItem.conversationId?.toString()
+      );
+      if (matchingConv) {
+        onSelectContactForChat(matchingConv);
+        return;
+      }
+    }
+
+    if (callItem.contactId) {
+      const matchingConv = conversations.find(
+        (c) =>
+          c.type === "direct" &&
+          (c.members || []).some(
+            (m) => (m._id || m.id)?.toString() === callItem.contactId?.toString()
+          )
+      );
+      if (matchingConv) {
+        onSelectContactForChat(matchingConv);
+        return;
+      }
+    }
+
     const matchingConv = conversations.find(
       (c) =>
         c.name === callItem.contactName ||
         (c.members || []).some(
           (m) =>
             m.name === callItem.contactName ||
-            m.username === callItem.contactUsername
+            (callItem.contactUsername && m.username === callItem.contactUsername)
         )
     );
     if (matchingConv) {
@@ -307,7 +490,7 @@ export default function CallsList({
             <p className="text-xs text-[#8696a0] mt-1 max-w-xs mx-auto">
               {searchQuery
                 ? "No calls match your search query."
-                : "Calls with other contacts will appear here. Click '+' to start a call."}
+                : "Calls with other contacts will appear here. Click 'Start a Call' to begin."}
             </p>
             <button
               type="button"
@@ -494,13 +677,16 @@ export default function CallsList({
 
       {/* 6. Start New Call Modal */}
       {isNewCallModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-          <div className="w-full max-w-sm rounded-2xl bg-[#111b21] border border-[#222e35] p-5 shadow-2xl animate-in zoom-in-95 duration-100">
-            <div className="flex items-center justify-between mb-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-150">
+          <div className="w-full max-w-sm rounded-2xl bg-[#111b21] border border-[#222e35] p-5 shadow-2xl animate-in zoom-in-95 duration-100 flex flex-col max-h-[85vh]">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="font-semibold text-base text-white">New Call</h3>
               <button
                 type="button"
-                onClick={() => setIsNewCallModalOpen(false)}
+                onClick={() => {
+                  setIsNewCallModalOpen(false);
+                  setModalSearchQuery("");
+                }}
                 className="text-[#8696a0] hover:text-white"
               >
                 <X className="w-5 h-5" />
@@ -511,33 +697,102 @@ export default function CallsList({
               Select a contact to start an encrypted voice or video call:
             </p>
 
-            <div className="max-h-60 overflow-y-auto divide-y divide-[#222e35] space-y-1">
-              {(conversations || []).length === 0 ? (
-                <div className="py-6 text-center text-xs text-[#8696a0]">
-                  No active contacts yet. Start a chat first to call contacts.
+            {/* Search Input inside Modal */}
+            <div className="relative flex items-center mb-3">
+              <Search className="absolute left-3 w-3.5 h-3.5 text-[#8696a0] pointer-events-none" />
+              <input
+                type="text"
+                value={modalSearchQuery}
+                onChange={(e) => setModalSearchQuery(e.target.value)}
+                placeholder="Search contacts by name or username"
+                className="w-full pl-9 pr-7 py-1.5 rounded-lg bg-[#202c33] text-xs text-[#d1d7db] placeholder-[#8696a0] focus:outline-none focus:ring-1 focus:ring-[#00a884]/80 transition-all border border-transparent"
+              />
+              {modalSearchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setModalSearchQuery("")}
+                  className="absolute right-2 text-[#8696a0] hover:text-[#d1d7db]"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
+
+            {/* Contact list */}
+            <div className="overflow-y-auto flex-1 divide-y divide-[#222e35] space-y-1">
+              {loadingModalUsers ? (
+                <div className="py-10 flex flex-col items-center justify-center text-[#00a884]">
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  <span className="text-xs text-[#8696a0] mt-2">Loading contacts...</span>
+                </div>
+              ) : selectableContacts.length === 0 ? (
+                <div className="py-8 text-center text-xs text-[#8696a0]">
+                  {modalSearchQuery
+                    ? "No contacts match your search."
+                    : "No contacts available. Start a chat first."}
                 </div>
               ) : (
-                conversations.map((conv) => {
-                  const title =
-                    conv.name ||
-                    conv.members?.map((m) => m.name).join(", ") ||
-                    "Contact";
+                selectableContacts.map((contact) => {
+                  const isOnline =
+                    !contact.isGroup &&
+                    onlineUsers.some((id) => id?.toString() === contact._id?.toString());
+
                   return (
                     <div
-                      key={conv._id}
-                      className="flex items-center justify-between py-2 px-1 hover:bg-[#202c33] rounded-lg transition-colors cursor-pointer"
+                      key={contact._id}
+                      className="flex items-center justify-between py-2.5 px-2 hover:bg-[#202c33] rounded-xl transition-colors cursor-pointer group"
                     >
-                      <span className="text-xs font-medium text-[#e9edef] truncate max-w-[180px]">
-                        {title}
-                      </span>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2.5 min-w-0 flex-1 mr-2">
+                        {/* Avatar */}
+                        <div className="relative flex-shrink-0">
+                          {contact.avatar ? (
+                            <img
+                              src={contact.avatar}
+                              alt={contact.name}
+                              className="w-9 h-9 rounded-full object-cover ring-1 ring-[#222e35]"
+                            />
+                          ) : (
+                            <div className="w-9 h-9 rounded-full bg-[#202c33] flex items-center justify-center text-[#e9edef] font-semibold text-xs border border-[#2a3942]">
+                              {contact.isGroup ? (
+                                <Users className="w-4 h-4 text-[#00a884]" />
+                              ) : (
+                                getInitials(contact.name)
+                              )}
+                            </div>
+                          )}
+                          {isOnline && (
+                            <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#25d366] ring-2 ring-[#111b21]" />
+                          )}
+                        </div>
+
+                        {/* Name and username */}
+                        <div className="min-w-0 flex-1">
+                          <p className="text-xs font-semibold text-[#e9edef] truncate">
+                            {contact.name}
+                          </p>
+                          <p className="text-[11px] text-[#8696a0] truncate mt-0.2">
+                            {contact.isGroup
+                              ? contact.username
+                              : isOnline
+                              ? "Online"
+                              : contact.username
+                              ? `@${contact.username}`
+                              : "Offline"}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Action buttons */}
+                      <div className="flex items-center gap-1 flex-shrink-0">
                         <button
                           type="button"
                           onClick={() => {
                             setIsNewCallModalOpen(false);
-                            handleCallUser({ contactName: title }, false);
+                            setModalSearchQuery("");
+                            handleCallUser(contact, false);
                           }}
-                          className="p-1.5 rounded-full text-[#00a884] hover:bg-[#2a3942]"
+                          title="Voice call"
+                          className="p-2 rounded-full text-[#00a884] hover:bg-[#2a3942] active:scale-95 transition-all"
                         >
                           <Phone className="w-4 h-4" />
                         </button>
@@ -545,9 +800,11 @@ export default function CallsList({
                           type="button"
                           onClick={() => {
                             setIsNewCallModalOpen(false);
-                            handleCallUser({ contactName: title }, true);
+                            setModalSearchQuery("");
+                            handleCallUser(contact, true);
                           }}
-                          className="p-1.5 rounded-full text-[#00a884] hover:bg-[#2a3942]"
+                          title="Video call"
+                          className="p-2 rounded-full text-[#00a884] hover:bg-[#2a3942] active:scale-95 transition-all"
                         >
                           <Video className="w-4 h-4" />
                         </button>

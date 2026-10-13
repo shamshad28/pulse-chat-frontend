@@ -146,6 +146,7 @@ export default function useWebRTC() {
       // Record in caller's history
       addCallLog(myUserId, {
         id: callLogId,
+        contactId: otherUserId,
         contactName: recipient?.name || recipient?.username || "Contact",
         contactUsername: recipient?.username || "",
         avatar: recipient?.avatar || null,
@@ -154,6 +155,7 @@ export default function useWebRTC() {
         status: "calling",
         duration: "Calling...",
         isGroup: !!isGroup,
+        conversationId,
       });
 
       initiateCallAction({
@@ -405,6 +407,7 @@ export default function useWebRTC() {
         };
         addCallLog(myUserId, {
           id: callLogId,
+          contactId: caller?._id || caller?.id,
           contactName: caller?.name || caller?.username || "Contact",
           contactUsername: caller?.username || "",
           avatar: caller?.avatar || null,
@@ -413,6 +416,7 @@ export default function useWebRTC() {
           status: "missed",
           duration: "Incoming...",
           isGroup: !!isGroup,
+          conversationId,
         });
       }
 

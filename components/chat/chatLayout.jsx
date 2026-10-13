@@ -688,7 +688,11 @@ export default function ChatLayout({ initialConversationId = null }) {
 
   const handleStartVoiceCall = () => {
     if (!activeConversation) return;
-    const target = isGroup ? activeConversation.members?.[0] : otherUser;
+    const target = isGroup
+      ? activeConversation.members?.find(
+          (m) => (m._id || m.id)?.toString() !== currentUserId
+        ) || activeConversation.members?.[0]
+      : otherUser;
     if (!target) return;
     startCall({
       recipient: target,
@@ -700,7 +704,11 @@ export default function ChatLayout({ initialConversationId = null }) {
 
   const handleStartVideoCall = () => {
     if (!activeConversation) return;
-    const target = isGroup ? activeConversation.members?.[0] : otherUser;
+    const target = isGroup
+      ? activeConversation.members?.find(
+          (m) => (m._id || m.id)?.toString() !== currentUserId
+        ) || activeConversation.members?.[0]
+      : otherUser;
     if (!target) return;
     startCall({
       recipient: target,
@@ -783,18 +791,18 @@ export default function ChatLayout({ initialConversationId = null }) {
             {activeDockView === "calls" && (
               <CallsList
                 conversations={conversations}
-                onStartVoiceCall={(target) => {
+                onStartVoiceCall={(target, convId) => {
                   startCall({
                     recipient: target,
-                    conversationId: activeConversation?._id || "call",
+                    conversationId: convId || target?.conversationId || activeConversation?._id || "call",
                     isVideo: false,
                     isGroup: target?.isGroup,
                   });
                 }}
-                onStartVideoCall={(target) => {
+                onStartVideoCall={(target, convId) => {
                   startCall({
                     recipient: target,
-                    conversationId: activeConversation?._id || "call",
+                    conversationId: convId || target?.conversationId || activeConversation?._id || "call",
                     isVideo: true,
                     isGroup: target?.isGroup,
                   });
@@ -803,7 +811,6 @@ export default function ChatLayout({ initialConversationId = null }) {
                   setActiveDockView("chats");
                   handleSelectConversation(conv);
                 }}
-                conversations={conversations}
               />
             )}
 
