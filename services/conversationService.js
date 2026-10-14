@@ -63,3 +63,14 @@ export const clearChatMessages = async (conversationId) => {
   const response = await api.delete(`/api/conversations/${conversationId}/messages`);
   return response.data;
 };
+
+export const getOrCreateCommunity = async ({ name, subgroup = "" }) => {
+  try {
+    const response = await api.post("/api/conversations/community", { name, subgroup });
+    return response.data;
+  } catch (err) {
+    console.warn("Failed to get or create community:", err.message);
+    return { success: false, conversation: null };
+  }
+};
+

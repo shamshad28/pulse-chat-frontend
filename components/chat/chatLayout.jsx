@@ -842,6 +842,7 @@ export default function ChatLayout({ initialConversationId = null }) {
               <ChannelsCommunitiesView
                 viewType={activeDockView}
                 conversations={conversations}
+                onOpenNewGroup={() => setIsNewGroupOpen(true)}
                 onSelectConversation={(conv) => {
                   setActiveDockView("chats");
                   handleSelectConversation(conv);
