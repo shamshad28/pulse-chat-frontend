@@ -1303,7 +1303,7 @@ const requestNotificationPermission = async ()=>{
     }
     return false;
 };
-const showDesktopNotification = (title, body, icon = "/favicon.ico")=>{
+const showDesktopNotification = (title, body, icon = "/icon.png")=>{
     if (("TURBOPACK compile-time value", "object") === "undefined" || !("Notification" in window)) {
         return null;
     }
@@ -1831,6 +1831,8 @@ __turbopack_context__.s([
     ()=>getConversationById,
     "getMyConversations",
     ()=>getMyConversations,
+    "getOrCreateCommunity",
+    ()=>getOrCreateCommunity,
     "removeGroupMember",
     ()=>removeGroupMember,
     "toggleAdminRole",
@@ -1898,6 +1900,21 @@ const deleteConversation = async (conversationId)=>{
 const clearChatMessages = async (conversationId)=>{
     const response = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].delete(`/api/conversations/${conversationId}/messages`);
     return response.data;
+};
+const getOrCreateCommunity = async ({ name, subgroup = "" })=>{
+    try {
+        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post("/api/conversations/community", {
+            name,
+            subgroup
+        });
+        return response.data;
+    } catch (err) {
+        console.warn("Failed to get or create community:", err.message);
+        return {
+            success: false,
+            conversation: null
+        };
+    }
 };
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);

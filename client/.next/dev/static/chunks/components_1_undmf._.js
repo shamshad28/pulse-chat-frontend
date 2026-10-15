@@ -1704,70 +1704,199 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$dot$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CircleDot$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-dot.mjs [app-client] (ecmascript) <export default as CircleDot>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/plus.mjs [app-client] (ecmascript) <export default as Plus>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$camera$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Camera$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/camera.mjs [app-client] (ecmascript) <export default as Camera>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/x.mjs [app-client] (ecmascript) <export default as X>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$send$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Send$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/send.mjs [app-client] (ecmascript) <export default as Send>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$eye$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Eye$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/eye.mjs [app-client] (ecmascript) <export default as Eye>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/trash.mjs [app-client] (ecmascript) <export default as Trash2>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/utils.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$socket$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/socket.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
 ;
 ;
 ;
+;
+// Priya Mali is the only preset status kept
 const INITIAL_STATUSES = [
     {
-        id: "st-1",
-        contactName: "Afreen Khan",
-        contactUsername: "afreen",
-        avatar: null,
-        caption: "Family weekend trip! 🌄 Such a beautiful view.",
-        mediaUrl: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format&fit=crop&q=60",
-        timestamp: "38 minutes ago",
-        viewed: false
-    },
-    {
-        id: "st-2",
+        id: "st-priya",
         contactName: "Priya Mali",
         contactUsername: "priyamali",
         avatar: null,
         caption: "Coffee & Code ☕💻 Sprint goals progressing smoothly!",
         mediaUrl: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=800&auto=format&fit=crop&q=60",
         timestamp: "Today, 9:45 AM",
-        viewed: false
+        createdAt: new Date().toISOString(),
+        viewed: false,
+        isMine: false
+    }
+];
+const PRESET_BACKGROUNDS = [
+    {
+        id: "bg-1",
+        url: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&auto=format&fit=crop&q=60",
+        label: "Nature"
     },
     {
-        id: "st-3",
-        contactName: "Vaibhav Bhai Nexcore",
-        contactUsername: "vaibhav",
-        avatar: null,
-        caption: "New workstation setup completed! 🚀",
-        mediaUrl: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=800&auto=format&fit=crop&q=60",
-        timestamp: "Today, 8:12 AM",
-        viewed: false
+        id: "bg-2",
+        url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=60",
+        label: "Ocean"
     },
     {
-        id: "st-4",
-        contactName: "Muaz Theem",
-        contactUsername: "muaztheem",
-        avatar: null,
-        caption: "Eid Mubarak preparations underway ✨",
-        mediaUrl: "https://images.unsplash.com/photo-1519817650390-64a93db51149?w=800&auto=format&fit=crop&q=60",
-        timestamp: "Yesterday, 10:30 PM",
-        viewed: true
+        id: "bg-3",
+        url: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&auto=format&fit=crop&q=60",
+        label: "Mountains"
+    },
+    {
+        id: "bg-4",
+        url: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&auto=format&fit=crop&q=60",
+        label: "Tech"
     }
 ];
 function StatusList({ currentUser, onSendReply }) {
     _s();
+    const currentUserId = (currentUser?._id || currentUser?.id)?.toString();
     const [statuses, setStatuses] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(INITIAL_STATUSES);
     const [activeStory, setActiveStory] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [storyProgress, setStoryProgress] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
     const [replyText, setReplyText] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
-    const [myStatus, setMyStatus] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
-        caption: "Available on WhatsApp",
-        timestamp: "Today, 7:00 AM"
-    });
+    const [myStatus, setMyStatus] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [isAddStatusOpen, setIsAddStatusOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [newStatusText, setNewStatusText] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [newStatusMedia, setNewStatusMedia] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [selectedBg, setSelectedBg] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    // Load My Status from localStorage
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "StatusList.useEffect": ()=>{
+            if (!currentUserId) return;
+            try {
+                const saved = localStorage.getItem(`wa_my_status_${currentUserId}`);
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    const created = new Date(parsed.createdAt || 0).getTime();
+                    // Expire status after 24 hours
+                    if (!created || Date.now() - created < 24 * 60 * 60 * 1000) {
+                        setMyStatus(parsed);
+                    } else {
+                        localStorage.removeItem(`wa_my_status_${currentUserId}`);
+                        setMyStatus(null);
+                    }
+                } else {
+                    setMyStatus(null);
+                }
+            } catch (e) {
+                console.error("Error reading my status:", e);
+            }
+        }
+    }["StatusList.useEffect"], [
+        currentUserId
+    ]);
+    // Load community statuses (ONLY Priya + real user-posted statuses; clean out any old dummy data)
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "StatusList.useEffect": ()=>{
+            const loadCommunityStatuses = {
+                "StatusList.useEffect.loadCommunityStatuses": ()=>{
+                    try {
+                        const saved = localStorage.getItem("wa_community_statuses");
+                        let extra = [];
+                        if (saved) {
+                            const parsed = JSON.parse(saved);
+                            if (Array.isArray(parsed)) {
+                                // Strictly exclude any old dummy statuses for Afreen, Vaibhav, Muaz
+                                extra = parsed.filter({
+                                    "StatusList.useEffect.loadCommunityStatuses": (s)=>{
+                                        const name = (s.contactName || "").toLowerCase();
+                                        if (name.includes("afreen") || name.includes("vaibhav") || name.includes("muaz")) {
+                                            return false;
+                                        }
+                                        const created = new Date(s.createdAt || 0).getTime();
+                                        return !created || Date.now() - created < 24 * 60 * 60 * 1000;
+                                    }
+                                }["StatusList.useEffect.loadCommunityStatuses"]);
+                            }
+                        }
+                        // Resave cleaned list without old dummy names
+                        localStorage.setItem("wa_community_statuses", JSON.stringify(extra));
+                        // Merge INITIAL_STATUSES (only Priya) with active user-posted statuses
+                        const all = [
+                            ...INITIAL_STATUSES
+                        ];
+                        extra.forEach({
+                            "StatusList.useEffect.loadCommunityStatuses": (st)=>{
+                                if (!all.some({
+                                    "StatusList.useEffect.loadCommunityStatuses": (item)=>item.id === st.id
+                                }["StatusList.useEffect.loadCommunityStatuses"])) {
+                                    // Exclude current user's own status from other contacts list
+                                    if (st.userId !== currentUserId) {
+                                        all.unshift(st);
+                                    }
+                                }
+                            }
+                        }["StatusList.useEffect.loadCommunityStatuses"]);
+                        setStatuses(all);
+                    } catch (e) {
+                        console.error("Error loading statuses:", e);
+                        setStatuses(INITIAL_STATUSES);
+                    }
+                }
+            }["StatusList.useEffect.loadCommunityStatuses"];
+            loadCommunityStatuses();
+            // Listen for real-time status broadcasts from other connected users
+            const handleStatusBroadcast = {
+                "StatusList.useEffect.handleStatusBroadcast": (newStatus)=>{
+                    if (!newStatus || !newStatus.id) return;
+                    if (newStatus.userId === currentUserId) return;
+                    const name = (newStatus.contactName || "").toLowerCase();
+                    if (name.includes("afreen") || name.includes("vaibhav") || name.includes("muaz")) {
+                        return;
+                    }
+                    setStatuses({
+                        "StatusList.useEffect.handleStatusBroadcast": (prev)=>{
+                            if (prev.some({
+                                "StatusList.useEffect.handleStatusBroadcast": (s)=>s.id === newStatus.id
+                            }["StatusList.useEffect.handleStatusBroadcast"])) return prev;
+                            const updated = [
+                                newStatus,
+                                ...prev
+                            ];
+                            try {
+                                const saved = localStorage.getItem("wa_community_statuses");
+                                const list = saved ? JSON.parse(saved) : [];
+                                if (!list.some({
+                                    "StatusList.useEffect.handleStatusBroadcast": (s)=>s.id === newStatus.id
+                                }["StatusList.useEffect.handleStatusBroadcast"])) {
+                                    localStorage.setItem("wa_community_statuses", JSON.stringify([
+                                        newStatus,
+                                        ...list
+                                    ]));
+                                }
+                            } catch (err) {}
+                            return updated;
+                        }
+                    }["StatusList.useEffect.handleStatusBroadcast"]);
+                }
+            }["StatusList.useEffect.handleStatusBroadcast"];
+            __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$socket$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].on("status:broadcast", handleStatusBroadcast);
+            const onStorage = {
+                "StatusList.useEffect.onStorage": ()=>loadCommunityStatuses()
+            }["StatusList.useEffect.onStorage"];
+            window.addEventListener("storage", onStorage);
+            window.addEventListener("wa_status_updated", onStorage);
+            return ({
+                "StatusList.useEffect": ()=>{
+                    __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$socket$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].off("status:broadcast", handleStatusBroadcast);
+                    window.removeEventListener("storage", onStorage);
+                    window.removeEventListener("wa_status_updated", onStorage);
+                }
+            })["StatusList.useEffect"];
+        }
+    }["StatusList.useEffect"], [
+        currentUserId
+    ]);
     // Story auto-advance timer
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "StatusList.useEffect": ()=>{
@@ -1784,7 +1913,7 @@ function StatusList({ currentUser, onSendReply }) {
                                 const currentIdx = statuses.findIndex({
                                     "StatusList.useEffect.interval.currentIdx": (s)=>s.id === activeStory.id
                                 }["StatusList.useEffect.interval.currentIdx"]);
-                                if (currentIdx < statuses.length - 1) {
+                                if (currentIdx !== -1 && currentIdx < statuses.length - 1) {
                                     setActiveStory(statuses[currentIdx + 1]);
                                     return 0;
                                 } else {
@@ -1808,11 +1937,13 @@ function StatusList({ currentUser, onSendReply }) {
     const handleOpenStory = (statusItem)=>{
         setActiveStory(statusItem);
         setStoryProgress(0);
-        // Mark as viewed
-        setStatuses((prev)=>prev.map((s)=>s.id === statusItem.id ? {
-                    ...s,
-                    viewed: true
-                } : s));
+        if (!statusItem.isMine) {
+            // Mark contact's status as viewed
+            setStatuses((prev)=>prev.map((s)=>s.id === statusItem.id ? {
+                        ...s,
+                        viewed: true
+                    } : s));
+        }
     };
     const handleSendReply = (e)=>{
         e.preventDefault();
@@ -1820,22 +1951,71 @@ function StatusList({ currentUser, onSendReply }) {
         if (onSendReply) {
             onSendReply(activeStory.contactName, `Replying to status: "${activeStory.caption}"\n\n${replyText}`);
         }
-        alert(`Reply sent to ${activeStory.contactName}: "${replyText}"`);
         setReplyText("");
         setActiveStory(null);
     };
     const handleAddStatus = (e)=>{
         e.preventDefault();
-        if (!newStatusText.trim()) return;
-        setMyStatus({
-            caption: newStatusText.trim(),
-            timestamp: "Just now"
-        });
+        if (!newStatusText.trim() && !newStatusMedia && !selectedBg) return;
+        const newStatusItem = {
+            id: `st-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`,
+            userId: currentUserId,
+            contactName: currentUser?.name || "You",
+            contactUsername: currentUser?.username || "you",
+            avatar: currentUser?.avatar || null,
+            caption: newStatusText.trim() || "Status update",
+            mediaUrl: newStatusMedia.trim() || selectedBg || null,
+            timestamp: "Just now",
+            createdAt: new Date().toISOString(),
+            viewed: false,
+            isMine: true,
+            viewsCount: 0
+        };
+        // 1. Update My Status
+        setMyStatus(newStatusItem);
+        if (currentUserId) {
+            localStorage.setItem(`wa_my_status_${currentUserId}`, JSON.stringify(newStatusItem));
+        }
+        // 2. Persist in community statuses
+        try {
+            const saved = localStorage.getItem("wa_community_statuses");
+            const list = saved ? JSON.parse(saved) : [];
+            const updatedList = [
+                newStatusItem,
+                ...list.filter((s)=>s.id !== newStatusItem.id)
+            ];
+            localStorage.setItem("wa_community_statuses", JSON.stringify(updatedList));
+        } catch (err) {}
+        // 3. Broadcast to all users in real-time
+        __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$socket$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].emit("status:new", newStatusItem);
+        window.dispatchEvent(new CustomEvent("wa_status_updated"));
         setNewStatusText("");
+        setNewStatusMedia("");
+        setSelectedBg("");
         setIsAddStatusOpen(false);
     };
-    const recentStatuses = statuses.filter((s)=>!s.viewed);
-    const viewedStatuses = statuses.filter((s)=>s.viewed);
+    const handleDeleteMyStatus = ()=>{
+        setMyStatus(null);
+        if (currentUserId) {
+            localStorage.removeItem(`wa_my_status_${currentUserId}`);
+        }
+        try {
+            const saved = localStorage.getItem("wa_community_statuses");
+            if (saved) {
+                const list = JSON.parse(saved);
+                const filtered = list.filter((s)=>s.userId !== currentUserId);
+                localStorage.setItem("wa_community_statuses", JSON.stringify(filtered));
+            }
+        } catch (err) {}
+        if (activeStory?.isMine) {
+            setActiveStory(null);
+        }
+        window.dispatchEvent(new CustomEvent("wa_status_updated"));
+    };
+    // Contacts' statuses (exclude own status from other contacts' section)
+    const contactStatuses = statuses.filter((s)=>!s.isMine && s.userId !== currentUserId);
+    const recentStatuses = contactStatuses.filter((s)=>!s.viewed);
+    const viewedStatuses = contactStatuses.filter((s)=>s.viewed);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "flex flex-col h-full bg-[#111b21] text-[#e9edef] select-none border-r border-[#222e35]",
         children: [
@@ -1847,7 +2027,7 @@ function StatusList({ currentUser, onSendReply }) {
                         children: "Status"
                     }, void 0, false, {
                         fileName: "[project]/components/status/StatusList.jsx",
-                        lineNumber: 137,
+                        lineNumber: 293,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1859,93 +2039,159 @@ function StatusList({ currentUser, onSendReply }) {
                             className: "w-5 h-5 stroke-[2.5]"
                         }, void 0, false, {
                             fileName: "[project]/components/status/StatusList.jsx",
-                            lineNumber: 144,
+                            lineNumber: 300,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/status/StatusList.jsx",
-                        lineNumber: 138,
+                        lineNumber: 294,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/status/StatusList.jsx",
-                lineNumber: 136,
+                lineNumber: 292,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "flex-1 overflow-y-auto divide-y divide-[#222e35]/40",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        onClick: ()=>setIsAddStatusOpen(true),
-                        className: "flex items-center gap-3 px-3 py-3 hover:bg-[#202c33] cursor-pointer transition-colors",
+                        className: "flex items-center justify-between px-3 py-3 hover:bg-[#202c33] cursor-pointer transition-colors group",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "relative flex-shrink-0",
+                                onClick: ()=>{
+                                    if (myStatus && myStatus.caption) {
+                                        handleOpenStory(myStatus);
+                                    } else {
+                                        setIsAddStatusOpen(true);
+                                    }
+                                },
+                                className: "flex items-center gap-3 min-w-0 flex-1",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "w-12 h-12 rounded-full bg-[#534b3e] flex items-center justify-center text-white font-bold text-sm",
-                                        children: currentUser?.avatar ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                            src: currentUser.avatar,
-                                            alt: currentUser.name,
-                                            className: "w-full h-full rounded-full object-cover"
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/status/StatusList.jsx",
-                                            lineNumber: 158,
-                                            columnNumber: 17
-                                        }, this) : (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getInitials"])(currentUser?.name || "Khan shamshad")
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/status/StatusList.jsx",
-                                        lineNumber: 156,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "absolute bottom-0 right-0 w-4 h-4 rounded-full bg-[#00a884] border-2 border-[#111b21] flex items-center justify-center text-white text-[10px] font-bold",
-                                        children: "+"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/status/StatusList.jsx",
-                                        lineNumber: 167,
-                                        columnNumber: 13
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/status/StatusList.jsx",
-                                lineNumber: 155,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex-1 min-w-0",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "font-semibold text-sm text-[#e9edef]",
-                                        children: "My status"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/status/StatusList.jsx",
-                                        lineNumber: 173,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-xs text-[#8696a0] truncate mt-0.5",
+                                        className: "relative flex-shrink-0",
                                         children: [
-                                            myStatus.caption,
-                                            " • ",
-                                            myStatus.timestamp
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: `w-12 h-12 rounded-full overflow-hidden flex items-center justify-center text-white font-bold text-sm ${myStatus ? "p-[2.5px] border-2 border-[#25d366]" : "bg-[#534b3e]"}`,
+                                                children: currentUser?.avatar ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                    src: currentUser.avatar,
+                                                    alt: currentUser.name,
+                                                    className: "w-full h-full rounded-full object-cover"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/status/StatusList.jsx",
+                                                    lineNumber: 325,
+                                                    columnNumber: 19
+                                                }, this) : (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getInitials"])(currentUser?.name || "You")
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/status/StatusList.jsx",
+                                                lineNumber: 319,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                type: "button",
+                                                onClick: (e)=>{
+                                                    e.stopPropagation();
+                                                    setIsAddStatusOpen(true);
+                                                },
+                                                className: "absolute bottom-0 right-0 w-4 h-4 rounded-full bg-[#00a884] border-2 border-[#111b21] flex items-center justify-center text-white text-[10px] font-bold hover:scale-110 transition-transform",
+                                                title: "Add new status",
+                                                children: "+"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/status/StatusList.jsx",
+                                                lineNumber: 334,
+                                                columnNumber: 15
+                                            }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/status/StatusList.jsx",
-                                        lineNumber: 174,
+                                        lineNumber: 318,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex-1 min-w-0",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "font-semibold text-sm text-[#e9edef]",
+                                                children: "My status"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/status/StatusList.jsx",
+                                                lineNumber: 348,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-xs text-[#8696a0] truncate mt-0.5",
+                                                children: myStatus?.caption ? `${myStatus.caption} • ${myStatus.timestamp || "Today"}` : "Tap to add status update"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/status/StatusList.jsx",
+                                                lineNumber: 349,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/components/status/StatusList.jsx",
+                                        lineNumber: 347,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/status/StatusList.jsx",
-                                lineNumber: 172,
+                                lineNumber: 308,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex items-center gap-1",
+                                children: [
+                                    myStatus && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        type: "button",
+                                        onClick: (e)=>{
+                                            e.stopPropagation();
+                                            handleDeleteMyStatus();
+                                        },
+                                        className: "p-1.5 rounded-full hover:bg-[#2a3942] text-[#8696a0] hover:text-rose-400 transition-colors",
+                                        title: "Delete my status",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__["Trash2"], {
+                                            className: "w-4 h-4"
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/status/StatusList.jsx",
+                                            lineNumber: 368,
+                                            columnNumber: 17
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/status/StatusList.jsx",
+                                        lineNumber: 359,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        type: "button",
+                                        onClick: (e)=>{
+                                            e.stopPropagation();
+                                            setIsAddStatusOpen(true);
+                                        },
+                                        className: "p-1.5 rounded-full hover:bg-[#2a3942] text-[#8696a0] hover:text-[#00a884] transition-colors",
+                                        title: "Add status update",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$camera$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Camera$3e$__["Camera"], {
+                                            className: "w-4 h-4"
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/status/StatusList.jsx",
+                                            lineNumber: 381,
+                                            columnNumber: 15
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/status/StatusList.jsx",
+                                        lineNumber: 372,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/status/StatusList.jsx",
+                                lineNumber: 357,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/status/StatusList.jsx",
-                        lineNumber: 151,
+                        lineNumber: 307,
                         columnNumber: 9
                     }, this),
                     recentStatuses.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1955,7 +2201,7 @@ function StatusList({ currentUser, onSendReply }) {
                                 children: "Recent updates"
                             }, void 0, false, {
                                 fileName: "[project]/components/status/StatusList.jsx",
-                                lineNumber: 183,
+                                lineNumber: 389,
                                 columnNumber: 13
                             }, this),
                             recentStatuses.map((st)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1964,17 +2210,25 @@ function StatusList({ currentUser, onSendReply }) {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "relative p-[2.5px] rounded-full border-2 border-[#25d366] flex-shrink-0 shadow-xs",
-                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            children: st.avatar ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                src: st.avatar,
+                                                alt: st.contactName,
+                                                className: "w-10 h-10 rounded-full object-cover"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/status/StatusList.jsx",
+                                                lineNumber: 401,
+                                                columnNumber: 21
+                                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "w-10 h-10 rounded-full bg-[#534b3e] flex items-center justify-center text-white font-bold text-xs",
                                                 children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getInitials"])(st.contactName)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/status/StatusList.jsx",
-                                                lineNumber: 194,
-                                                columnNumber: 19
+                                                lineNumber: 407,
+                                                columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/status/StatusList.jsx",
-                                            lineNumber: 193,
+                                            lineNumber: 399,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1985,7 +2239,7 @@ function StatusList({ currentUser, onSendReply }) {
                                                     children: st.contactName
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/status/StatusList.jsx",
-                                                    lineNumber: 200,
+                                                    lineNumber: 414,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1993,25 +2247,25 @@ function StatusList({ currentUser, onSendReply }) {
                                                     children: st.timestamp
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/status/StatusList.jsx",
-                                                    lineNumber: 203,
+                                                    lineNumber: 417,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/status/StatusList.jsx",
-                                            lineNumber: 199,
+                                            lineNumber: 413,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, st.id, true, {
                                     fileName: "[project]/components/status/StatusList.jsx",
-                                    lineNumber: 187,
+                                    lineNumber: 393,
                                     columnNumber: 15
                                 }, this))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/status/StatusList.jsx",
-                        lineNumber: 182,
+                        lineNumber: 388,
                         columnNumber: 11
                     }, this),
                     viewedStatuses.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2021,7 +2275,7 @@ function StatusList({ currentUser, onSendReply }) {
                                 children: "Viewed updates"
                             }, void 0, false, {
                                 fileName: "[project]/components/status/StatusList.jsx",
-                                lineNumber: 215,
+                                lineNumber: 429,
                                 columnNumber: 13
                             }, this),
                             viewedStatuses.map((st)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2030,17 +2284,25 @@ function StatusList({ currentUser, onSendReply }) {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "relative p-[2px] rounded-full border-2 border-[#8696a0]/50 flex-shrink-0",
-                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            children: st.avatar ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                src: st.avatar,
+                                                alt: st.contactName,
+                                                className: "w-10 h-10 rounded-full object-cover"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/status/StatusList.jsx",
+                                                lineNumber: 441,
+                                                columnNumber: 21
+                                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "w-10 h-10 rounded-full bg-[#534b3e] flex items-center justify-center text-white font-bold text-xs",
                                                 children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getInitials"])(st.contactName)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/status/StatusList.jsx",
-                                                lineNumber: 226,
-                                                columnNumber: 19
+                                                lineNumber: 447,
+                                                columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/status/StatusList.jsx",
-                                            lineNumber: 225,
+                                            lineNumber: 439,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2051,7 +2313,7 @@ function StatusList({ currentUser, onSendReply }) {
                                                     children: st.contactName
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/status/StatusList.jsx",
-                                                    lineNumber: 232,
+                                                    lineNumber: 454,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2059,40 +2321,79 @@ function StatusList({ currentUser, onSendReply }) {
                                                     children: st.timestamp
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/status/StatusList.jsx",
-                                                    lineNumber: 235,
+                                                    lineNumber: 457,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/status/StatusList.jsx",
-                                            lineNumber: 231,
+                                            lineNumber: 453,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, st.id, true, {
                                     fileName: "[project]/components/status/StatusList.jsx",
-                                    lineNumber: 219,
+                                    lineNumber: 433,
                                     columnNumber: 15
                                 }, this))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/status/StatusList.jsx",
-                        lineNumber: 214,
+                        lineNumber: 428,
+                        columnNumber: 11
+                    }, this),
+                    contactStatuses.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "py-16 px-4 text-center text-[#8696a0]",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "w-12 h-12 rounded-full bg-[#202c33] flex items-center justify-center mx-auto mb-2.5 text-lg",
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$dot$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CircleDot$3e$__["CircleDot"], {
+                                    className: "w-6 h-6 text-[#00a884]"
+                                }, void 0, false, {
+                                    fileName: "[project]/components/status/StatusList.jsx",
+                                    lineNumber: 470,
+                                    columnNumber: 15
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/components/status/StatusList.jsx",
+                                lineNumber: 469,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-sm font-semibold text-[#e9edef]",
+                                children: "No recent updates"
+                            }, void 0, false, {
+                                fileName: "[project]/components/status/StatusList.jsx",
+                                lineNumber: 472,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-xs text-[#8696a0] mt-1 max-w-xs mx-auto",
+                                children: "When your contacts post status updates, they will appear here."
+                            }, void 0, false, {
+                                fileName: "[project]/components/status/StatusList.jsx",
+                                lineNumber: 473,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/components/status/StatusList.jsx",
+                        lineNumber: 468,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/status/StatusList.jsx",
-                lineNumber: 149,
+                lineNumber: 305,
                 columnNumber: 7
             }, this),
             activeStory && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md select-none animate-in fade-in duration-150",
+                className: "fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md select-none animate-in fade-in duration-150",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "relative w-full max-w-md h-[90vh] max-h-[720px] rounded-2xl overflow-hidden bg-[#111b21] border border-[#2a3942] flex flex-col justify-between shadow-2xl",
+                    className: "relative w-full max-w-md h-full sm:h-[90vh] sm:max-h-[720px] rounded-none sm:rounded-2xl overflow-hidden bg-[#111b21] border-0 sm:border border-[#2a3942] flex flex-col justify-between shadow-2xl",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "absolute top-0 left-0 right-0 p-3 z-20 space-y-2 bg-gradient-to-b from-black/80 to-transparent",
+                            className: "absolute top-0 left-0 right-0 p-3 z-20 space-y-2 bg-gradient-to-b from-black/85 via-black/40 to-transparent",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "w-full h-1 bg-white/30 rounded-full overflow-hidden",
@@ -2103,12 +2404,12 @@ function StatusList({ currentUser, onSendReply }) {
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/components/status/StatusList.jsx",
-                                        lineNumber: 252,
+                                        lineNumber: 487,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/status/StatusList.jsx",
-                                    lineNumber: 251,
+                                    lineNumber: 486,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2118,21 +2419,33 @@ function StatusList({ currentUser, onSendReply }) {
                                             className: "flex items-center gap-2.5",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "w-9 h-9 rounded-full bg-[#534b3e] flex items-center justify-center text-xs font-bold ring-2 ring-[#00a884]",
-                                                    children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getInitials"])(activeStory.contactName)
+                                                    className: "w-9 h-9 rounded-full bg-[#534b3e] flex items-center justify-center text-xs font-bold ring-2 ring-[#00a884] overflow-hidden",
+                                                    children: activeStory.avatar ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                        src: activeStory.avatar,
+                                                        alt: activeStory.contactName,
+                                                        className: "w-full h-full object-cover"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/status/StatusList.jsx",
+                                                        lineNumber: 498,
+                                                        columnNumber: 23
+                                                    }, this) : (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getInitials"])(activeStory.contactName)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/status/StatusList.jsx",
-                                                    lineNumber: 261,
+                                                    lineNumber: 496,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: "font-semibold text-xs sm:text-sm",
-                                                            children: activeStory.contactName
-                                                        }, void 0, false, {
+                                                            children: [
+                                                                activeStory.contactName,
+                                                                " ",
+                                                                activeStory.isMine && "(You)"
+                                                            ]
+                                                        }, void 0, true, {
                                                             fileName: "[project]/components/status/StatusList.jsx",
-                                                            lineNumber: 265,
+                                                            lineNumber: 508,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2140,47 +2453,73 @@ function StatusList({ currentUser, onSendReply }) {
                                                             children: activeStory.timestamp
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/status/StatusList.jsx",
-                                                            lineNumber: 266,
+                                                            lineNumber: 511,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/status/StatusList.jsx",
-                                                    lineNumber: 264,
+                                                    lineNumber: 507,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/status/StatusList.jsx",
-                                            lineNumber: 260,
+                                            lineNumber: 495,
                                             columnNumber: 17
                                         }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                            type: "button",
-                                            onClick: ()=>setActiveStory(null),
-                                            className: "p-1.5 rounded-full hover:bg-white/20 transition-colors",
-                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
-                                                className: "w-5 h-5 text-white"
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/status/StatusList.jsx",
-                                                lineNumber: 275,
-                                                columnNumber: 19
-                                            }, this)
-                                        }, void 0, false, {
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex items-center gap-1.5",
+                                            children: [
+                                                activeStory.isMine && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                    type: "button",
+                                                    onClick: handleDeleteMyStatus,
+                                                    className: "p-1.5 rounded-full hover:bg-white/20 text-white/80 hover:text-rose-400 transition-colors",
+                                                    title: "Delete status",
+                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__["Trash2"], {
+                                                        className: "w-4 h-4"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/status/StatusList.jsx",
+                                                        lineNumber: 523,
+                                                        columnNumber: 23
+                                                    }, this)
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/status/StatusList.jsx",
+                                                    lineNumber: 517,
+                                                    columnNumber: 21
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                    type: "button",
+                                                    onClick: ()=>setActiveStory(null),
+                                                    className: "p-1.5 rounded-full hover:bg-white/20 transition-colors",
+                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
+                                                        className: "w-5 h-5 text-white"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/status/StatusList.jsx",
+                                                        lineNumber: 531,
+                                                        columnNumber: 21
+                                                    }, this)
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/status/StatusList.jsx",
+                                                    lineNumber: 526,
+                                                    columnNumber: 19
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
                                             fileName: "[project]/components/status/StatusList.jsx",
-                                            lineNumber: 270,
+                                            lineNumber: 515,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/status/StatusList.jsx",
-                                    lineNumber: 259,
+                                    lineNumber: 494,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/status/StatusList.jsx",
-                            lineNumber: 250,
+                            lineNumber: 485,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2192,14 +2531,14 @@ function StatusList({ currentUser, onSendReply }) {
                                     className: "w-full h-full object-cover"
                                 }, void 0, false, {
                                     fileName: "[project]/components/status/StatusList.jsx",
-                                    lineNumber: 283,
+                                    lineNumber: 540,
                                     columnNumber: 17
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "p-8 text-center text-lg font-medium text-white max-w-sm",
+                                    className: "p-8 text-center text-lg sm:text-xl font-medium text-white max-w-sm leading-relaxed",
                                     children: activeStory.caption
                                 }, void 0, false, {
                                     fileName: "[project]/components/status/StatusList.jsx",
-                                    lineNumber: 289,
+                                    lineNumber: 546,
                                     columnNumber: 17
                                 }, this),
                                 activeStory.mediaUrl && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2207,18 +2546,58 @@ function StatusList({ currentUser, onSendReply }) {
                                     children: activeStory.caption
                                 }, void 0, false, {
                                     fileName: "[project]/components/status/StatusList.jsx",
-                                    lineNumber: 296,
+                                    lineNumber: 553,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/status/StatusList.jsx",
-                            lineNumber: 281,
+                            lineNumber: 538,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "p-3 bg-[#202c33] border-t border-[#222e35] z-20",
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
+                            children: activeStory.isMine ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex items-center justify-between text-xs text-[#8696a0] px-2 py-1",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center gap-1.5 text-[#00a884]",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$eye$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Eye$3e$__["Eye"], {
+                                                className: "w-4 h-4"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/status/StatusList.jsx",
+                                                lineNumber: 564,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "font-medium",
+                                                children: "Viewed by contacts"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/status/StatusList.jsx",
+                                                lineNumber: 565,
+                                                columnNumber: 21
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/components/status/StatusList.jsx",
+                                        lineNumber: 563,
+                                        columnNumber: 19
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-[11px] text-[#8696a0]",
+                                        children: "Disappears in 24 hours"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/status/StatusList.jsx",
+                                        lineNumber: 567,
+                                        columnNumber: 19
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/status/StatusList.jsx",
+                                lineNumber: 562,
+                                columnNumber: 17
+                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
                                 onSubmit: handleSendReply,
                                 className: "flex items-center gap-2",
                                 children: [
@@ -2231,8 +2610,8 @@ function StatusList({ currentUser, onSendReply }) {
                                         autoFocus: true
                                     }, void 0, false, {
                                         fileName: "[project]/components/status/StatusList.jsx",
-                                        lineNumber: 305,
-                                        columnNumber: 17
+                                        lineNumber: 571,
+                                        columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         type: "submit",
@@ -2242,144 +2621,238 @@ function StatusList({ currentUser, onSendReply }) {
                                             className: "w-4 h-4"
                                         }, void 0, false, {
                                             fileName: "[project]/components/status/StatusList.jsx",
-                                            lineNumber: 318,
-                                            columnNumber: 19
+                                            lineNumber: 584,
+                                            columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/status/StatusList.jsx",
-                                        lineNumber: 313,
-                                        columnNumber: 17
+                                        lineNumber: 579,
+                                        columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/status/StatusList.jsx",
-                                lineNumber: 304,
-                                columnNumber: 15
+                                lineNumber: 570,
+                                columnNumber: 17
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/status/StatusList.jsx",
-                            lineNumber: 303,
+                            lineNumber: 560,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/status/StatusList.jsx",
-                    lineNumber: 248,
+                    lineNumber: 483,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/status/StatusList.jsx",
-                lineNumber: 247,
+                lineNumber: 482,
                 columnNumber: 9
             }, this),
             isAddStatusOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs",
+                className: "fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/65 backdrop-blur-xs animate-in fade-in duration-150",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "w-full max-w-md rounded-2xl bg-[#111b21] border border-[#222e35] p-5 shadow-2xl animate-in zoom-in-95",
+                    className: "w-full max-w-md rounded-2xl bg-[#111b21] border border-[#222e35] p-5 shadow-2xl animate-in zoom-in-95 duration-150",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex items-center justify-between mb-3",
+                            className: "flex items-center justify-between mb-3.5",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                     className: "font-semibold text-base text-white",
-                                    children: "Add Status Update"
+                                    children: "New Status Update"
                                 }, void 0, false, {
                                     fileName: "[project]/components/status/StatusList.jsx",
-                                    lineNumber: 331,
+                                    lineNumber: 598,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     type: "button",
-                                    onClick: ()=>setIsAddStatusOpen(false),
+                                    onClick: ()=>{
+                                        setIsAddStatusOpen(false);
+                                        setSelectedBg("");
+                                    },
                                     className: "text-[#8696a0] hover:text-white",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
                                         className: "w-5 h-5"
                                     }, void 0, false, {
                                         fileName: "[project]/components/status/StatusList.jsx",
-                                        lineNumber: 337,
+                                        lineNumber: 607,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/status/StatusList.jsx",
-                                    lineNumber: 332,
+                                    lineNumber: 599,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/status/StatusList.jsx",
-                            lineNumber: 330,
+                            lineNumber: 597,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
                             onSubmit: handleAddStatus,
                             className: "space-y-4",
                             children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
-                                    value: newStatusText,
-                                    onChange: (e)=>setNewStatusText(e.target.value),
-                                    placeholder: "Type a status update for your contacts...",
-                                    rows: 3,
-                                    className: "w-full bg-[#202c33] border border-[#2a3942] rounded-xl p-3 text-sm text-white placeholder-[#8696a0] focus:outline-none focus:border-[#00a884]",
-                                    autoFocus: true
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
+                                        value: newStatusText,
+                                        onChange: (e)=>setNewStatusText(e.target.value),
+                                        placeholder: "What's on your mind? Type a status update...",
+                                        rows: 3,
+                                        className: "w-full bg-[#202c33] border border-[#2a3942] rounded-xl p-3 text-sm text-white placeholder-[#8696a0] focus:outline-none focus:border-[#00a884]",
+                                        autoFocus: true
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/status/StatusList.jsx",
+                                        lineNumber: 613,
+                                        columnNumber: 17
+                                    }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/status/StatusList.jsx",
-                                    lineNumber: 342,
+                                    lineNumber: 612,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex justify-end gap-2",
                                     children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                            type: "button",
-                                            onClick: ()=>setIsAddStatusOpen(false),
-                                            className: "px-4 py-2 rounded-full text-xs font-medium text-[#8696a0] hover:bg-[#202c33]",
-                                            children: "Cancel"
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                            className: "text-[11px] font-semibold text-[#8696a0] uppercase tracking-wider block mb-1.5",
+                                            children: "Optional Background Image"
                                         }, void 0, false, {
                                             fileName: "[project]/components/status/StatusList.jsx",
-                                            lineNumber: 352,
+                                            lineNumber: 625,
                                             columnNumber: 17
                                         }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                            type: "submit",
-                                            disabled: !newStatusText.trim(),
-                                            className: "px-5 py-2 rounded-full bg-[#00a884] hover:bg-[#008069] text-white text-xs font-semibold disabled:opacity-40",
-                                            children: "Post Status"
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "grid grid-cols-4 gap-2",
+                                            children: PRESET_BACKGROUNDS.map((bg)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                    type: "button",
+                                                    onClick: ()=>{
+                                                        setSelectedBg(selectedBg === bg.url ? "" : bg.url);
+                                                        setNewStatusMedia("");
+                                                    },
+                                                    className: `relative h-14 rounded-lg overflow-hidden border-2 transition-all ${selectedBg === bg.url ? "border-[#00a884] shadow-md scale-102" : "border-transparent opacity-70 hover:opacity-100"}`,
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                            src: bg.url,
+                                                            alt: bg.label,
+                                                            className: "w-full h-full object-cover"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/components/status/StatusList.jsx",
+                                                            lineNumber: 643,
+                                                            columnNumber: 23
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "absolute inset-0 bg-black/40 flex items-center justify-center text-[10px] font-medium text-white",
+                                                            children: bg.label
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/components/status/StatusList.jsx",
+                                                            lineNumber: 644,
+                                                            columnNumber: 23
+                                                        }, this),
+                                                        selectedBg === bg.url && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-[#00a884] flex items-center justify-center text-white text-[8px]",
+                                                            children: "✓"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/components/status/StatusList.jsx",
+                                                            lineNumber: 648,
+                                                            columnNumber: 25
+                                                        }, this)
+                                                    ]
+                                                }, bg.id, true, {
+                                                    fileName: "[project]/components/status/StatusList.jsx",
+                                                    lineNumber: 630,
+                                                    columnNumber: 21
+                                                }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/components/status/StatusList.jsx",
-                                            lineNumber: 359,
+                                            lineNumber: 628,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/status/StatusList.jsx",
-                                    lineNumber: 351,
+                                    lineNumber: 624,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                        type: "text",
+                                        value: newStatusMedia,
+                                        onChange: (e)=>{
+                                            setNewStatusMedia(e.target.value);
+                                            setSelectedBg("");
+                                        },
+                                        placeholder: "Or paste an image URL (optional)...",
+                                        className: "w-full bg-[#202c33] border border-[#2a3942] rounded-lg px-3 py-2 text-xs text-white placeholder-[#8696a0] focus:outline-none focus:border-[#00a884]"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/status/StatusList.jsx",
+                                        lineNumber: 659,
+                                        columnNumber: 17
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/components/status/StatusList.jsx",
+                                    lineNumber: 658,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex justify-end gap-2 pt-1",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            type: "button",
+                                            onClick: ()=>{
+                                                setIsAddStatusOpen(false);
+                                                setSelectedBg("");
+                                            },
+                                            className: "px-4 py-2 rounded-full text-xs font-medium text-[#8696a0] hover:bg-[#202c33]",
+                                            children: "Cancel"
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/status/StatusList.jsx",
+                                            lineNumber: 672,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            type: "submit",
+                                            disabled: !newStatusText.trim() && !newStatusMedia && !selectedBg,
+                                            className: "px-5 py-2 rounded-full bg-[#00a884] hover:bg-[#008069] text-white text-xs font-semibold disabled:opacity-40 active:scale-95 transition-all shadow-md",
+                                            children: "Post Status"
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/status/StatusList.jsx",
+                                            lineNumber: 682,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/components/status/StatusList.jsx",
+                                    lineNumber: 671,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/status/StatusList.jsx",
-                            lineNumber: 341,
+                            lineNumber: 611,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/status/StatusList.jsx",
-                    lineNumber: 329,
+                    lineNumber: 596,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/status/StatusList.jsx",
-                lineNumber: 328,
+                lineNumber: 595,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/status/StatusList.jsx",
-        lineNumber: 134,
+        lineNumber: 290,
         columnNumber: 5
     }, this);
 }
-_s(StatusList, "xPO+bglZdXzvj1d8P/eP/Cj8824=");
+_s(StatusList, "evxLwlm/vpzln7rPc3rqDxraOC4=");
 _c = StatusList;
 var _c;
 __turbopack_context__.k.register(_c, "StatusList");

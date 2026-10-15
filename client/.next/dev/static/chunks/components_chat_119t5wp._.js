@@ -11,11 +11,18 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/users.mjs [app-client] (ecmascript) <export default as Users>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$archive$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Archive$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/archive.mjs [app-client] (ecmascript) <export default as Archive>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/star.mjs [app-client] (ecmascript) <export default as Star>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/plus.mjs [app-client] (ecmascript) <export default as Plus>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/arrow-right.mjs [app-client] (ecmascript) <export default as ArrowRight>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/loader-circle.mjs [app-client] (ecmascript) <export default as Loader2>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/chevron-right.mjs [app-client] (ecmascript) <export default as ChevronRight>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/utils.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$conversationService$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/services/conversationService.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$chatStore$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/store/chatStore.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
+;
+;
 ;
 ;
 ;
@@ -71,29 +78,81 @@ const SAMPLE_COMMUNITIES = [
             "DevOps & Cloud"
         ],
         membersCount: 142,
-        description: "Company-wide engineering discussion and announcements."
-    },
-    {
-        id: "com-2",
-        name: "Muslim Community Falah",
-        subgroups: [
-            "Charity Drives",
-            "Youth Forum",
-            "Announcements"
-        ],
-        membersCount: 380,
-        description: "Local community volunteer network and charitable initiatives."
+        description: "Company-wide engineering discussion, team coordination, and announcements."
     }
 ];
-function ChannelsCommunitiesView({ viewType = "channels", onSelectConversation, conversations = [] }) {
+function ChannelsCommunitiesView({ viewType = "channels", onSelectConversation, conversations = [], onOpenNewGroup }) {
     _s();
     const [channels, setChannels] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(SAMPLE_CHANNELS);
-    const [searchQuery, setSearchQuery] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [openingId, setOpeningId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const toggleFollow = (id)=>{
         setChannels((prev)=>prev.map((c)=>c.id === id ? {
                     ...c,
                     following: !c.following
                 } : c));
+    };
+    // Open a community or subgroup and jump straight into chat
+    const handleOpenCommunity = async (community, subgroup = null)=>{
+        const targetName = subgroup ? `${community.name} - ${subgroup}` : community.name;
+        const trackingKey = subgroup ? `${community.id}-${subgroup}` : community.id;
+        setOpeningId(trackingKey);
+        try {
+            // 1. Check if matching conversation already exists in user's loaded conversations
+            const existing = (conversations || []).find((c)=>{
+                if (!c) return false;
+                const cName = (c.name || "").toLowerCase();
+                if (subgroup) {
+                    return cName === targetName.toLowerCase() || cName.includes(subgroup.toLowerCase()) || cName.includes("nexcore");
+                }
+                return cName.includes("nexcore") || cName === community.name.toLowerCase();
+            });
+            if (existing) {
+                onSelectConversation?.(existing);
+                setOpeningId(null);
+                return;
+            }
+            // 2. Fetch or create community conversation on server
+            const res = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$conversationService$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getOrCreateCommunity"])({
+                name: community.name,
+                subgroup: subgroup || ""
+            });
+            if (res?.success && res?.conversation) {
+                __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$chatStore$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].getState().addConversation(res.conversation);
+                onSelectConversation?.(res.conversation);
+            } else {
+                // Fallback: Create instant local active group if server call fails
+                const fallbackConv = {
+                    _id: `comm_${Date.now()}`,
+                    name: targetName,
+                    type: "group",
+                    members: [],
+                    admins: [],
+                    createdAt: new Date().toISOString(),
+                    updatedAt: new Date().toISOString(),
+                    lastMessage: {
+                        content: `Welcome to ${targetName}!`,
+                        createdAt: new Date().toISOString()
+                    }
+                };
+                __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$chatStore$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].getState().addConversation(fallbackConv);
+                onSelectConversation?.(fallbackConv);
+            }
+        } catch (err) {
+            console.error("Error opening community:", err);
+            const fallbackConv = {
+                _id: `comm_${Date.now()}`,
+                name: targetName,
+                type: "group",
+                members: [],
+                admins: [],
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString()
+            };
+            __TURBOPACK__imported__module__$5b$project$5d2f$store$2f$chatStore$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].getState().addConversation(fallbackConv);
+            onSelectConversation?.(fallbackConv);
+        } finally{
+            setOpeningId(null);
+        }
     };
     const titles = {
         channels: "Channels",
@@ -101,26 +160,28 @@ function ChannelsCommunitiesView({ viewType = "channels", onSelectConversation, 
         archived: "Archived",
         starred: "Starred messages"
     };
+    // Extract all existing group conversations from user store
+    const userGroups = (conversations || []).filter((c)=>c?.type === "group");
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "flex flex-col h-full bg-[#111b21] text-[#e9edef] select-none border-r border-[#222e35]",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex items-center justify-between px-4 pt-3.5 pb-2",
+                className: "flex items-center justify-between px-4 pt-3.5 pb-2 border-b border-[#222e35]/60 bg-[#111b21]",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                     className: "text-xl font-bold tracking-tight text-[#e9edef]",
                     children: titles[viewType] || "Updates"
                 }, void 0, false, {
                     fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                    lineNumber: 103,
+                    lineNumber: 178,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                lineNumber: 102,
+                lineNumber: 177,
                 columnNumber: 7
             }, this),
             viewType === "channels" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex-1 overflow-y-auto divide-y divide-[#222e35]/40",
+                className: "flex-1 overflow-y-auto divide-y divide-[#222e35]/40 custom-scrollbar",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "p-3 bg-[#202c33]/40 border-b border-[#222e35]",
@@ -129,12 +190,12 @@ function ChannelsCommunitiesView({ viewType = "channels", onSelectConversation, 
                             children: "Stay updated on topics you care about. Find channels to follow below."
                         }, void 0, false, {
                             fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                            lineNumber: 112,
+                            lineNumber: 187,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                        lineNumber: 111,
+                        lineNumber: 186,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -142,11 +203,11 @@ function ChannelsCommunitiesView({ viewType = "channels", onSelectConversation, 
                         children: "Followed Channels"
                     }, void 0, false, {
                         fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                        lineNumber: 117,
+                        lineNumber: 192,
                         columnNumber: 11
                     }, this),
                     channels.map((ch)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "p-3.5 hover:bg-[#202c33] transition-colors flex items-start gap-3",
+                            className: "p-3.5 hover:bg-[#202c33] transition-colors flex items-start gap-3 cursor-pointer",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "relative flex-shrink-0",
@@ -157,7 +218,7 @@ function ChannelsCommunitiesView({ viewType = "channels", onSelectConversation, 
                                             className: "w-11 h-11 rounded-full object-cover ring-1 ring-[#222e35]"
                                         }, void 0, false, {
                                             fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                            lineNumber: 127,
+                                            lineNumber: 202,
                                             columnNumber: 17
                                         }, this),
                                         ch.verified && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -165,13 +226,13 @@ function ChannelsCommunitiesView({ viewType = "channels", onSelectConversation, 
                                             children: "✓"
                                         }, void 0, false, {
                                             fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                            lineNumber: 133,
+                                            lineNumber: 208,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                    lineNumber: 126,
+                                    lineNumber: 201,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -185,7 +246,7 @@ function ChannelsCommunitiesView({ viewType = "channels", onSelectConversation, 
                                                     children: ch.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                                    lineNumber: 141,
+                                                    lineNumber: 216,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -193,13 +254,13 @@ function ChannelsCommunitiesView({ viewType = "channels", onSelectConversation, 
                                                     children: ch.time
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                                    lineNumber: 144,
+                                                    lineNumber: 219,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                            lineNumber: 140,
+                                            lineNumber: 215,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -207,7 +268,7 @@ function ChannelsCommunitiesView({ viewType = "channels", onSelectConversation, 
                                             children: ch.lastUpdate
                                         }, void 0, false, {
                                             fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                            lineNumber: 147,
+                                            lineNumber: 222,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -218,99 +279,190 @@ function ChannelsCommunitiesView({ viewType = "channels", onSelectConversation, 
                                                     children: ch.followers
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                                    lineNumber: 152,
+                                                    lineNumber: 227,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                     type: "button",
-                                                    onClick: ()=>toggleFollow(ch.id),
+                                                    onClick: (e)=>{
+                                                        e.stopPropagation();
+                                                        toggleFollow(ch.id);
+                                                    },
                                                     className: `px-3 py-1 rounded-full text-xs font-semibold transition-all ${ch.following ? "bg-[#202c33] text-[#00a884] border border-[#2a3942] hover:border-rose-500/40 hover:text-rose-400" : "bg-[#00a884] hover:bg-[#008069] text-white shadow-xs"}`,
                                                     children: ch.following ? "Following" : "+ Follow"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                                    lineNumber: 153,
+                                                    lineNumber: 228,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                            lineNumber: 151,
+                                            lineNumber: 226,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                    lineNumber: 139,
+                                    lineNumber: 214,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, ch.id, true, {
                             fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                            lineNumber: 122,
+                            lineNumber: 197,
                             columnNumber: 13
                         }, this))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                lineNumber: 110,
+                lineNumber: 185,
                 columnNumber: 9
             }, this),
             viewType === "communities" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex-1 overflow-y-auto divide-y divide-[#222e35]/40",
+                className: "flex-1 overflow-y-auto divide-y divide-[#222e35]/50 custom-scrollbar",
                 children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "p-4 bg-[#202c33]/40 border-b border-[#222e35]",
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                        type: "button",
+                        onClick: ()=>onOpenNewGroup?.(),
+                        className: "w-full flex items-center gap-3.5 px-4 py-3.5 hover:bg-[#202c33] transition-colors text-left group",
                         children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                className: "text-sm font-semibold text-white mb-1",
-                                children: "Introducing Communities"
-                            }, void 0, false, {
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "relative w-11 h-11 rounded-xl bg-[#00a884] text-white flex items-center justify-center font-bold shadow-sm group-hover:scale-105 transition-transform",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"], {
+                                        className: "w-5 h-5 text-white"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                        lineNumber: 259,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-[#111b21] flex items-center justify-center",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__["Plus"], {
+                                            className: "w-3 h-3 text-[#00a884]"
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                            lineNumber: 261,
+                                            columnNumber: 17
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                        lineNumber: 260,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                lineNumber: 175,
+                                lineNumber: 258,
                                 columnNumber: 13
                             }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-xs text-[#8696a0] leading-relaxed",
-                                children: "Easily organize your related groups and send announcements. Now, your communities like neighborhoods or workplaces can have their own space."
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex-1 min-w-0",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                        className: "text-sm font-semibold text-[#e9edef] group-hover:text-[#00a884] transition-colors",
+                                        children: "New community"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                        lineNumber: 265,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-xs text-[#8696a0] truncate mt-0.5",
+                                        children: "Bring your groups and teams together"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                        lineNumber: 268,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                lineNumber: 264,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
+                                className: "w-4 h-4 text-[#8696a0] group-hover:text-white transition-colors"
                             }, void 0, false, {
                                 fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                lineNumber: 178,
+                                lineNumber: 272,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                        lineNumber: 174,
+                        lineNumber: 253,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "p-3 bg-[#111b21]",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "px-2 py-1 text-[11px] font-semibold text-[#8696a0] uppercase tracking-wider",
+                            children: "Your Communities"
+                        }, void 0, false, {
+                            fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                            lineNumber: 277,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                        lineNumber: 276,
                         columnNumber: 11
                     }, this),
                     SAMPLE_COMMUNITIES.map((com)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "p-4 hover:bg-[#202c33] transition-colors",
+                            className: "p-4 bg-[#111b21] hover:bg-[#182229] transition-colors border-b border-[#222e35]/60",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex items-center gap-3 mb-2",
+                                    onClick: ()=>handleOpenCommunity(com),
+                                    className: "flex items-start gap-3.5 cursor-pointer group mb-2.5",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "w-12 h-12 rounded-xl bg-[#103629] text-[#25d366] flex items-center justify-center font-bold text-lg border border-[#25d366]/30",
+                                            className: "w-12 h-12 rounded-xl bg-[#103629] text-[#25d366] flex items-center justify-center font-bold text-lg border border-[#25d366]/30 flex-shrink-0 group-hover:border-[#25d366] transition-colors",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"], {
                                                 className: "w-6 h-6"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                                lineNumber: 188,
+                                                lineNumber: 293,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                            lineNumber: 187,
+                                            lineNumber: 292,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex-1 min-w-0",
                                             children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                                    className: "font-bold text-sm text-[#e9edef]",
-                                                    children: com.name
-                                                }, void 0, false, {
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "flex items-center justify-between",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
+                                                            className: "font-bold text-sm text-[#e9edef] group-hover:text-[#25d366] transition-colors truncate",
+                                                            children: com.name
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                                            lineNumber: 297,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        openingId === com.id ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__["Loader2"], {
+                                                            className: "w-4 h-4 text-[#00a884] animate-spin flex-shrink-0"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                                            lineNumber: 301,
+                                                            columnNumber: 23
+                                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "text-[11px] font-medium text-[#00a884] group-hover:underline flex-shrink-0",
+                                                            children: "Open Chat"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                                            lineNumber: 303,
+                                                            columnNumber: 23
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
                                                     fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                                    lineNumber: 191,
+                                                    lineNumber: 296,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -323,76 +475,219 @@ function ChannelsCommunitiesView({ viewType = "channels", onSelectConversation, 
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                                    lineNumber: 192,
+                                                    lineNumber: 308,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "text-xs text-[#8696a0] line-clamp-2 mt-1 leading-relaxed",
+                                                    children: com.description
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                                    lineNumber: 311,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                            lineNumber: 190,
+                                            lineNumber: 295,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                    lineNumber: 186,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-xs text-[#8696a0] mb-3",
-                                    children: com.description
-                                }, void 0, false, {
-                                    fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                    lineNumber: 198,
+                                    lineNumber: 288,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "space-y-1 pl-4 border-l-2 border-[#2a3942]",
-                                    children: com.subgroups.map((sub, sIdx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "flex items-center justify-between py-1 text-xs text-[#d1d7db] hover:text-[#00a884] cursor-pointer",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    children: [
-                                                        "📣 ",
-                                                        sub
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                                    lineNumber: 206,
-                                                    columnNumber: 21
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
-                                                    className: "w-3 h-3 text-[#8696a0]"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                                    lineNumber: 207,
-                                                    columnNumber: 21
-                                                }, this)
-                                            ]
-                                        }, sIdx, true, {
+                                    className: "mt-3 space-y-1.5 pl-4 border-l-2 border-[#2a3942]",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "text-[10px] uppercase font-semibold text-[#8696a0] tracking-wider mb-1",
+                                            children: "Community Groups"
+                                        }, void 0, false, {
                                             fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                            lineNumber: 202,
-                                            columnNumber: 19
-                                        }, this))
-                                }, void 0, false, {
+                                            lineNumber: 319,
+                                            columnNumber: 17
+                                        }, this),
+                                        com.subgroups.map((sub, sIdx)=>{
+                                            const trackingKey = `${com.id}-${sub}`;
+                                            const isOpening = openingId === trackingKey;
+                                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                type: "button",
+                                                onClick: ()=>handleOpenCommunity(com, sub),
+                                                disabled: isOpening,
+                                                className: "w-full flex items-center justify-between py-1.5 px-2 rounded-md text-xs text-[#d1d7db] hover:bg-[#202c33] hover:text-[#00a884] transition-colors group cursor-pointer text-left",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "flex items-center gap-2 truncate",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                className: "text-xs",
+                                                                children: "📣"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                                                lineNumber: 335,
+                                                                columnNumber: 25
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                className: "font-medium truncate",
+                                                                children: sub
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                                                lineNumber: 336,
+                                                                columnNumber: 25
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                                        lineNumber: 334,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "flex items-center gap-1.5 text-[11px] text-[#8696a0] group-hover:text-[#00a884] flex-shrink-0 ml-2",
+                                                        children: isOpening ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__["Loader2"], {
+                                                            className: "w-3.5 h-3.5 animate-spin text-[#00a884]"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                                            lineNumber: 340,
+                                                            columnNumber: 27
+                                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: "opacity-0 group-hover:opacity-100 transition-opacity text-[10px]",
+                                                                    children: "Enter"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                                                    lineNumber: 343,
+                                                                    columnNumber: 29
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
+                                                                    className: "w-3.5 h-3.5"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                                                    lineNumber: 346,
+                                                                    columnNumber: 29
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                                            lineNumber: 342,
+                                                            columnNumber: 27
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                                        lineNumber: 338,
+                                                        columnNumber: 23
+                                                    }, this)
+                                                ]
+                                            }, sIdx, true, {
+                                                fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                                lineNumber: 327,
+                                                columnNumber: 21
+                                            }, this);
+                                        })
+                                    ]
+                                }, void 0, true, {
                                     fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                                    lineNumber: 200,
+                                    lineNumber: 318,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, com.id, true, {
                             fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                            lineNumber: 185,
+                            lineNumber: 283,
                             columnNumber: 13
-                        }, this))
+                        }, this)),
+                    userGroups.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "p-3 bg-[#111b21]",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "px-2 py-1 text-[11px] font-semibold text-[#8696a0] uppercase tracking-wider",
+                                children: [
+                                    "Joined Group Chats (",
+                                    userGroups.length,
+                                    ")"
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                lineNumber: 360,
+                                columnNumber: 15
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "mt-1 divide-y divide-[#222e35]/40",
+                                children: userGroups.map((group)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        type: "button",
+                                        onClick: ()=>onSelectConversation?.(group),
+                                        className: "w-full flex items-center gap-3 p-2.5 rounded-lg hover:bg-[#202c33] transition-colors text-left group cursor-pointer",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "w-9 h-9 rounded-full bg-[#1f3540] text-[#00a884] flex items-center justify-center font-bold text-xs flex-shrink-0",
+                                                children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getInitials"])(group.name || "Group")
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                                lineNumber: 371,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex-1 min-w-0",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h5", {
+                                                        className: "text-xs font-semibold text-[#e9edef] group-hover:text-[#00a884] truncate",
+                                                        children: group.name
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                                        lineNumber: 375,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "text-[11px] text-[#8696a0] truncate block",
+                                                        children: [
+                                                            (group.members || []).length,
+                                                            " members"
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                                        lineNumber: 378,
+                                                        columnNumber: 23
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                                lineNumber: 374,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
+                                                className: "w-3.5 h-3.5 text-[#8696a0] group-hover:text-[#00a884] transition-colors"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                                lineNumber: 382,
+                                                columnNumber: 21
+                                            }, this)
+                                        ]
+                                    }, group._id, true, {
+                                        fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                        lineNumber: 365,
+                                        columnNumber: 19
+                                    }, this))
+                            }, void 0, false, {
+                                fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                                lineNumber: 363,
+                                columnNumber: 15
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
+                        lineNumber: 359,
+                        columnNumber: 13
+                    }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                lineNumber: 173,
+                lineNumber: 251,
                 columnNumber: 9
             }, this),
             viewType === "archived" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex-1 overflow-y-auto p-4 text-center",
+                className: "flex-1 overflow-y-auto p-4 text-center custom-scrollbar",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "w-16 h-16 rounded-full bg-[#202c33] flex items-center justify-center mx-auto mb-3 text-[#8696a0]",
@@ -400,12 +695,12 @@ function ChannelsCommunitiesView({ viewType = "channels", onSelectConversation, 
                             className: "w-8 h-8"
                         }, void 0, false, {
                             fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                            lineNumber: 220,
+                            lineNumber: 395,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                        lineNumber: 219,
+                        lineNumber: 394,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -413,7 +708,7 @@ function ChannelsCommunitiesView({ viewType = "channels", onSelectConversation, 
                         children: "No archived chats"
                     }, void 0, false, {
                         fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                        lineNumber: 222,
+                        lineNumber: 397,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -421,17 +716,17 @@ function ChannelsCommunitiesView({ viewType = "channels", onSelectConversation, 
                         children: "Archive chats you don't need right now to keep your chat list clean. Archived chats remain archived when new messages arrive."
                     }, void 0, false, {
                         fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                        lineNumber: 223,
+                        lineNumber: 398,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                lineNumber: 218,
+                lineNumber: 393,
                 columnNumber: 9
             }, this),
             viewType === "starred" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex-1 overflow-y-auto p-4 text-center",
+                className: "flex-1 overflow-y-auto p-4 text-center custom-scrollbar",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "w-16 h-16 rounded-full bg-[#202c33] flex items-center justify-center mx-auto mb-3 text-amber-400",
@@ -439,12 +734,12 @@ function ChannelsCommunitiesView({ viewType = "channels", onSelectConversation, 
                             className: "w-8 h-8 fill-current"
                         }, void 0, false, {
                             fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                            lineNumber: 234,
+                            lineNumber: 409,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                        lineNumber: 233,
+                        lineNumber: 408,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -452,7 +747,7 @@ function ChannelsCommunitiesView({ viewType = "channels", onSelectConversation, 
                         children: "No starred messages"
                     }, void 0, false, {
                         fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                        lineNumber: 236,
+                        lineNumber: 411,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -460,23 +755,23 @@ function ChannelsCommunitiesView({ viewType = "channels", onSelectConversation, 
                         children: "Tap and hold any message to star it so you can easily find it later."
                     }, void 0, false, {
                         fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                        lineNumber: 237,
+                        lineNumber: 412,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-                lineNumber: 232,
+                lineNumber: 407,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/chat/ChannelsCommunitiesView.jsx",
-        lineNumber: 100,
+        lineNumber: 175,
         columnNumber: 5
     }, this);
 }
-_s(ChannelsCommunitiesView, "uju/ErSO8th1HcBz5okwjsJ8w50=");
+_s(ChannelsCommunitiesView, "8+BxJc72R1dKPYn94x/6/s9+ru0=");
 _c = ChannelsCommunitiesView;
 var _c;
 __turbopack_context__.k.register(_c, "ChannelsCommunitiesView");
@@ -10831,6 +11126,7 @@ function ChatLayout({ initialConversationId = null }) {
                                     (activeDockView === "channels" || activeDockView === "communities" || activeDockView === "archived" || activeDockView === "starred") && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$chat$2f$ChannelsCommunitiesView$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                         viewType: activeDockView,
                                         conversations: conversations,
+                                        onOpenNewGroup: ()=>setIsNewGroupOpen(true),
                                         onSelectConversation: (conv)=>{
                                             setActiveDockView("chats");
                                             handleSelectConversation(conv);
@@ -10861,12 +11157,12 @@ function ChatLayout({ initialConversationId = null }) {
                             className: "w-0.5 h-8 rounded-full bg-[#2a3942] group-hover:bg-[#00a884] transition-colors"
                         }, void 0, false, {
                             fileName: "[project]/components/chat/chatLayout.jsx",
-                            lineNumber: 861,
+                            lineNumber: 862,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/chat/chatLayout.jsx",
-                        lineNumber: 855,
+                        lineNumber: 856,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -10885,12 +11181,12 @@ function ChatLayout({ initialConversationId = null }) {
                                             className: "w-10 h-10"
                                         }, void 0, false, {
                                             fileName: "[project]/components/chat/chatLayout.jsx",
-                                            lineNumber: 878,
+                                            lineNumber: 879,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                        lineNumber: 877,
+                                        lineNumber: 878,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -10898,7 +11194,7 @@ function ChatLayout({ initialConversationId = null }) {
                                         children: "Drop files here to send"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                        lineNumber: 880,
+                                        lineNumber: 881,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -10906,7 +11202,7 @@ function ChatLayout({ initialConversationId = null }) {
                                         children: "Photos, videos, audio, and documents will be attached instantly"
                                     }, void 0, false, {
                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                        lineNumber: 883,
+                                        lineNumber: 884,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -10916,26 +11212,26 @@ function ChatLayout({ initialConversationId = null }) {
                                                 className: "w-3.5 h-3.5"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                lineNumber: 887,
+                                                lineNumber: 888,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "Ready to attach"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                lineNumber: 888,
+                                                lineNumber: 889,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                        lineNumber: 886,
+                                        lineNumber: 887,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                lineNumber: 876,
+                                lineNumber: 877,
                                 columnNumber: 13
                             }, this),
                             showMetaAIChat ? /* Interactive Dummy LLM Meta AI Chat */ /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$chat$2f$DummyLLMChat$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -10945,7 +11241,7 @@ function ChatLayout({ initialConversationId = null }) {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                lineNumber: 894,
+                                lineNumber: 895,
                                 columnNumber: 13
                             }, this) : activeConversation ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
                                 children: [
@@ -10963,12 +11259,12 @@ function ChatLayout({ initialConversationId = null }) {
                                                             className: "w-5 h-5"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/chat/chatLayout.jsx",
-                                                            lineNumber: 911,
+                                                            lineNumber: 912,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                        lineNumber: 906,
+                                                        lineNumber: 907,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -10984,7 +11280,7 @@ function ChatLayout({ initialConversationId = null }) {
                                                                         className: "w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover ring-1 ring-[#222e35] group-hover:ring-[#00a884] transition-all"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                        lineNumber: 921,
+                                                                        lineNumber: 922,
                                                                         columnNumber: 25
                                                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                         className: "w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#534b3e] flex items-center justify-center text-[#e9edef] font-semibold text-xs sm:text-sm shadow-xs group-hover:ring-1 group-hover:ring-[#00a884] transition-all",
@@ -10992,25 +11288,25 @@ function ChatLayout({ initialConversationId = null }) {
                                                                             className: "w-4 h-4 sm:w-5 sm:h-5"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                            lineNumber: 930,
+                                                                            lineNumber: 931,
                                                                             columnNumber: 38
                                                                         }, this) : (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getInitials"])(conversationTitle)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                        lineNumber: 927,
+                                                                        lineNumber: 928,
                                                                         columnNumber: 25
                                                                     }, this),
                                                                     !isGroup && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                         className: `absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full border-2 border-[#202c33] ${isOtherUserOnline ? "bg-[#25d366] shadow-xs" : "bg-[#8696a0]"}`
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                        lineNumber: 935,
+                                                                        lineNumber: 936,
                                                                         columnNumber: 25
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                lineNumber: 919,
+                                                                lineNumber: 920,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -11024,7 +11320,7 @@ function ChatLayout({ initialConversationId = null }) {
                                                                                 children: conversationTitle
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                lineNumber: 948,
+                                                                                lineNumber: 949,
                                                                                 columnNumber: 25
                                                                             }, this),
                                                                             isGroup && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -11032,13 +11328,13 @@ function ChatLayout({ initialConversationId = null }) {
                                                                                 children: "Group"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                lineNumber: 950,
+                                                                                lineNumber: 951,
                                                                                 columnNumber: 27
                                                                             }, this)
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                        lineNumber: 947,
+                                                                        lineNumber: 948,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -11050,14 +11346,14 @@ function ChatLayout({ initialConversationId = null }) {
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                            lineNumber: 958,
+                                                                            lineNumber: 959,
                                                                             columnNumber: 27
                                                                         }, this) : currentTypers.some((t)=>(t._id || t.id)?.toString() === (otherUser?._id || otherUser?.id)?.toString()) ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                             className: "text-[#00a884] font-medium flex items-center gap-1 animate-pulse",
                                                                             children: "typing..."
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                            lineNumber: 960,
+                                                                            lineNumber: 961,
                                                                             columnNumber: 27
                                                                         }, this) : isOtherUserOnline ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                             className: "text-[#00a884] font-medium flex items-center gap-1",
@@ -11066,44 +11362,44 @@ function ChatLayout({ initialConversationId = null }) {
                                                                                     className: "w-1.5 h-1.5 rounded-full bg-[#25d366] animate-pulse"
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                    lineNumber: 965,
+                                                                                    lineNumber: 966,
                                                                                     columnNumber: 29
                                                                                 }, this),
                                                                                 "online"
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                            lineNumber: 964,
+                                                                            lineNumber: 965,
                                                                             columnNumber: 27
                                                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                             className: "text-[#8696a0] font-normal truncate",
                                                                             children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["formatLiveLastSeen"])(otherUser?.lastSeen)
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                            lineNumber: 969,
+                                                                            lineNumber: 970,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                        lineNumber: 956,
+                                                                        lineNumber: 957,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                lineNumber: 946,
+                                                                lineNumber: 947,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                        lineNumber: 915,
+                                                        lineNumber: 916,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                lineNumber: 904,
+                                                lineNumber: 905,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -11113,7 +11409,7 @@ function ChatLayout({ initialConversationId = null }) {
                                                         className: "hidden lg:inline-flex"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                        lineNumber: 980,
+                                                        lineNumber: 981,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -11128,12 +11424,12 @@ function ChatLayout({ initialConversationId = null }) {
                                                                     className: "w-4 h-4"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                    lineNumber: 990,
+                                                                    lineNumber: 991,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                lineNumber: 984,
+                                                                lineNumber: 985,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -11145,12 +11441,12 @@ function ChatLayout({ initialConversationId = null }) {
                                                                     className: "w-4 h-4"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                    lineNumber: 1000,
+                                                                    lineNumber: 1001,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                lineNumber: 994,
+                                                                lineNumber: 995,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -11162,12 +11458,12 @@ function ChatLayout({ initialConversationId = null }) {
                                                                     className: "w-4 h-4"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                    lineNumber: 1014,
+                                                                    lineNumber: 1015,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                lineNumber: 1004,
+                                                                lineNumber: 1005,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -11183,12 +11479,12 @@ function ChatLayout({ initialConversationId = null }) {
                                                                             className: "w-4 h-4"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                            lineNumber: 1029,
+                                                                            lineNumber: 1030,
                                                                             columnNumber: 25
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                        lineNumber: 1019,
+                                                                        lineNumber: 1020,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     isHeaderMenuOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -11209,20 +11505,20 @@ function ChatLayout({ initialConversationId = null }) {
                                                                                                 className: "w-4 h-4 text-[#8696a0]"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1044,
+                                                                                                lineNumber: 1045,
                                                                                                 columnNumber: 31
                                                                                             }, this),
                                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                                                 children: "Contact info"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1045,
+                                                                                                lineNumber: 1046,
                                                                                                 columnNumber: 31
                                                                                             }, this)
                                                                                         ]
                                                                                     }, void 0, true, {
                                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                        lineNumber: 1036,
+                                                                                        lineNumber: 1037,
                                                                                         columnNumber: 29
                                                                                     }, this),
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -11237,20 +11533,20 @@ function ChatLayout({ initialConversationId = null }) {
                                                                                                 className: "w-4 h-4 text-[#8696a0]"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1056,
+                                                                                                lineNumber: 1057,
                                                                                                 columnNumber: 31
                                                                                             }, this),
                                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                                                 children: "Search"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1057,
+                                                                                                lineNumber: 1058,
                                                                                                 columnNumber: 31
                                                                                             }, this)
                                                                                         ]
                                                                                     }, void 0, true, {
                                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                        lineNumber: 1048,
+                                                                                        lineNumber: 1049,
                                                                                         columnNumber: 29
                                                                                     }, this),
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -11266,20 +11562,20 @@ function ChatLayout({ initialConversationId = null }) {
                                                                                                 className: "w-4 h-4 text-[#8696a0]"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1069,
+                                                                                                lineNumber: 1070,
                                                                                                 columnNumber: 31
                                                                                             }, this),
                                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                                                 children: "Select messages"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1070,
+                                                                                                lineNumber: 1071,
                                                                                                 columnNumber: 31
                                                                                             }, this)
                                                                                         ]
                                                                                     }, void 0, true, {
                                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                        lineNumber: 1060,
+                                                                                        lineNumber: 1061,
                                                                                         columnNumber: 29
                                                                                     }, this),
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -11298,33 +11594,33 @@ function ChatLayout({ initialConversationId = null }) {
                                                                                                         className: "w-4 h-4 text-[#8696a0]"
                                                                                                     }, void 0, false, {
                                                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                        lineNumber: 1083,
+                                                                                                        lineNumber: 1084,
                                                                                                         columnNumber: 33
                                                                                                     }, this),
                                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                                                         children: "Mute notifications"
                                                                                                     }, void 0, false, {
                                                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                        lineNumber: 1084,
+                                                                                                        lineNumber: 1085,
                                                                                                         columnNumber: 33
                                                                                                     }, this)
                                                                                                 ]
                                                                                             }, void 0, true, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1082,
+                                                                                                lineNumber: 1083,
                                                                                                 columnNumber: 31
                                                                                             }, this),
                                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
                                                                                                 className: "w-3.5 h-3.5 text-[#8696a0]"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1086,
+                                                                                                lineNumber: 1087,
                                                                                                 columnNumber: 31
                                                                                             }, this)
                                                                                         ]
                                                                                     }, void 0, true, {
                                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                        lineNumber: 1073,
+                                                                                        lineNumber: 1074,
                                                                                         columnNumber: 29
                                                                                     }, this),
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -11340,20 +11636,20 @@ function ChatLayout({ initialConversationId = null }) {
                                                                                                 className: "w-4 h-4 text-[#8696a0]"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1098,
+                                                                                                lineNumber: 1099,
                                                                                                 columnNumber: 31
                                                                                             }, this),
                                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                                                 children: "Disappearing messages"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1099,
+                                                                                                lineNumber: 1100,
                                                                                                 columnNumber: 31
                                                                                             }, this)
                                                                                         ]
                                                                                     }, void 0, true, {
                                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                        lineNumber: 1089,
+                                                                                        lineNumber: 1090,
                                                                                         columnNumber: 29
                                                                                     }, this),
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -11369,20 +11665,20 @@ function ChatLayout({ initialConversationId = null }) {
                                                                                                 className: "w-4 h-4 text-[#8696a0]"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1111,
+                                                                                                lineNumber: 1112,
                                                                                                 columnNumber: 31
                                                                                             }, this),
                                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                                                 children: "Add to favourites"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1112,
+                                                                                                lineNumber: 1113,
                                                                                                 columnNumber: 31
                                                                                             }, this)
                                                                                         ]
                                                                                     }, void 0, true, {
                                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                        lineNumber: 1102,
+                                                                                        lineNumber: 1103,
                                                                                         columnNumber: 29
                                                                                     }, this),
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -11401,33 +11697,33 @@ function ChatLayout({ initialConversationId = null }) {
                                                                                                         className: "w-4 h-4 text-[#8696a0]"
                                                                                                     }, void 0, false, {
                                                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                        lineNumber: 1125,
+                                                                                                        lineNumber: 1126,
                                                                                                         columnNumber: 33
                                                                                                     }, this),
                                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                                                         children: "Add to list"
                                                                                                     }, void 0, false, {
                                                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                        lineNumber: 1126,
+                                                                                                        lineNumber: 1127,
                                                                                                         columnNumber: 33
                                                                                                     }, this)
                                                                                                 ]
                                                                                             }, void 0, true, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1124,
+                                                                                                lineNumber: 1125,
                                                                                                 columnNumber: 31
                                                                                             }, this),
                                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
                                                                                                 className: "w-3.5 h-3.5 text-[#8696a0]"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1128,
+                                                                                                lineNumber: 1129,
                                                                                                 columnNumber: 31
                                                                                             }, this)
                                                                                         ]
                                                                                     }, void 0, true, {
                                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                        lineNumber: 1115,
+                                                                                        lineNumber: 1116,
                                                                                         columnNumber: 29
                                                                                     }, this),
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -11439,20 +11735,20 @@ function ChatLayout({ initialConversationId = null }) {
                                                                                                 className: "w-4 h-4 text-[#8696a0]"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1136,
+                                                                                                lineNumber: 1137,
                                                                                                 columnNumber: 31
                                                                                             }, this),
                                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                                                 children: "Export chat"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1137,
+                                                                                                lineNumber: 1138,
                                                                                                 columnNumber: 31
                                                                                             }, this)
                                                                                         ]
                                                                                     }, void 0, true, {
                                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                        lineNumber: 1131,
+                                                                                        lineNumber: 1132,
                                                                                         columnNumber: 29
                                                                                     }, this),
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -11468,26 +11764,26 @@ function ChatLayout({ initialConversationId = null }) {
                                                                                                 className: "w-4 h-4 text-[#8696a0]"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1149,
+                                                                                                lineNumber: 1150,
                                                                                                 columnNumber: 31
                                                                                             }, this),
                                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                                                 children: "Close chat"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1150,
+                                                                                                lineNumber: 1151,
                                                                                                 columnNumber: 31
                                                                                             }, this)
                                                                                         ]
                                                                                     }, void 0, true, {
                                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                        lineNumber: 1140,
+                                                                                        lineNumber: 1141,
                                                                                         columnNumber: 29
                                                                                     }, this)
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                lineNumber: 1035,
+                                                                                lineNumber: 1036,
                                                                                 columnNumber: 27
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -11502,20 +11798,20 @@ function ChatLayout({ initialConversationId = null }) {
                                                                                                 className: "w-4 h-4 text-[#8696a0]"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1161,
+                                                                                                lineNumber: 1162,
                                                                                                 columnNumber: 31
                                                                                             }, this),
                                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                                                 children: "Send call link"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1162,
+                                                                                                lineNumber: 1163,
                                                                                                 columnNumber: 31
                                                                                             }, this)
                                                                                         ]
                                                                                     }, void 0, true, {
                                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                        lineNumber: 1156,
+                                                                                        lineNumber: 1157,
                                                                                         columnNumber: 29
                                                                                     }, this),
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -11531,20 +11827,20 @@ function ChatLayout({ initialConversationId = null }) {
                                                                                                 className: "w-4 h-4 text-[#8696a0]"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1174,
+                                                                                                lineNumber: 1175,
                                                                                                 columnNumber: 31
                                                                                             }, this),
                                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                                                 children: "Schedule call"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1175,
+                                                                                                lineNumber: 1176,
                                                                                                 columnNumber: 31
                                                                                             }, this)
                                                                                         ]
                                                                                     }, void 0, true, {
                                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                        lineNumber: 1165,
+                                                                                        lineNumber: 1166,
                                                                                         columnNumber: 29
                                                                                     }, this),
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -11559,26 +11855,26 @@ function ChatLayout({ initialConversationId = null }) {
                                                                                                 className: "w-4 h-4 text-[#8696a0]"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1186,
+                                                                                                lineNumber: 1187,
                                                                                                 columnNumber: 31
                                                                                             }, this),
                                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                                                 children: "New group call"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1187,
+                                                                                                lineNumber: 1188,
                                                                                                 columnNumber: 31
                                                                                             }, this)
                                                                                         ]
                                                                                     }, void 0, true, {
                                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                        lineNumber: 1178,
+                                                                                        lineNumber: 1179,
                                                                                         columnNumber: 29
                                                                                     }, this)
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                lineNumber: 1155,
+                                                                                lineNumber: 1156,
                                                                                 columnNumber: 27
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -11593,20 +11889,20 @@ function ChatLayout({ initialConversationId = null }) {
                                                                                                 className: "w-4 h-4"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1198,
+                                                                                                lineNumber: 1199,
                                                                                                 columnNumber: 31
                                                                                             }, this),
                                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                                                 children: "Report"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1199,
+                                                                                                lineNumber: 1200,
                                                                                                 columnNumber: 31
                                                                                             }, this)
                                                                                         ]
                                                                                     }, void 0, true, {
                                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                        lineNumber: 1193,
+                                                                                        lineNumber: 1194,
                                                                                         columnNumber: 29
                                                                                     }, this),
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -11618,20 +11914,20 @@ function ChatLayout({ initialConversationId = null }) {
                                                                                                 className: "w-4 h-4"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1207,
+                                                                                                lineNumber: 1208,
                                                                                                 columnNumber: 31
                                                                                             }, this),
                                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                                                 children: "Block"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1208,
+                                                                                                lineNumber: 1209,
                                                                                                 columnNumber: 31
                                                                                             }, this)
                                                                                         ]
                                                                                     }, void 0, true, {
                                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                        lineNumber: 1202,
+                                                                                        lineNumber: 1203,
                                                                                         columnNumber: 29
                                                                                     }, this),
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -11643,20 +11939,20 @@ function ChatLayout({ initialConversationId = null }) {
                                                                                                 className: "w-4 h-4"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1216,
+                                                                                                lineNumber: 1217,
                                                                                                 columnNumber: 31
                                                                                             }, this),
                                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                                                 children: "Clear chat"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1217,
+                                                                                                lineNumber: 1218,
                                                                                                 columnNumber: 31
                                                                                             }, this)
                                                                                         ]
                                                                                     }, void 0, true, {
                                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                        lineNumber: 1211,
+                                                                                        lineNumber: 1212,
                                                                                         columnNumber: 29
                                                                                     }, this),
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -11668,56 +11964,56 @@ function ChatLayout({ initialConversationId = null }) {
                                                                                                 className: "w-4 h-4"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1225,
+                                                                                                lineNumber: 1226,
                                                                                                 columnNumber: 31
                                                                                             }, this),
                                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                                                 children: "Delete chat"
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                                lineNumber: 1226,
+                                                                                                lineNumber: 1227,
                                                                                                 columnNumber: 31
                                                                                             }, this)
                                                                                         ]
                                                                                     }, void 0, true, {
                                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                        lineNumber: 1220,
+                                                                                        lineNumber: 1221,
                                                                                         columnNumber: 29
                                                                                     }, this)
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                                lineNumber: 1192,
+                                                                                lineNumber: 1193,
                                                                                 columnNumber: 27
                                                                             }, this)
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                        lineNumber: 1033,
+                                                                        lineNumber: 1034,
                                                                         columnNumber: 25
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                                lineNumber: 1018,
+                                                                lineNumber: 1019,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                        lineNumber: 982,
+                                                        lineNumber: 983,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                lineNumber: 979,
+                                                lineNumber: 980,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                        lineNumber: 903,
+                                        lineNumber: 904,
                                         columnNumber: 15
                                     }, this),
                                     isInChatSearchOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -11727,7 +12023,7 @@ function ChatLayout({ initialConversationId = null }) {
                                                 className: "w-4 h-4 text-[#8696a0] flex-shrink-0"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                lineNumber: 1239,
+                                                lineNumber: 1240,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -11739,7 +12035,7 @@ function ChatLayout({ initialConversationId = null }) {
                                                 autoFocus: true
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                lineNumber: 1240,
+                                                lineNumber: 1241,
                                                 columnNumber: 19
                                             }, this),
                                             inChatSearchQuery && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -11749,13 +12045,13 @@ function ChatLayout({ initialConversationId = null }) {
                                                 children: "Clear"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                lineNumber: 1249,
+                                                lineNumber: 1250,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                        lineNumber: 1238,
+                                        lineNumber: 1239,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -11779,12 +12075,12 @@ function ChatLayout({ initialConversationId = null }) {
                                                             onDeleteMessage: promptDeleteMessage
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/chat/chatLayout.jsx",
-                                                            lineNumber: 1265,
+                                                            lineNumber: 1266,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                        lineNumber: 1264,
+                                                        lineNumber: 1265,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$chat$2f$MessageInput$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -11793,13 +12089,13 @@ function ChatLayout({ initialConversationId = null }) {
                                                         droppedFiles: stagedDroppedFiles
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                                        lineNumber: 1280,
+                                                        lineNumber: 1281,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                lineNumber: 1262,
+                                                lineNumber: 1263,
                                                 columnNumber: 17
                                             }, this),
                                             isContactInfoOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$chat$2f$ContactInfoSidebar$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -11817,19 +12113,19 @@ function ChatLayout({ initialConversationId = null }) {
                                                 onDeleteChat: promptDeleteConversation
                                             }, void 0, false, {
                                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                                lineNumber: 1289,
+                                                lineNumber: 1290,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/chat/chatLayout.jsx",
-                                        lineNumber: 1261,
+                                        lineNumber: 1262,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                lineNumber: 901,
+                                lineNumber: 902,
                                 columnNumber: 13
                             }, this) : /* WhatsApp Desktop Empty State matching screenshot */ /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$chat$2f$WhatsAppEmptyState$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                 onSendDocument: ()=>setIsNewChatOpen(true),
@@ -11840,13 +12136,13 @@ function ChatLayout({ initialConversationId = null }) {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/chat/chatLayout.jsx",
-                                lineNumber: 1308,
+                                lineNumber: 1309,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/chat/chatLayout.jsx",
-                        lineNumber: 865,
+                        lineNumber: 866,
                         columnNumber: 9
                     }, this)
                 ]
@@ -11861,7 +12157,7 @@ function ChatLayout({ initialConversationId = null }) {
                 onSelectConversation: (conv)=>handleSelectConversation(conv)
             }, void 0, false, {
                 fileName: "[project]/components/chat/chatLayout.jsx",
-                lineNumber: 1321,
+                lineNumber: 1322,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$group$2f$CreateGroup$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -11870,7 +12166,7 @@ function ChatLayout({ initialConversationId = null }) {
                 onGroupCreated: (conv)=>handleSelectConversation(conv)
             }, void 0, false, {
                 fileName: "[project]/components/chat/chatLayout.jsx",
-                lineNumber: 1327,
+                lineNumber: 1328,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$group$2f$GroupSetting$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -11880,7 +12176,7 @@ function ChatLayout({ initialConversationId = null }) {
                 onConversationUpdated: (updated)=>setActiveConversation(updated)
             }, void 0, false, {
                 fileName: "[project]/components/chat/chatLayout.jsx",
-                lineNumber: 1333,
+                lineNumber: 1334,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$chat$2f$GlobalSearchModal$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -11906,7 +12202,7 @@ function ChatLayout({ initialConversationId = null }) {
                 }
             }, void 0, false, {
                 fileName: "[project]/components/chat/chatLayout.jsx",
-                lineNumber: 1340,
+                lineNumber: 1341,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$profile$2f$ProfileModal$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -11914,7 +12210,7 @@ function ChatLayout({ initialConversationId = null }) {
                 onClose: ()=>setIsProfileOpen(false)
             }, void 0, false, {
                 fileName: "[project]/components/chat/chatLayout.jsx",
-                lineNumber: 1364,
+                lineNumber: 1365,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$chat$2f$WhatsAppSettingsModal$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -11923,7 +12219,7 @@ function ChatLayout({ initialConversationId = null }) {
                 onLogout: handleLogout
             }, void 0, false, {
                 fileName: "[project]/components/chat/chatLayout.jsx",
-                lineNumber: 1370,
+                lineNumber: 1371,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$call$2f$IncomingCallModal$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -11931,7 +12227,7 @@ function ChatLayout({ initialConversationId = null }) {
                 onDecline: declineCall
             }, void 0, false, {
                 fileName: "[project]/components/chat/chatLayout.jsx",
-                lineNumber: 1377,
+                lineNumber: 1378,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$call$2f$VideoCallModal$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -11940,14 +12236,14 @@ function ChatLayout({ initialConversationId = null }) {
                 isScreenSharing: isScreenSharing
             }, void 0, false, {
                 fileName: "[project]/components/chat/chatLayout.jsx",
-                lineNumber: 1378,
+                lineNumber: 1379,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$chat$2f$NotificationBanner$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                 onSelectConversation: handleSelectConversationById
             }, void 0, false, {
                 fileName: "[project]/components/chat/chatLayout.jsx",
-                lineNumber: 1385,
+                lineNumber: 1386,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$ConfirmModal$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -11963,7 +12259,7 @@ function ChatLayout({ initialConversationId = null }) {
                         }))
             }, void 0, false, {
                 fileName: "[project]/components/chat/chatLayout.jsx",
-                lineNumber: 1388,
+                lineNumber: 1389,
                 columnNumber: 7
             }, this),
             headerToast && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -11973,20 +12269,20 @@ function ChatLayout({ initialConversationId = null }) {
                         className: "w-3.5 h-3.5 text-[#00a884]"
                     }, void 0, false, {
                         fileName: "[project]/components/chat/chatLayout.jsx",
-                        lineNumber: 1401,
+                        lineNumber: 1402,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                         children: headerToast
                     }, void 0, false, {
                         fileName: "[project]/components/chat/chatLayout.jsx",
-                        lineNumber: 1402,
+                        lineNumber: 1403,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/chat/chatLayout.jsx",
-                lineNumber: 1400,
+                lineNumber: 1401,
                 columnNumber: 9
             }, this)
         ]
